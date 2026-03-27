@@ -101,29 +101,29 @@ mkdir -p "${ANDROID_MAIN}/kotlin"
 
 cd "$CDK_FFI_DIR"
 
-# Build for ARM64 (without postgres to avoid OpenSSL)
+# Build for ARM64 (without postgres/npubcash, but with bip353)
 echo "Building for ARM64..."
 CC_aarch64_linux_android="${NDK_TOOLCHAIN_ROOT}/bin/aarch64-linux-android24-clang" \
 CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER="${NDK_TOOLCHAIN_ROOT}/bin/aarch64-linux-android24-clang" \
 CARGO_TARGET_AARCH64_LINUX_ANDROID_AR="${NDK_TOOLCHAIN_ROOT}/bin/llvm-ar" \
 AR_aarch64_linux_android="${NDK_TOOLCHAIN_ROOT}/bin/llvm-ar" \
-cargo build --target aarch64-linux-android --profile release-smaller --no-default-features
+cargo build --target aarch64-linux-android --profile release-smaller --no-default-features --features bip353
 
-# Build for x86_64 (without postgres to avoid OpenSSL)
+# Build for x86_64 (without postgres/npubcash, but with bip353)
 echo "Building for x86_64..."
 CC_x86_64_linux_android="${NDK_TOOLCHAIN_ROOT}/bin/x86_64-linux-android24-clang" \
 CARGO_TARGET_X86_64_LINUX_ANDROID_LINKER="${NDK_TOOLCHAIN_ROOT}/bin/x86_64-linux-android24-clang" \
 CARGO_TARGET_X86_64_LINUX_ANDROID_AR="${NDK_TOOLCHAIN_ROOT}/bin/llvm-ar" \
 AR_x86_64_linux_android="${NDK_TOOLCHAIN_ROOT}/bin/llvm-ar" \
-cargo build --target x86_64-linux-android --profile release-smaller --no-default-features
+cargo build --target x86_64-linux-android --profile release-smaller --no-default-features --features bip353
 
-# Build for ARMv7 (without postgres to avoid OpenSSL)
+# Build for ARMv7 (without postgres/npubcash, but with bip353)
 echo "Building for ARMv7..."
 CC_armv7_linux_androideabi="${NDK_TOOLCHAIN_ROOT}/bin/armv7a-linux-androideabi24-clang" \
 CARGO_TARGET_ARMV7_LINUX_ANDROIDEABI_LINKER="${NDK_TOOLCHAIN_ROOT}/bin/armv7a-linux-androideabi24-clang" \
 CARGO_TARGET_ARMV7_LINUX_ANDROIDEABI_AR="${NDK_TOOLCHAIN_ROOT}/bin/llvm-ar" \
 AR_armv7_linux_androideabi="${NDK_TOOLCHAIN_ROOT}/bin/llvm-ar" \
-cargo build --target armv7-linux-androideabi --profile release-smaller --no-default-features
+cargo build --target armv7-linux-androideabi --profile release-smaller --no-default-features --features bip353
 
 # Determine target directory based on CDK FFI location
 CDK_TARGET_DIR="${CDK_FFI_DIR}/../../target"

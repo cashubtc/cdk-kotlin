@@ -45,3 +45,6 @@ repo/
 
 # Editor config (if auto-generated)
 .editorconfig
+
+cdk/
+target/
