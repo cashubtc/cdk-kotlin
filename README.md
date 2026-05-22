@@ -27,7 +27,7 @@ Add the dependency to your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("org.cashudevkit:cdk-kotlin:0.17.0-rc.2-onchain")
+    implementation("org.cashudevkit:cdk-kotlin:0.17.0-rc.0")
 }
 ```
 
