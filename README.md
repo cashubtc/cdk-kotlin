@@ -1,116 +1,164 @@
-# CDK Kotlin
+# CDK Kotlin Bindings
 
-Kotlin/Android bindings for the Cashu Development Kit (CDK).
+Kotlin/JVM and Android bindings for the [Cashu Development Kit](https://github.com/cashubtc/cdk), generated via [UniFFI](https://mozilla.github.io/uniffi-rs/).
 
-## Requirements
+## Module Architecture
 
-- Android SDK with Build-Tools for API level 24 or higher
-- Android NDK (for building from source)
-- Rust toolchain with `cargo` (for building from source)
-
-## Environment Setup
-
-Before building, set up the following environment variables:
-
-```bash
-export ANDROID_SDK_ROOT=~/Library/Android/sdk
-export ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/<your-ndk-version>
+```
+cdk-jvm              Core Kotlin bindings + JNA native loading
+cdk-jvm-natives      Per-platform native library JARs (published separately)
+cdk-android          Android wrapper with bundled jniLibs
+cdk-ios              iOS static library JAR (for Kotlin Multiplatform)
 ```
 
-Replace `<your-ndk-version>` with your installed NDK version.
+**Dependency graph:**
+
+```
+cdk-android ──api──> cdk-jvm
+cdk-jvm-natives      (standalone — native binaries only)
+cdk-ios              (standalone — static library only)
+```
+
+`cdk-jvm` contains the generated Kotlin sources and uses [JNA](https://github.com/java-native-access/jna) to load the native Rust library at runtime. `cdk-jvm-natives` provides the native library as a separate JAR per platform so consumers can pick only the targets they need. `cdk-android` depends on `cdk-jvm` and bundles pre-built `.so` files for Android ABIs. `cdk-ios` packages the iOS static library for use in Kotlin Multiplatform projects.
+
+## Maven Artifacts
+
+All artifacts are published under `org.cashudevkit`:
+
+| Artifact | Description |
+|---|---|
+| `cdk-jvm` | Kotlin bindings (required) |
+| `cdk-jvm-linux-x86-64` | Native lib for Linux x86-64 |
+| `cdk-jvm-linux-aarch64` | Native lib for Linux ARM64 |
+| `cdk-jvm-darwin-aarch64` | Native lib for macOS Apple Silicon |
+| `cdk-android` | Android library (includes all ABIs) |
+| `cdk-ios-ios-arm64` | iOS static library (arm64) |
 
 ## Installation
 
-### From Maven Repository
-
-Add the dependency to your app's `build.gradle.kts`:
+### JVM
 
 ```kotlin
 dependencies {
-    implementation("org.cashudevkit:cdk-kotlin:0.17.0-rc.0")
+    implementation("org.cashudevkit:cdk-jvm:VERSION")
+
+    // Add native libraries for your target platform(s)
+    runtimeOnly("org.cashudevkit:cdk-jvm-linux-x86-64:VERSION")
+    runtimeOnly("org.cashudevkit:cdk-jvm-darwin-aarch64:VERSION")
+    // ... add more as needed
 }
 ```
 
-### Building from Source
+### Android
 
-1. Set up environment variables (see Environment Setup section above)
-2. Set up and build:
-   ```bash
-   just setup
-   just install-deps
-   just build-android
-   just publish-local
-   ```
+```kotlin
+dependencies {
+    implementation("org.cashudevkit:cdk-android:VERSION")
+    // cdk-jvm is included transitively
+}
+```
 
-## Usage
+### Kotlin Multiplatform (iOS)
+
+```kotlin
+dependencies {
+    implementation("org.cashudevkit:cdk-ios-ios-arm64:VERSION")
+}
+```
+
+## Quick Start
 
 ```kotlin
 import org.cashudevkit.*
 import kotlinx.coroutines.runBlocking
 
-// Create an in-memory database
-val database = runBlocking { WalletSqliteDatabase.newInMemory() }
+fun main() = runBlocking {
+    val mnemonic = generateMnemonic()
 
-// Configure the wallet
-val config = WalletConfig(targetProofCount = 10u)
-val mnemonic = generateMnemonic()
+    val wallet = Wallet(
+        mintUrl = "https://testnut.cashudevkit.org",
+        unit = CurrencyUnit.Sat,
+        mnemonic = mnemonic,
+        store = WalletStore.Sqlite(path = "wallet.sqlite"),
+        config = WalletConfig(targetProofCount = null),
+    )
 
-// Create wallet instance
-val wallet = Wallet(
-    mintUrl = "https://testmint.cashu.space",
-    unit = CurrencyUnit.Sat,
-    mnemonic = mnemonic,
-    db = database,
-    config = config
-)
+    // Request a mint quote
+    val quote = wallet.mintQuote(
+        paymentMethod = PaymentMethod.Bolt11,
+        amount = Amount(value = 100UL),
+        description = null,
+        extra = null,
+    )
 
-// Create a mint quote for 1000 sats
-val amount = Amount(value = 1000UL)
-val mintQuote = wallet.mintQuote(
-    amount = amount,
-    description = "Test mint quote"
-)
+    println("Pay this invoice: ${quote.request}")
 
-// Check wallet balance
-val balance = wallet.totalBalance()
-println("Wallet balance: ${balance.value} sats")
+    // After payment settles, mint the tokens
+    val proofs = wallet.mint(
+        quoteId = quote.id,
+        amountSplitTarget = SplitTarget.None,
+        spendingConditions = null,
+    )
 
-// Clean up resources
-wallet.close()
-database.close()
+    val balance = wallet.totalBalance()
+    println("Balance: ${balance.value} sats")
+
+    wallet.close()
+}
 ```
 
-## Architecture Support
+## Building from Source
 
-The library includes native binaries for the following Android architectures:
-- arm64-v8a (64-bit ARM)
-- armeabi-v7a (32-bit ARM)
-- x86 (32-bit Intel/AMD)
-- x86_64 (64-bit Intel/AMD)
-
-
-## Development
-
-### Generating Bindings
-
-To regenerate Kotlin bindings from the CDK FFI:
+Requires Rust and the [just](https://github.com/casey/just) command runner.
 
 ```bash
-just generate
+# Generate Kotlin bindings and build native library
+just binding-kotlin
+
+# Run tests
+just test-kotlin
 ```
 
-This updates the auto-generated `cdk_ffi.kt` file with the latest bindings.
+## CI/CD — Publishing Workflow
 
-### Running Tests
+The `kotlin-publish.yml` workflow (in the CDK monorepo) builds native binaries
+for all platforms, syncs sources to `cdk-kotlin`, publishes to Maven Central,
+and creates a tagged GitHub release. The following secrets and variables must be
+configured in the **CDK monorepo** repository settings
+(Settings → Secrets and variables → Actions).
 
-```bash
-just test
-```
+### Secrets
 
-### Publishing Setup
+| Name | Purpose |
+|---|---|
+| `FFI_DEPLOY_KEY` | Personal access token (PAT) with `repo` scope on the FFI target repos (`cdk-dart`, `cdk-kotlin`, `cdk-swift`). Used to clone, push, and create releases. Shared across all FFI publish workflows. |
+| `SONATYPE_USERNAME` | Maven Central (Sonatype OSSRH) username for publishing. |
+| `SONATYPE_PASSWORD` | Maven Central (Sonatype OSSRH) password or token. |
+| `SIGNING_KEY` | ASCII-armored GPG private key for signing Maven artifacts. |
+| `SIGNING_PASSWORD` | Passphrase for the GPG signing key. |
 
-For maintainers publishing to Maven Central, see [`CENTRAL_PORTAL_SETUP.md`](./CENTRAL_PORTAL_SETUP.md) for detailed instructions on setting up Central Portal credentials.
+#### How to create the PAT
 
-## License
+1. Go to **GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens**.
+2. Create a token scoped to the `cdk-dart`, `cdk-kotlin`, and `cdk-swift` repositories with **Contents** (read/write) and **Metadata** (read) permissions.
+3. Add it as a repository secret named `FFI_DEPLOY_KEY` in the monorepo.
 
-This project is licensed under the MIT License.
+#### Maven Central (Sonatype) setup
+
+1. Register at [central.sonatype.com](https://central.sonatype.com/) and claim the `org.cashudevkit` namespace.
+2. Generate a user token under **Account → User Token**.
+3. Add the username and password as `SONATYPE_USERNAME` and `SONATYPE_PASSWORD` secrets.
+
+#### GPG signing key
+
+1. Generate a key: `gpg --full-generate-key` (RSA 4096, no expiry is fine for CI).
+2. Export the ASCII-armored private key: `gpg --armor --export-secret-keys <KEY_ID>`.
+3. Add the full output as the `SIGNING_KEY` secret and the passphrase as `SIGNING_PASSWORD`.
+
+### Variables
+
+| Name | Purpose | Example |
+|---|---|---|
+| `CDK_KOTLIN_REPO` | Owner/repo of the target Kotlin package repository. | `cashubtc/cdk-kotlin` |
+
+Set this under **Settings → Secrets and variables → Actions → Variables**.

@@ -1,8 +1,0 @@
-# Example local.properties file
-# Copy this to local.properties and update paths
-
-# Android SDK location
-sdk.dir=/Users/username/Library/Android/sdk
-
-# Android NDK location (optional, defaults to sdk.dir/ndk/27.2.12479018)
-# ndk.dir=/Users/username/Library/Android/sdk/ndk/27.2.12479018
