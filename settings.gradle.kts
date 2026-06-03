@@ -1,5 +1,3 @@
-rootProject.name = "cdk-kotlin"
-
 pluginManagement {
     repositories {
         google()
@@ -9,11 +7,18 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
 
-include(":lib")
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
+
+rootProject.name = "cdk"
+include("cdk-jvm")
+include("cdk-jvm-natives")
+include("cdk-android")
+include("cdk-ios")
