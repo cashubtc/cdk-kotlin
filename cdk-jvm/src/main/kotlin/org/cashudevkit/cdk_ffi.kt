@@ -2499,7 +2499,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_func_mnemonic_to_entropy() != 58572.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_func_npubcash_derive_secret_key_from_seed() != 22494.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_func_npubcash_derive_secret_key_from_seed() != 6473.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_func_npubcash_get_pubkey() != 28438.toShort()) {
@@ -15847,21 +15847,11 @@ public object FfiConverterTypeKeySetInfo: FfiConverterRustBuffer<KeySetInfo> {
 
 
 /**
- * FFI-compatible Keys (simplified - contains only essential info)
+ * FFI-compatible Keys
  */
 data class Keys (
     /**
-     * Keyset ID
-     */
-    var `id`: kotlin.String
-    , 
-    /**
-     * Currency unit
-     */
-    var `unit`: CurrencyUnit
-    , 
-    /**
-     * Map of amount to public key hex (simplified from BTreeMap)
+     * Map of amount to public key hex
      */
     var `keys`: Map<kotlin.ULong, kotlin.String>
     
@@ -15878,21 +15868,15 @@ data class Keys (
 public object FfiConverterTypeKeys: FfiConverterRustBuffer<Keys> {
     override fun read(buf: ByteBuffer): Keys {
         return Keys(
-            FfiConverterString.read(buf),
-            FfiConverterTypeCurrencyUnit.read(buf),
             FfiConverterMapULongString.read(buf),
         )
     }
 
     override fun allocationSize(value: Keys) = (
-            FfiConverterString.allocationSize(value.`id`) +
-            FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
             FfiConverterMapULongString.allocationSize(value.`keys`)
     )
 
     override fun write(value: Keys, buf: ByteBuffer) {
-            FfiConverterString.write(value.`id`, buf)
-            FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
             FfiConverterMapULongString.write(value.`keys`, buf)
     }
 }
@@ -23640,11 +23624,11 @@ public object FfiConverterMapTypeWalletKeyTypeAmount: FfiConverterRustBuffer<Map
          * Derive Nostr keys from a wallet seed
          *
          * This function derives the same Nostr keys that a wallet would use for NpubCash
-         * authentication. It takes the first 32 bytes of the seed as the secret key.
+         * authentication, using the NIP-06 path `m/44'/1237'/0'/0/0`.
          *
          * # Arguments
          *
-         * * `seed` - The wallet seed bytes (must be at least 32 bytes)
+         * * `seed` - The wallet seed bytes (must be at least 64 bytes)
          *
          * # Returns
          *
