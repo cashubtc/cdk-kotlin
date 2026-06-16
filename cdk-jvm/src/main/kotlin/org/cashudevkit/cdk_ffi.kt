@@ -1425,6 +1425,8 @@ external fun uniffi_cdk_ffi_checksum_method_walletrepository_create_wallet(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_balances(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_token_data(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_wallet(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_wallets(
@@ -1981,6 +1983,8 @@ external fun uniffi_cdk_ffi_fn_constructor_walletrepository_new_with_proxy(`mnem
 external fun uniffi_cdk_ffi_fn_method_walletrepository_create_wallet(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`unit`: RustBuffer.ByValue,`targetProofCount`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_get_balances(`ptr`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_get_token_data(`ptr`: Long,`token`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_get_wallet(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`unit`: RustBuffer.ByValue,
 ): Long
@@ -3049,6 +3053,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_balances() != 25632.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_token_data() != 37831.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_wallet() != 57352.toShort()) {
@@ -13024,6 +13031,11 @@ public interface WalletRepositoryInterface {
     suspend fun `getBalances`(): Map<WalletKey, Amount>
     
     /**
+     * Get token data, including the expected redemption fee, without redeeming it.
+     */
+    suspend fun `getTokenData`(`token`: Token): TokenData
+    
+    /**
      * Get a specific wallet from WalletRepository by mint URL
      *
      * Returns an error if no wallet exists for the given mint URL.
@@ -13232,6 +13244,30 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
         { FfiConverterMapTypeWalletKeyTypeAmount.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Get token data, including the expected redemption fee, without redeeming it.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `getTokenData`(`token`: Token) : TokenData {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_get_token_data(
+                uniffiHandle,
+                FfiConverterTypeToken.lower(`token`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeTokenData.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
