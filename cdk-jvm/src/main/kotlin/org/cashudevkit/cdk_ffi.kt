@@ -1421,7 +1421,11 @@ external fun uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_mint_quote(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletdatabase_release_mint_quote(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_backup_mints(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_create_wallet(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_fetch_mint_backup(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_balances(
 ): Short
@@ -1433,7 +1437,11 @@ external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_wallets(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_has_mint(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_mint_backup_public_key(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_remove_wallet(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_restore_mints(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_set_metadata_cache_ttl_for_all_mints(
 ): Short
@@ -1980,7 +1988,11 @@ external fun uniffi_cdk_ffi_fn_constructor_walletrepository_new(`mnemonic`: Rust
 ): Long
 external fun uniffi_cdk_ffi_fn_constructor_walletrepository_new_with_proxy(`mnemonic`: RustBuffer.ByValue,`store`: RustBuffer.ByValue,`proxyUrl`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_backup_mints(`ptr`: Long,`relays`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
+): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_create_wallet(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`unit`: RustBuffer.ByValue,`targetProofCount`: RustBuffer.ByValue,
+): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_fetch_mint_backup(`ptr`: Long,`relays`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_get_balances(`ptr`: Long,
 ): Long
@@ -1992,7 +2004,11 @@ external fun uniffi_cdk_ffi_fn_method_walletrepository_get_wallets(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_has_mint(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_mint_backup_public_key(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_walletrepository_remove_wallet(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`currencyUnit`: RustBuffer.ByValue,
+): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_restore_mints(`ptr`: Long,`relays`: RustBuffer.ByValue,`addMints`: Byte,`options`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_set_metadata_cache_ttl_for_all_mints(`ptr`: Long,`ttlSecs`: RustBuffer.ByValue,
 ): Long
@@ -3049,7 +3065,13 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_mint_quote() != 5426.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_backup_mints() != 56268.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_create_wallet() != 32021.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_fetch_mint_backup() != 24968.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_balances() != 25632.toShort()) {
@@ -3067,7 +3089,13 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_has_mint() != 64747.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_mint_backup_public_key() != 19486.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_remove_wallet() != 57714.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_restore_mints() != 31371.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_set_metadata_cache_ttl_for_all_mints() != 27302.toShort()) {
@@ -13021,9 +13049,19 @@ public object FfiConverterTypeWalletDatabase: FfiConverter<WalletDatabase, Long>
 public interface WalletRepositoryInterface {
     
     /**
+     * Backup the current mint list to Nostr relays using NUT-27.
+     */
+    suspend fun `backupMints`(`relays`: List<kotlin.String>, `options`: BackupOptions): BackupResult
+    
+    /**
      * Add a mint to this WalletRepository
      */
     suspend fun `createWallet`(`mintUrl`: MintUrl, `unit`: CurrencyUnit?, `targetProofCount`: kotlin.UInt?)
+    
+    /**
+     * Fetch the NUT-27 mint backup without adding mints to the repository.
+     */
+    suspend fun `fetchMintBackup`(`relays`: List<kotlin.String>, `options`: RestoreOptions): MintBackup
     
     /**
      * Get wallet balances for all mints
@@ -13053,9 +13091,19 @@ public interface WalletRepositoryInterface {
     suspend fun `hasMint`(`mintUrl`: MintUrl): kotlin.Boolean
     
     /**
+     * Get the NUT-27 mint backup public key as hex.
+     */
+    fun `mintBackupPublicKey`(): kotlin.String
+    
+    /**
      * Remove mint from WalletRepository
      */
     suspend fun `removeWallet`(`mintUrl`: MintUrl, `currencyUnit`: CurrencyUnit)
+    
+    /**
+     * Restore the mint list from Nostr relays using NUT-27.
+     */
+    suspend fun `restoreMints`(`relays`: List<kotlin.String>, `addMints`: kotlin.Boolean, `options`: RestoreOptions): RestoreResult
     
     /**
      * Set metadata cache TTL (time-to-live) in seconds for all mints
@@ -13202,6 +13250,30 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
 
     
     /**
+     * Backup the current mint list to Nostr relays using NUT-27.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `backupMints`(`relays`: List<kotlin.String>, `options`: BackupOptions) : BackupResult {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_backup_mints(
+                uniffiHandle,
+                FfiConverterSequenceString.lower(`relays`),FfiConverterTypeBackupOptions.lower(`options`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeBackupResult.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Add a mint to this WalletRepository
      */
     @Throws(FfiException::class)
@@ -13220,6 +13292,30 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
         // lift function
         { Unit },
         
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Fetch the NUT-27 mint backup without adding mints to the repository.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `fetchMintBackup`(`relays`: List<kotlin.String>, `options`: RestoreOptions) : MintBackup {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_fetch_mint_backup(
+                uniffiHandle,
+                FfiConverterSequenceString.lower(`relays`),FfiConverterTypeRestoreOptions.lower(`options`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeMintBackup.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -13347,6 +13443,23 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
 
     
     /**
+     * Get the NUT-27 mint backup public key as hex.
+     */
+    @Throws(FfiException::class)override fun `mintBackupPublicKey`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_mint_backup_public_key(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
      * Remove mint from WalletRepository
      */
     @Throws(FfiException::class)
@@ -13365,6 +13478,30 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
         // lift function
         { Unit },
         
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Restore the mint list from Nostr relays using NUT-27.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `restoreMints`(`relays`: List<kotlin.String>, `addMints`: kotlin.Boolean, `options`: RestoreOptions) : RestoreResult {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_restore_mints(
+                uniffiHandle,
+                FfiConverterSequenceString.lower(`relays`),FfiConverterBoolean.lower(`addMints`),FfiConverterTypeRestoreOptions.lower(`options`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeRestoreResult.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
