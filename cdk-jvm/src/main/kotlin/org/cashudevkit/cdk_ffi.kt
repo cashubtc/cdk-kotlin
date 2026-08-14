@@ -3395,10 +3395,10 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_constructor_wallet_new() != 18752.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new() != 16691.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new() != 35127.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new_with_proxy() != 34392.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new_with_proxy() != 18844.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_constructor_walletsqlitedatabase_new() != 10235.toShort()) {
@@ -14207,7 +14207,9 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
         this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
     }
     /**
-     * Create a new WalletRepository
+     * Create a new WalletRepository from locally persisted wallet state.
+     *
+     * Construction does not make network requests to configured mints.
      *
      * Accepts a `WalletStore` which can be:
      * - `Sqlite { path }` — built-in Rust SQLite backend
@@ -14626,7 +14628,11 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
     companion object {
         
     /**
-     * Create a new WalletRepository with proxy configuration
+     * Create a new WalletRepository with proxy configuration.
+     *
+     * Construction restores locally persisted wallet state without making
+     * network requests to configured mints. The proxy is used by subsequent
+     * mint operations.
      */
     @Throws(FfiException::class) fun `newWithProxy`(`mnemonic`: kotlin.String, `store`: WalletStore, `proxyUrl`: kotlin.String): WalletRepository {
             return FfiConverterTypeWalletRepository.lift(
