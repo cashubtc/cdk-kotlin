@@ -22887,6 +22887,15 @@ data class ProofInfo (
     var `unit`: CurrencyUnit
     , 
     /**
+     * NUT-13 derivation index for deterministic proofs, if known.
+     *
+     * Wallet-internal metadata used to prefer older deterministic proofs
+     * during coin selection. Custom database implementations may persist
+     * this field; leaving it unset keeps legacy selection behavior.
+     */
+    var `derivationIndex`: kotlin.UInt? = null 
+    , 
+    /**
      * Operation ID that is using/spending this proof
      */
     var `usedByOperation`: kotlin.String?
@@ -22915,6 +22924,7 @@ public object FfiConverterTypeProofInfo: FfiConverterRustBuffer<ProofInfo> {
             FfiConverterTypeProofState.read(buf),
             FfiConverterOptionalTypeSpendingConditions.read(buf),
             FfiConverterTypeCurrencyUnit.read(buf),
+            FfiConverterOptionalUInt.read(buf),
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalString.read(buf),
         )
@@ -22927,6 +22937,7 @@ public object FfiConverterTypeProofInfo: FfiConverterRustBuffer<ProofInfo> {
             FfiConverterTypeProofState.allocationSize(value.`state`) +
             FfiConverterOptionalTypeSpendingConditions.allocationSize(value.`spendingCondition`) +
             FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
+            FfiConverterOptionalUInt.allocationSize(value.`derivationIndex`) +
             FfiConverterOptionalString.allocationSize(value.`usedByOperation`) +
             FfiConverterOptionalString.allocationSize(value.`createdByOperation`)
     )
@@ -22938,6 +22949,7 @@ public object FfiConverterTypeProofInfo: FfiConverterRustBuffer<ProofInfo> {
             FfiConverterTypeProofState.write(value.`state`, buf)
             FfiConverterOptionalTypeSpendingConditions.write(value.`spendingCondition`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
+            FfiConverterOptionalUInt.write(value.`derivationIndex`, buf)
             FfiConverterOptionalString.write(value.`usedByOperation`, buf)
             FfiConverterOptionalString.write(value.`createdByOperation`, buf)
     }
