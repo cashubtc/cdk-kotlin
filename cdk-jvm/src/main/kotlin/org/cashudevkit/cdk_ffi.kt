@@ -21308,7 +21308,7 @@ data class MintMethodSettings (
     var `maxAmount`: Amount?
     , 
     /**
-     * For bolt11, whether mint supports setting invoice description
+     * For bolt11/bolt12, whether mint supports setting invoice/offer description
      */
     var `description`: kotlin.Boolean?
     
