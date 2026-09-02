@@ -5,7 +5,7 @@ rust-version = "1.85.0"
 license = "MIT"
 homepage = "https://github.com/cashubtc/cdk"
 repository = "https://github.com/cashubtc/cdk.git"
-version = "0.18.0-rc.3"
+version = "0.18.0"
 readme = "README.md"
 
 [lib]
@@ -17,7 +17,7 @@ name = "uniffi-bindgen-kotlin"
 path = "uniffi-bindgen.rs"
 
 [dependencies]
-cdk-ffi = { version = "=0.18.0-rc.3", default-features = false, features = ["npubcash", "nwc", "bip353"] }
+cdk-ffi = { git = "https://github.com/cashubtc/cdk", rev = "c69e24dd24f3038fe916eed3bf4ebc79a19272f9", default-features = false, features = ["npubcash", "nwc", "bip353"] }
 uniffi = { version = "0.30", features = ["cli"] }
 
 [build-dependencies]
