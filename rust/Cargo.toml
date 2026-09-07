@@ -17,7 +17,7 @@ name = "uniffi-bindgen-kotlin"
 path = "uniffi-bindgen.rs"
 
 [dependencies]
-cdk-ffi = { version = "=0.18.0", default-features = false, features = ["npubcash", "nwc", "bip353"] }
+cdk-ffi = { git = "https://github.com/cashubtc/cdk", rev = "1c6f683a40e1c0fe5dc13696262ece2b640f4297", default-features = false, features = ["npubcash", "nwc", "bip353"] }
 uniffi = { version = "0.30", features = ["cli"] }
 
 [build-dependencies]
