@@ -19,6 +19,4 @@ plugins {
 
 rootProject.name = "cdk"
 include("cdk-jvm")
-include("cdk-jvm-natives")
 include("cdk-android")
-include("cdk-ios")

@@ -360,7 +360,7 @@ private fun findLibraryName(componentName: String): String {
     if (libOverride != null) {
         return libOverride
     }
-    return "cdk_ffi"
+    return "cdk_ffi_kotlin"
 }
 
 // Define FFI callback types
@@ -618,6 +618,9 @@ internal open class UniffiForeignFutureResultVoid(
 internal interface UniffiForeignFutureCompleteVoid : com.sun.jna.Callback {
     fun callback(`callbackData`: Long,`result`: UniffiForeignFutureResultVoid.UniffiByValue,)
 }
+internal interface UniffiCallbackInterfaceNostrInboxListenerMethod0 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`event`: RustBuffer.ByValue,`uniffiOutReturn`: Pointer,uniffiCallStatus: UniffiRustCallStatus,)
+}
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod0 : com.sun.jna.Callback {
     fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
@@ -706,69 +709,91 @@ internal interface UniffiCallbackInterfaceWalletDatabaseMethod28 : com.sun.jna.C
     fun callback(`uniffiHandle`: Long,`keysetId`: RustBuffer.ByValue,`count`: Int,`uniffiFutureCallback`: UniffiForeignFutureCompleteU32,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod29 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`mintInfo`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`namespace`: RustBuffer.ByValue,`count`: Int,`uniffiFutureCallback`: UniffiForeignFutureCompleteU32,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod30 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`mintInfo`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod31 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`keysets`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod32 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`quote`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`keysets`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod33 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
-}
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod34 : com.sun.jna.Callback {
     fun callback(`uniffiHandle`: Long,`quote`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod35 : com.sun.jna.Callback {
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod34 : com.sun.jna.Callback {
     fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod35 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`quote`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+}
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod36 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`keyset`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod37 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`keyset`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod38 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`sagaJson`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
-}
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod39 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
-}
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod40 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`sagaJson`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteI8,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
-}
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod41 : com.sun.jna.Callback {
     fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod39 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`sagaJson`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+}
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod40 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+}
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod41 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`sagaJson`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteI8,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+}
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod42 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod43 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`ys`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod44 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`ys`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod45 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod46 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+    fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
 internal interface UniffiCallbackInterfaceWalletDatabaseMethod47 : com.sun.jna.Callback {
-    fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
-}
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod48 : com.sun.jna.Callback {
     fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
-internal interface UniffiCallbackInterfaceWalletDatabaseMethod49 : com.sun.jna.Callback {
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod48 : com.sun.jna.Callback {
     fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
 }
-@Structure.FieldOrder("uniffiFree", "uniffiClone", "getMint", "getMints", "getMintKeysets", "getKeysetById", "getMintQuote", "getMintQuotes", "getUnissuedMintQuotes", "getMeltQuote", "getMeltQuotes", "getKeys", "getProofs", "getProofsByYs", "getBalance", "getTransaction", "listTransactions", "kvRead", "kvList", "addP2pkKey", "getP2pkKey", "listP2pkKeys", "latestP2pk", "kvWrite", "kvRemove", "updateProofs", "updateProofsState", "addTransaction", "removeTransaction", "updateMintUrl", "incrementKeysetCounter", "addMint", "removeMint", "addMintKeysets", "addMintQuote", "removeMintQuote", "addMeltQuote", "removeMeltQuote", "addKeys", "removeKeys", "addSaga", "getSaga", "updateSaga", "deleteSaga", "getIncompleteSagas", "reserveProofs", "releaseProofs", "getReservedProofs", "reserveMeltQuote", "releaseMeltQuote", "reserveMintQuote", "releaseMintQuote")
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod49 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+}
+internal interface UniffiCallbackInterfaceWalletDatabaseMethod50 : com.sun.jna.Callback {
+    fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,)
+}
+@Structure.FieldOrder("uniffiFree", "uniffiClone", "onEvent")
+internal open class UniffiVTableCallbackInterfaceNostrInboxListener(
+    @JvmField internal var `uniffiFree`: UniffiCallbackInterfaceFree? = null,
+    @JvmField internal var `uniffiClone`: UniffiCallbackInterfaceClone? = null,
+    @JvmField internal var `onEvent`: UniffiCallbackInterfaceNostrInboxListenerMethod0? = null,
+) : Structure() {
+    class UniffiByValue(
+        `uniffiFree`: UniffiCallbackInterfaceFree? = null,
+        `uniffiClone`: UniffiCallbackInterfaceClone? = null,
+        `onEvent`: UniffiCallbackInterfaceNostrInboxListenerMethod0? = null,
+    ): UniffiVTableCallbackInterfaceNostrInboxListener(`uniffiFree`,`uniffiClone`,`onEvent`,), Structure.ByValue
+
+   internal fun uniffiSetValue(other: UniffiVTableCallbackInterfaceNostrInboxListener) {
+        `uniffiFree` = other.`uniffiFree`
+        `uniffiClone` = other.`uniffiClone`
+        `onEvent` = other.`onEvent`
+    }
+
+}
+@Structure.FieldOrder("uniffiFree", "uniffiClone", "getMint", "getMints", "getMintKeysets", "getKeysetById", "getMintQuote", "getMintQuotes", "getUnissuedMintQuotes", "getMeltQuote", "getMeltQuotes", "getKeys", "getProofs", "getProofsByYs", "getBalance", "getTransaction", "listTransactions", "kvRead", "kvList", "addP2pkKey", "getP2pkKey", "listP2pkKeys", "latestP2pk", "kvWrite", "kvRemove", "updateProofs", "updateProofsState", "addTransaction", "removeTransaction", "updateMintUrl", "incrementKeysetCounter", "incrementDerivationCounter", "addMint", "removeMint", "addMintKeysets", "addMintQuote", "removeMintQuote", "addMeltQuote", "removeMeltQuote", "addKeys", "removeKeys", "addSaga", "getSaga", "updateSaga", "deleteSaga", "getIncompleteSagas", "reserveProofs", "releaseProofs", "getReservedProofs", "reserveMeltQuote", "releaseMeltQuote", "reserveMintQuote", "releaseMintQuote")
 internal open class UniffiVTableCallbackInterfaceWalletDatabase(
     @JvmField internal var `uniffiFree`: UniffiCallbackInterfaceFree? = null,
     @JvmField internal var `uniffiClone`: UniffiCallbackInterfaceClone? = null,
@@ -801,27 +826,28 @@ internal open class UniffiVTableCallbackInterfaceWalletDatabase(
     @JvmField internal var `removeTransaction`: UniffiCallbackInterfaceWalletDatabaseMethod26? = null,
     @JvmField internal var `updateMintUrl`: UniffiCallbackInterfaceWalletDatabaseMethod27? = null,
     @JvmField internal var `incrementKeysetCounter`: UniffiCallbackInterfaceWalletDatabaseMethod28? = null,
-    @JvmField internal var `addMint`: UniffiCallbackInterfaceWalletDatabaseMethod29? = null,
-    @JvmField internal var `removeMint`: UniffiCallbackInterfaceWalletDatabaseMethod30? = null,
-    @JvmField internal var `addMintKeysets`: UniffiCallbackInterfaceWalletDatabaseMethod31? = null,
-    @JvmField internal var `addMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod32? = null,
-    @JvmField internal var `removeMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod33? = null,
-    @JvmField internal var `addMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod34? = null,
-    @JvmField internal var `removeMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod35? = null,
-    @JvmField internal var `addKeys`: UniffiCallbackInterfaceWalletDatabaseMethod36? = null,
-    @JvmField internal var `removeKeys`: UniffiCallbackInterfaceWalletDatabaseMethod37? = null,
-    @JvmField internal var `addSaga`: UniffiCallbackInterfaceWalletDatabaseMethod38? = null,
-    @JvmField internal var `getSaga`: UniffiCallbackInterfaceWalletDatabaseMethod39? = null,
-    @JvmField internal var `updateSaga`: UniffiCallbackInterfaceWalletDatabaseMethod40? = null,
-    @JvmField internal var `deleteSaga`: UniffiCallbackInterfaceWalletDatabaseMethod41? = null,
-    @JvmField internal var `getIncompleteSagas`: UniffiCallbackInterfaceWalletDatabaseMethod42? = null,
-    @JvmField internal var `reserveProofs`: UniffiCallbackInterfaceWalletDatabaseMethod43? = null,
-    @JvmField internal var `releaseProofs`: UniffiCallbackInterfaceWalletDatabaseMethod44? = null,
-    @JvmField internal var `getReservedProofs`: UniffiCallbackInterfaceWalletDatabaseMethod45? = null,
-    @JvmField internal var `reserveMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod46? = null,
-    @JvmField internal var `releaseMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod47? = null,
-    @JvmField internal var `reserveMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod48? = null,
-    @JvmField internal var `releaseMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod49? = null,
+    @JvmField internal var `incrementDerivationCounter`: UniffiCallbackInterfaceWalletDatabaseMethod29? = null,
+    @JvmField internal var `addMint`: UniffiCallbackInterfaceWalletDatabaseMethod30? = null,
+    @JvmField internal var `removeMint`: UniffiCallbackInterfaceWalletDatabaseMethod31? = null,
+    @JvmField internal var `addMintKeysets`: UniffiCallbackInterfaceWalletDatabaseMethod32? = null,
+    @JvmField internal var `addMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod33? = null,
+    @JvmField internal var `removeMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod34? = null,
+    @JvmField internal var `addMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod35? = null,
+    @JvmField internal var `removeMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod36? = null,
+    @JvmField internal var `addKeys`: UniffiCallbackInterfaceWalletDatabaseMethod37? = null,
+    @JvmField internal var `removeKeys`: UniffiCallbackInterfaceWalletDatabaseMethod38? = null,
+    @JvmField internal var `addSaga`: UniffiCallbackInterfaceWalletDatabaseMethod39? = null,
+    @JvmField internal var `getSaga`: UniffiCallbackInterfaceWalletDatabaseMethod40? = null,
+    @JvmField internal var `updateSaga`: UniffiCallbackInterfaceWalletDatabaseMethod41? = null,
+    @JvmField internal var `deleteSaga`: UniffiCallbackInterfaceWalletDatabaseMethod42? = null,
+    @JvmField internal var `getIncompleteSagas`: UniffiCallbackInterfaceWalletDatabaseMethod43? = null,
+    @JvmField internal var `reserveProofs`: UniffiCallbackInterfaceWalletDatabaseMethod44? = null,
+    @JvmField internal var `releaseProofs`: UniffiCallbackInterfaceWalletDatabaseMethod45? = null,
+    @JvmField internal var `getReservedProofs`: UniffiCallbackInterfaceWalletDatabaseMethod46? = null,
+    @JvmField internal var `reserveMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod47? = null,
+    @JvmField internal var `releaseMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod48? = null,
+    @JvmField internal var `reserveMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod49? = null,
+    @JvmField internal var `releaseMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod50? = null,
 ) : Structure() {
     class UniffiByValue(
         `uniffiFree`: UniffiCallbackInterfaceFree? = null,
@@ -855,28 +881,29 @@ internal open class UniffiVTableCallbackInterfaceWalletDatabase(
         `removeTransaction`: UniffiCallbackInterfaceWalletDatabaseMethod26? = null,
         `updateMintUrl`: UniffiCallbackInterfaceWalletDatabaseMethod27? = null,
         `incrementKeysetCounter`: UniffiCallbackInterfaceWalletDatabaseMethod28? = null,
-        `addMint`: UniffiCallbackInterfaceWalletDatabaseMethod29? = null,
-        `removeMint`: UniffiCallbackInterfaceWalletDatabaseMethod30? = null,
-        `addMintKeysets`: UniffiCallbackInterfaceWalletDatabaseMethod31? = null,
-        `addMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod32? = null,
-        `removeMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod33? = null,
-        `addMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod34? = null,
-        `removeMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod35? = null,
-        `addKeys`: UniffiCallbackInterfaceWalletDatabaseMethod36? = null,
-        `removeKeys`: UniffiCallbackInterfaceWalletDatabaseMethod37? = null,
-        `addSaga`: UniffiCallbackInterfaceWalletDatabaseMethod38? = null,
-        `getSaga`: UniffiCallbackInterfaceWalletDatabaseMethod39? = null,
-        `updateSaga`: UniffiCallbackInterfaceWalletDatabaseMethod40? = null,
-        `deleteSaga`: UniffiCallbackInterfaceWalletDatabaseMethod41? = null,
-        `getIncompleteSagas`: UniffiCallbackInterfaceWalletDatabaseMethod42? = null,
-        `reserveProofs`: UniffiCallbackInterfaceWalletDatabaseMethod43? = null,
-        `releaseProofs`: UniffiCallbackInterfaceWalletDatabaseMethod44? = null,
-        `getReservedProofs`: UniffiCallbackInterfaceWalletDatabaseMethod45? = null,
-        `reserveMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod46? = null,
-        `releaseMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod47? = null,
-        `reserveMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod48? = null,
-        `releaseMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod49? = null,
-    ): UniffiVTableCallbackInterfaceWalletDatabase(`uniffiFree`,`uniffiClone`,`getMint`,`getMints`,`getMintKeysets`,`getKeysetById`,`getMintQuote`,`getMintQuotes`,`getUnissuedMintQuotes`,`getMeltQuote`,`getMeltQuotes`,`getKeys`,`getProofs`,`getProofsByYs`,`getBalance`,`getTransaction`,`listTransactions`,`kvRead`,`kvList`,`addP2pkKey`,`getP2pkKey`,`listP2pkKeys`,`latestP2pk`,`kvWrite`,`kvRemove`,`updateProofs`,`updateProofsState`,`addTransaction`,`removeTransaction`,`updateMintUrl`,`incrementKeysetCounter`,`addMint`,`removeMint`,`addMintKeysets`,`addMintQuote`,`removeMintQuote`,`addMeltQuote`,`removeMeltQuote`,`addKeys`,`removeKeys`,`addSaga`,`getSaga`,`updateSaga`,`deleteSaga`,`getIncompleteSagas`,`reserveProofs`,`releaseProofs`,`getReservedProofs`,`reserveMeltQuote`,`releaseMeltQuote`,`reserveMintQuote`,`releaseMintQuote`,), Structure.ByValue
+        `incrementDerivationCounter`: UniffiCallbackInterfaceWalletDatabaseMethod29? = null,
+        `addMint`: UniffiCallbackInterfaceWalletDatabaseMethod30? = null,
+        `removeMint`: UniffiCallbackInterfaceWalletDatabaseMethod31? = null,
+        `addMintKeysets`: UniffiCallbackInterfaceWalletDatabaseMethod32? = null,
+        `addMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod33? = null,
+        `removeMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod34? = null,
+        `addMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod35? = null,
+        `removeMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod36? = null,
+        `addKeys`: UniffiCallbackInterfaceWalletDatabaseMethod37? = null,
+        `removeKeys`: UniffiCallbackInterfaceWalletDatabaseMethod38? = null,
+        `addSaga`: UniffiCallbackInterfaceWalletDatabaseMethod39? = null,
+        `getSaga`: UniffiCallbackInterfaceWalletDatabaseMethod40? = null,
+        `updateSaga`: UniffiCallbackInterfaceWalletDatabaseMethod41? = null,
+        `deleteSaga`: UniffiCallbackInterfaceWalletDatabaseMethod42? = null,
+        `getIncompleteSagas`: UniffiCallbackInterfaceWalletDatabaseMethod43? = null,
+        `reserveProofs`: UniffiCallbackInterfaceWalletDatabaseMethod44? = null,
+        `releaseProofs`: UniffiCallbackInterfaceWalletDatabaseMethod45? = null,
+        `getReservedProofs`: UniffiCallbackInterfaceWalletDatabaseMethod46? = null,
+        `reserveMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod47? = null,
+        `releaseMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod48? = null,
+        `reserveMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod49? = null,
+        `releaseMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod50? = null,
+    ): UniffiVTableCallbackInterfaceWalletDatabase(`uniffiFree`,`uniffiClone`,`getMint`,`getMints`,`getMintKeysets`,`getKeysetById`,`getMintQuote`,`getMintQuotes`,`getUnissuedMintQuotes`,`getMeltQuote`,`getMeltQuotes`,`getKeys`,`getProofs`,`getProofsByYs`,`getBalance`,`getTransaction`,`listTransactions`,`kvRead`,`kvList`,`addP2pkKey`,`getP2pkKey`,`listP2pkKeys`,`latestP2pk`,`kvWrite`,`kvRemove`,`updateProofs`,`updateProofsState`,`addTransaction`,`removeTransaction`,`updateMintUrl`,`incrementKeysetCounter`,`incrementDerivationCounter`,`addMint`,`removeMint`,`addMintKeysets`,`addMintQuote`,`removeMintQuote`,`addMeltQuote`,`removeMeltQuote`,`addKeys`,`removeKeys`,`addSaga`,`getSaga`,`updateSaga`,`deleteSaga`,`getIncompleteSagas`,`reserveProofs`,`releaseProofs`,`getReservedProofs`,`reserveMeltQuote`,`releaseMeltQuote`,`reserveMintQuote`,`releaseMintQuote`,), Structure.ByValue
 
    internal fun uniffiSetValue(other: UniffiVTableCallbackInterfaceWalletDatabase) {
         `uniffiFree` = other.`uniffiFree`
@@ -910,6 +937,7 @@ internal open class UniffiVTableCallbackInterfaceWalletDatabase(
         `removeTransaction` = other.`removeTransaction`
         `updateMintUrl` = other.`updateMintUrl`
         `incrementKeysetCounter` = other.`incrementKeysetCounter`
+        `incrementDerivationCounter` = other.`incrementDerivationCounter`
         `addMint` = other.`addMint`
         `removeMint` = other.`removeMint`
         `addMintKeysets` = other.`addMintKeysets`
@@ -1057,6 +1085,14 @@ external fun uniffi_cdk_ffi_checksum_func_mint_quote_total_amount(
 ): Short
 external fun uniffi_cdk_ffi_checksum_func_mnemonic_to_entropy(
 ): Short
+external fun uniffi_cdk_ffi_checksum_func_nip44_decrypt(
+): Short
+external fun uniffi_cdk_ffi_checksum_func_nip44_encrypt(
+): Short
+external fun uniffi_cdk_ffi_checksum_func_nostr_generate_secret_key(
+): Short
+external fun uniffi_cdk_ffi_checksum_func_nostr_get_pubkey(
+): Short
 external fun uniffi_cdk_ffi_checksum_func_npubcash_derive_secret_key_from_seed(
 ): Short
 external fun uniffi_cdk_ffi_checksum_func_npubcash_get_pubkey(
@@ -1095,13 +1131,31 @@ external fun uniffi_cdk_ffi_checksum_method_activesubscription_recv(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_activesubscription_try_recv(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_nostrinbox_pubkey(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_nostrinbox_start(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_nostrinbox_stop(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_nostrinboxlistener_on_event(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_nostrwaitinfo_mint_preferred(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_nostrwaitinfo_mints(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_nostrwaitinfo_pubkey(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_nostrwaitinfo_relays(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_npubcashclient_get_missing_quotes(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_npubcashclient_get_quotes(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_npubcashclient_get_user_info(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_npubcashclient_set_mint_url(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_npubcashclient_set_quote_locking(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_nwcservice_client_pubkey(
 ): Short
@@ -1119,11 +1173,15 @@ external fun uniffi_cdk_ffi_checksum_method_paymentrequest_amount(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_paymentrequest_description(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_paymentrequest_mint_preferred(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_paymentrequest_mints(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_paymentrequest_payment_id(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_paymentrequest_single_use(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_paymentrequest_supported_methods(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_paymentrequest_to_bech32_string(
 ): Short
@@ -1185,6 +1243,28 @@ external fun uniffi_cdk_ffi_checksum_method_preparedmelt_total_fee(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_preparedmelt_total_fee_with_swap(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_cancel(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_confirm(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_input_fee(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_method(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_method_fee(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_mint_url(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_operation_id(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_payment_amount(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_requested_amount(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_total_amount(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_unit(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_preparedsend_amount(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_preparedsend_cancel(
@@ -1221,7 +1301,29 @@ external fun uniffi_cdk_ffi_checksum_method_token_to_raw_bytes(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_token_unit(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_token_ur_encoder(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_token_value(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurdecoder_complete(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurdecoder_fragment_count(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurdecoder_receive(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurdecoder_resolved_fragment_count(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurdecoder_token(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurencoder_current_index(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurencoder_fragment_count(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurencoder_is_single_fragment(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_tokenurencoder_next_part(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_active_keyset(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_calculate_fee(
 ): Short
@@ -1237,7 +1339,11 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_check_proofs_spent(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_check_send_status(
 ): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_fetch_active_keyset(
+external fun uniffi_cdk_ffi_checksum_method_wallet_claim_npubcash_quotes(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_cross_mint_transfer_quote_max(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_enable_npubcash(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_info(
 ): Short
@@ -1245,7 +1351,7 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_finalize_pending_melts(
 ): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_get_active_keyset(
+external fun uniffi_cdk_ffi_checksum_method_wallet_flush_rate_limits(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_get_keyset_count_fee(
 ): Short
@@ -1255,7 +1361,7 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_get_keyset_fees_and_amounts_b
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_get_keyset_fees_by_id(
 ): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_get_mint_keysets(
+external fun uniffi_cdk_ffi_checksum_method_wallet_get_npubcash_user_info(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_get_pending_sends(
 ): Short
@@ -1267,13 +1373,15 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_get_transaction(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_get_unspent_auth_proofs(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_is_rate_limited(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_keyset(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_keysets(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_list_transactions(
 ): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_load_keyset_keys(
-): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_load_mint_info(
-): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_load_mint_keysets(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_melt_bip353_quote(
 ): Short
@@ -1293,15 +1401,17 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_mint_quote(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_mint_unified(
 ): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_mint_url(
+external fun uniffi_cdk_ffi_checksum_method_wallet_mint_unissued_quotes(
 ): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_pay_request(
+external fun uniffi_cdk_ffi_checksum_method_wallet_mint_url(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_prepare_melt(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_prepare_melt_proofs(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_prepare_melt_token(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_prepare_pay_request(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_prepare_send(
 ): Short
@@ -1314,8 +1424,6 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_receive_proofs(
 external fun uniffi_cdk_ffi_checksum_method_wallet_recover_incomplete_sagas(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_refresh_access_token(
-): Short
-external fun uniffi_cdk_ffi_checksum_method_wallet_refresh_keysets(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_restore(
 ): Short
@@ -1331,6 +1439,8 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_set_cat(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_set_metadata_cache_ttl(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_set_rate_limit(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_set_refresh_token(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_subscribe(
@@ -1338,6 +1448,8 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_subscribe(
 external fun uniffi_cdk_ffi_checksum_method_wallet_subscribe_mint_quote_state(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_swap(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_sync_missing_npubcash_quotes(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_total_balance(
 ): Short
@@ -1407,6 +1519,8 @@ external fun uniffi_cdk_ffi_checksum_method_walletdatabase_update_mint_url(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletdatabase_increment_keyset_counter(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_walletdatabase_increment_derivation_counter(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletdatabase_remove_mint(
@@ -1455,7 +1569,11 @@ external fun uniffi_cdk_ffi_checksum_method_walletrepository_create_wallet(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_fetch_mint_backup(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_flush_rate_limits(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_balances(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_or_create_wallet(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_token_data(
 ): Short
@@ -1464,6 +1582,8 @@ external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_wallet(
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_get_wallets(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_has_mint(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_is_rate_limited(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_mint_backup_public_key(
 ): Short
@@ -1474,6 +1594,8 @@ external fun uniffi_cdk_ffi_checksum_method_walletrepository_restore_mints(
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_set_metadata_cache_ttl_for_all_mints(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletrepository_set_metadata_cache_ttl_for_mint(
+): Short
+external fun uniffi_cdk_ffi_checksum_method_walletrepository_set_rate_limit(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_add_keys(
 ): Short
@@ -1529,6 +1651,8 @@ external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_get_transaction
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_get_unissued_mint_quotes(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_increment_derivation_counter(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_increment_keyset_counter(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_kv_list(
@@ -1575,6 +1699,8 @@ external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_update_proofs_s
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_update_saga(
 ): Short
+external fun uniffi_cdk_ffi_checksum_constructor_nostrinbox_new(
+): Short
 external fun uniffi_cdk_ffi_checksum_constructor_npubcashclient_new(
 ): Short
 external fun uniffi_cdk_ffi_checksum_constructor_nwcservice_create(
@@ -1591,9 +1717,13 @@ external fun uniffi_cdk_ffi_checksum_constructor_token_from_raw_bytes(
 ): Short
 external fun uniffi_cdk_ffi_checksum_constructor_token_from_string(
 ): Short
+external fun uniffi_cdk_ffi_checksum_constructor_tokenurdecoder_new(
+): Short
 external fun uniffi_cdk_ffi_checksum_constructor_wallet_new(
 ): Short
 external fun uniffi_cdk_ffi_checksum_constructor_walletrepository_new(
+): Short
+external fun uniffi_cdk_ffi_checksum_constructor_walletrepository_new_with_config(
 ): Short
 external fun uniffi_cdk_ffi_checksum_constructor_walletrepository_new_with_proxy(
 ): Short
@@ -1617,6 +1747,7 @@ internal object UniffiLib {
 
     init {
         Native.register(UniffiLib::class.java, findLibraryName(componentName = "cdk_ffi"))
+        uniffiCallbackInterfaceNostrInboxListener.register(this)
         uniffiCallbackInterfaceWalletDatabase.register(this)
         
     }
@@ -1630,10 +1761,34 @@ external fun uniffi_cdk_ffi_fn_method_activesubscription_recv(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_activesubscription_try_recv(`ptr`: Long,
 ): Long
+external fun uniffi_cdk_ffi_fn_clone_nostrinbox(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_free_nostrinbox(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_constructor_nostrinbox_new(`nostrSecretKey`: RustBuffer.ByValue,`relays`: RustBuffer.ByValue,`since`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_method_nostrinbox_pubkey(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_nostrinbox_start(`ptr`: Long,`listener`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_nostrinbox_stop(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_clone_nostrinboxlistener(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_free_nostrinboxlistener(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_init_callback_vtable_nostrinboxlistener(`vtable`: UniffiVTableCallbackInterfaceNostrInboxListener,
+): Unit
+external fun uniffi_cdk_ffi_fn_method_nostrinboxlistener_on_event(`ptr`: Long,`event`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
 external fun uniffi_cdk_ffi_fn_clone_nostrwaitinfo(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
 external fun uniffi_cdk_ffi_fn_free_nostrwaitinfo(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Unit
+external fun uniffi_cdk_ffi_fn_method_nostrwaitinfo_mint_preferred(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_nostrwaitinfo_mints(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_nostrwaitinfo_pubkey(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_nostrwaitinfo_relays(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
@@ -1644,9 +1799,15 @@ external fun uniffi_cdk_ffi_fn_free_npubcashclient(`handle`: Long,uniffi_out_err
 ): Unit
 external fun uniffi_cdk_ffi_fn_constructor_npubcashclient_new(`baseUrl`: RustBuffer.ByValue,`nostrSecretKey`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
+external fun uniffi_cdk_ffi_fn_method_npubcashclient_get_missing_quotes(`ptr`: Long,`quoteIds`: RustBuffer.ByValue,
+): Long
 external fun uniffi_cdk_ffi_fn_method_npubcashclient_get_quotes(`ptr`: Long,`since`: RustBuffer.ByValue,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_npubcashclient_get_user_info(`ptr`: Long,
+): Long
 external fun uniffi_cdk_ffi_fn_method_npubcashclient_set_mint_url(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,
+): Long
+external fun uniffi_cdk_ffi_fn_method_npubcashclient_set_quote_locking(`ptr`: Long,`lockQuotes`: Byte,
 ): Long
 external fun uniffi_cdk_ffi_fn_clone_nwcservice(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
@@ -1678,11 +1839,15 @@ external fun uniffi_cdk_ffi_fn_method_paymentrequest_amount(`ptr`: Long,uniffi_o
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_paymentrequest_description(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_paymentrequest_mint_preferred(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_paymentrequest_mints(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_paymentrequest_payment_id(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_paymentrequest_single_use(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_paymentrequest_supported_methods(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_paymentrequest_to_bech32_string(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
@@ -1758,6 +1923,32 @@ external fun uniffi_cdk_ffi_fn_method_preparedmelt_total_fee(`ptr`: Long,uniffi_
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_preparedmelt_total_fee_with_swap(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_clone_preparedpaymentrequest(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_free_preparedpaymentrequest(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_cancel(`ptr`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_confirm(`ptr`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_input_fee(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_method(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_method_fee(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_mint_url(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_operation_id(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_payment_amount(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_requested_amount(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_total_amount(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_preparedpaymentrequest_unit(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_clone_preparedsend(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
 external fun uniffi_cdk_ffi_fn_free_preparedsend(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
@@ -1808,13 +1999,45 @@ external fun uniffi_cdk_ffi_fn_method_token_to_raw_bytes(`ptr`: Long,uniffi_out_
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_token_unit(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_token_ur_encoder(`ptr`: Long,`maxFragmentLength`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
 external fun uniffi_cdk_ffi_fn_method_token_value(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_clone_tokenurdecoder(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_free_tokenurdecoder(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_constructor_tokenurdecoder_new(uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_method_tokenurdecoder_complete(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_cdk_ffi_fn_method_tokenurdecoder_fragment_count(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Int
+external fun uniffi_cdk_ffi_fn_method_tokenurdecoder_receive(`ptr`: Long,`part`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_method_tokenurdecoder_resolved_fragment_count(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_method_tokenurdecoder_token(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_clone_tokenurencoder(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_free_tokenurencoder(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_cdk_ffi_fn_method_tokenurencoder_current_index(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Int
+external fun uniffi_cdk_ffi_fn_method_tokenurencoder_fragment_count(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Int
+external fun uniffi_cdk_ffi_fn_method_tokenurencoder_is_single_fragment(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_cdk_ffi_fn_method_tokenurencoder_next_part(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_clone_wallet(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
 external fun uniffi_cdk_ffi_fn_free_wallet(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Unit
 external fun uniffi_cdk_ffi_fn_constructor_wallet_new(`mintUrl`: RustBuffer.ByValue,`unit`: RustBuffer.ByValue,`mnemonic`: RustBuffer.ByValue,`store`: RustBuffer.ByValue,`config`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_active_keyset(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_calculate_fee(`ptr`: Long,`proofCount`: Int,`keysetId`: RustBuffer.ByValue,
 ): Long
@@ -1830,7 +2053,11 @@ external fun uniffi_cdk_ffi_fn_method_wallet_check_proofs_spent(`ptr`: Long,`pro
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_check_send_status(`ptr`: Long,`operationId`: RustBuffer.ByValue,
 ): Long
-external fun uniffi_cdk_ffi_fn_method_wallet_fetch_active_keyset(`ptr`: Long,
+external fun uniffi_cdk_ffi_fn_method_wallet_claim_npubcash_quotes(`ptr`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_cross_mint_transfer_quote_max(`ptr`: Long,`targetWallet`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_enable_npubcash(`ptr`: Long,`npubcashUrl`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_fetch_mint_info(`ptr`: Long,
 ): Long
@@ -1838,7 +2065,7 @@ external fun uniffi_cdk_ffi_fn_method_wallet_fetch_mint_quote(`ptr`: Long,`quote
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_finalize_pending_melts(`ptr`: Long,
 ): Long
-external fun uniffi_cdk_ffi_fn_method_wallet_get_active_keyset(`ptr`: Long,
+external fun uniffi_cdk_ffi_fn_method_wallet_flush_rate_limits(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_get_keyset_count_fee(`ptr`: Long,`keysetId`: RustBuffer.ByValue,`count`: Long,
 ): Long
@@ -1848,7 +2075,7 @@ external fun uniffi_cdk_ffi_fn_method_wallet_get_keyset_fees_and_amounts_by_id(`
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_get_keyset_fees_by_id(`ptr`: Long,`keysetId`: RustBuffer.ByValue,
 ): Long
-external fun uniffi_cdk_ffi_fn_method_wallet_get_mint_keysets(`ptr`: Long,`filter`: RustBuffer.ByValue,
+external fun uniffi_cdk_ffi_fn_method_wallet_get_npubcash_user_info(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_get_pending_sends(`ptr`: Long,
 ): Long
@@ -1860,13 +2087,15 @@ external fun uniffi_cdk_ffi_fn_method_wallet_get_transaction(`ptr`: Long,`id`: R
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_get_unspent_auth_proofs(`ptr`: Long,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_is_rate_limited(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_cdk_ffi_fn_method_wallet_keyset(`ptr`: Long,`keysetId`: RustBuffer.ByValue,
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_keysets(`ptr`: Long,`policy`: RustBuffer.ByValue,
+): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_list_transactions(`ptr`: Long,`direction`: RustBuffer.ByValue,
 ): Long
-external fun uniffi_cdk_ffi_fn_method_wallet_load_keyset_keys(`ptr`: Long,`keysetId`: RustBuffer.ByValue,
-): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_load_mint_info(`ptr`: Long,
-): Long
-external fun uniffi_cdk_ffi_fn_method_wallet_load_mint_keysets(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_melt_bip353_quote(`ptr`: Long,`bip353Address`: RustBuffer.ByValue,`amountMsat`: RustBuffer.ByValue,`network`: RustBuffer.ByValue,
 ): Long
@@ -1886,15 +2115,17 @@ external fun uniffi_cdk_ffi_fn_method_wallet_mint_quote(`ptr`: Long,`paymentMeth
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_mint_unified(`ptr`: Long,`quoteId`: RustBuffer.ByValue,`amountSplitTarget`: RustBuffer.ByValue,`spendingConditions`: RustBuffer.ByValue,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_mint_unissued_quotes(`ptr`: Long,
+): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_mint_url(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
-external fun uniffi_cdk_ffi_fn_method_wallet_pay_request(`ptr`: Long,`paymentRequest`: Long,`customAmount`: RustBuffer.ByValue,
-): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_prepare_melt(`ptr`: Long,`quoteId`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_prepare_melt_proofs(`ptr`: Long,`quoteId`: RustBuffer.ByValue,`proofs`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_prepare_melt_token(`ptr`: Long,`quoteId`: RustBuffer.ByValue,`encodedToken`: RustBuffer.ByValue,
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_prepare_pay_request(`ptr`: Long,`paymentRequest`: Long,`customAmount`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_prepare_send(`ptr`: Long,`amount`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
 ): Long
@@ -1907,8 +2138,6 @@ external fun uniffi_cdk_ffi_fn_method_wallet_receive_proofs(`ptr`: Long,`proofs`
 external fun uniffi_cdk_ffi_fn_method_wallet_recover_incomplete_sagas(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_refresh_access_token(`ptr`: Long,
-): Long
-external fun uniffi_cdk_ffi_fn_method_wallet_refresh_keysets(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_restore(`ptr`: Long,
 ): Long
@@ -1924,6 +2153,8 @@ external fun uniffi_cdk_ffi_fn_method_wallet_set_cat(`ptr`: Long,`cat`: RustBuff
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_set_metadata_cache_ttl(`ptr`: Long,`ttlSecs`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): Unit
+external fun uniffi_cdk_ffi_fn_method_wallet_set_rate_limit(`ptr`: Long,`rateLimit`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
 external fun uniffi_cdk_ffi_fn_method_wallet_set_refresh_token(`ptr`: Long,`refreshToken`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_subscribe(`ptr`: Long,`params`: RustBuffer.ByValue,
@@ -1931,6 +2162,8 @@ external fun uniffi_cdk_ffi_fn_method_wallet_subscribe(`ptr`: Long,`params`: Rus
 external fun uniffi_cdk_ffi_fn_method_wallet_subscribe_mint_quote_state(`ptr`: Long,`quoteIds`: RustBuffer.ByValue,`paymentMethod`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_swap(`ptr`: Long,`amount`: RustBuffer.ByValue,`amountSplitTarget`: RustBuffer.ByValue,`inputProofs`: RustBuffer.ByValue,`spendingConditions`: RustBuffer.ByValue,`includeFees`: Byte,
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_sync_missing_npubcash_quotes(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_total_balance(`ptr`: Long,
 ): Long
@@ -2006,6 +2239,8 @@ external fun uniffi_cdk_ffi_fn_method_walletdatabase_update_mint_url(`ptr`: Long
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletdatabase_increment_keyset_counter(`ptr`: Long,`keysetId`: RustBuffer.ByValue,`count`: Int,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_walletdatabase_increment_derivation_counter(`ptr`: Long,`namespace`: RustBuffer.ByValue,`count`: Int,
+): Long
 external fun uniffi_cdk_ffi_fn_method_walletdatabase_add_mint(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`mintInfo`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletdatabase_remove_mint(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,
@@ -2054,6 +2289,8 @@ external fun uniffi_cdk_ffi_fn_free_walletrepository(`handle`: Long,uniffi_out_e
 ): Unit
 external fun uniffi_cdk_ffi_fn_constructor_walletrepository_new(`mnemonic`: RustBuffer.ByValue,`store`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
+external fun uniffi_cdk_ffi_fn_constructor_walletrepository_new_with_config(`mnemonic`: RustBuffer.ByValue,`store`: RustBuffer.ByValue,`config`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
 external fun uniffi_cdk_ffi_fn_constructor_walletrepository_new_with_proxy(`mnemonic`: RustBuffer.ByValue,`store`: RustBuffer.ByValue,`proxyUrl`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_backup_mints(`ptr`: Long,`relays`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
@@ -2062,7 +2299,11 @@ external fun uniffi_cdk_ffi_fn_method_walletrepository_create_wallet(`ptr`: Long
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_fetch_mint_backup(`ptr`: Long,`relays`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_flush_rate_limits(`ptr`: Long,
+): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_get_balances(`ptr`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_get_or_create_wallet(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`unit`: RustBuffer.ByValue,`targetProofCount`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_get_token_data(`ptr`: Long,`token`: Long,
 ): Long
@@ -2072,6 +2313,8 @@ external fun uniffi_cdk_ffi_fn_method_walletrepository_get_wallets(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_has_mint(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_is_rate_limited(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
 external fun uniffi_cdk_ffi_fn_method_walletrepository_mint_backup_public_key(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_method_walletrepository_remove_wallet(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`currencyUnit`: RustBuffer.ByValue,
@@ -2082,6 +2325,8 @@ external fun uniffi_cdk_ffi_fn_method_walletrepository_set_metadata_cache_ttl_fo
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletrepository_set_metadata_cache_ttl_for_mint(`ptr`: Long,`mintUrl`: RustBuffer.ByValue,`ttlSecs`: RustBuffer.ByValue,
 ): Long
+external fun uniffi_cdk_ffi_fn_method_walletrepository_set_rate_limit(`ptr`: Long,`rateLimit`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
 external fun uniffi_cdk_ffi_fn_clone_walletsqlitedatabase(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
 external fun uniffi_cdk_ffi_fn_free_walletsqlitedatabase(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
@@ -2143,6 +2388,8 @@ external fun uniffi_cdk_ffi_fn_method_walletsqlitedatabase_get_saga(`ptr`: Long,
 external fun uniffi_cdk_ffi_fn_method_walletsqlitedatabase_get_transaction(`ptr`: Long,`transactionId`: RustBuffer.ByValue,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletsqlitedatabase_get_unissued_mint_quotes(`ptr`: Long,
+): Long
+external fun uniffi_cdk_ffi_fn_method_walletsqlitedatabase_increment_derivation_counter(`ptr`: Long,`namespace`: RustBuffer.ByValue,`count`: Int,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_walletsqlitedatabase_increment_keyset_counter(`ptr`: Long,`keysetId`: RustBuffer.ByValue,`count`: Int,
 ): Long
@@ -2289,6 +2536,14 @@ external fun uniffi_cdk_ffi_fn_func_mint_quote_is_expired(`quote`: RustBuffer.By
 external fun uniffi_cdk_ffi_fn_func_mint_quote_total_amount(`quote`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_func_mnemonic_to_entropy(`mnemonic`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_func_nip44_decrypt(`nostrSecretKey`: RustBuffer.ByValue,`senderPubkey`: RustBuffer.ByValue,`payload`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_func_nip44_encrypt(`nostrSecretKey`: RustBuffer.ByValue,`recipientPubkey`: RustBuffer.ByValue,`plaintext`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_func_nostr_generate_secret_key(uniffi_out_err: UniffiRustCallStatus, 
+): RustBuffer.ByValue
+external fun uniffi_cdk_ffi_fn_func_nostr_get_pubkey(`nostrSecretKey`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun uniffi_cdk_ffi_fn_func_npubcash_derive_secret_key_from_seed(`seed`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
@@ -2447,7 +2702,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_func_create_wallet_db() != 38981.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_func_custom_wallet_store() != 6733.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_func_custom_wallet_store() != 34973.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_func_decode_auth_proof() != 22357.toShort()) {
@@ -2591,6 +2846,18 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_func_mnemonic_to_entropy() != 58572.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_func_nip44_decrypt() != 39962.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_func_nip44_encrypt() != 485.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_func_nostr_generate_secret_key() != 13275.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_func_nostr_get_pubkey() != 3969.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_func_npubcash_derive_secret_key_from_seed() != 6473.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -2633,7 +2900,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_func_resolve_bip353_payment_instruction() != 39566.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_func_sqlite_wallet_store() != 53833.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_func_sqlite_wallet_store() != 59270.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_func_transaction_matches_conditions() != 45503.toShort()) {
@@ -2642,10 +2909,28 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_activesubscription_id() != 53295.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_activesubscription_recv() != 64493.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_activesubscription_recv() != 1020.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_activesubscription_try_recv() != 8454.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_activesubscription_try_recv() != 39356.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_nostrinbox_pubkey() != 9918.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_nostrinbox_start() != 36353.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_nostrinbox_stop() != 16312.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_nostrinboxlistener_on_event() != 50983.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_nostrwaitinfo_mint_preferred() != 11066.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_nostrwaitinfo_mints() != 4177.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_nostrwaitinfo_pubkey() != 8372.toShort()) {
@@ -2654,10 +2939,19 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_nostrwaitinfo_relays() != 40910.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_npubcashclient_get_missing_quotes() != 31413.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_npubcashclient_get_quotes() != 64169.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_npubcashclient_get_user_info() != 31487.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_npubcashclient_set_mint_url() != 8738.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_npubcashclient_set_quote_locking() != 61660.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_nwcservice_client_pubkey() != 1577.toShort()) {
@@ -2684,6 +2978,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_paymentrequest_description() != 30652.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_paymentrequest_mint_preferred() != 18301.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_paymentrequest_mints() != 17730.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -2691,6 +2988,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_paymentrequest_single_use() != 17480.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_paymentrequest_supported_methods() != 2914.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_paymentrequest_to_bech32_string() != 10557.toShort()) {
@@ -2783,6 +3083,39 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_preparedmelt_total_fee_with_swap() != 44787.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_cancel() != 42398.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_confirm() != 39918.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_input_fee() != 29609.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_method() != 560.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_method_fee() != 56458.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_mint_url() != 40661.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_operation_id() != 27901.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_payment_amount() != 26016.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_requested_amount() != 46200.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_total_amount() != 63155.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_preparedpaymentrequest_unit() != 44174.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_preparedsend_amount() != 62180.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -2837,22 +3170,55 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_token_unit() != 55723.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_token_ur_encoder() != 54523.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_token_value() != 22223.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurdecoder_complete() != 1656.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurdecoder_fragment_count() != 46834.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurdecoder_receive() != 26404.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurdecoder_resolved_fragment_count() != 50324.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurdecoder_token() != 34297.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurencoder_current_index() != 47175.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurencoder_fragment_count() != 40473.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurencoder_is_single_fragment() != 17184.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_tokenurencoder_next_part() != 49133.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_active_keyset() != 21888.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_calculate_fee() != 1751.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_all_pending_proofs() != 7291.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_all_pending_proofs() != 29982.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_melt_quote_status() != 42910.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote() != 30988.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote() != 13747.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote_status() != 23664.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote_status() != 4397.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_proofs_spent() != 31942.toShort()) {
@@ -2861,19 +3227,25 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_send_status() != 48245.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_active_keyset() != 65487.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_claim_npubcash_quotes() != 50606.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_cross_mint_transfer_quote_max() != 41141.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_enable_npubcash() != 16091.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_info() != 41951.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote() != 45745.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote() != 52100.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_finalize_pending_melts() != 37779.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_active_keyset() != 55608.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_flush_rate_limits() != 8300.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_keyset_count_fee() != 4726.toShort()) {
@@ -2888,7 +3260,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_keyset_fees_by_id() != 51180.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_mint_keysets() != 35744.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_npubcash_user_info() != 28646.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_pending_sends() != 56442.toShort()) {
@@ -2906,16 +3278,19 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_get_unspent_auth_proofs() != 31137.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_is_rate_limited() != 18806.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_keyset() != 20245.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_keysets() != 6059.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_list_transactions() != 20673.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_load_keyset_keys() != 26035.toShort()) {
-        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
-    }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_load_mint_info() != 12995.toShort()) {
-        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
-    }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_load_mint_keysets() != 32197.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_melt_bip353_quote() != 1058.toShort()) {
@@ -2933,7 +3308,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_melt_quote() != 14346.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint() != 9725.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint() != 15825.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint_blind_auth() != 16547.toShort()) {
@@ -2942,13 +3317,13 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint_quote() != 4487.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint_unified() != 4620.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint_unified() != 41106.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint_unissued_quotes() != 50549.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_mint_url() != 6804.toShort()) {
-        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
-    }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_pay_request() != 63052.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_prepare_melt() != 18573.toShort()) {
@@ -2960,25 +3335,25 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_prepare_melt_token() != 3555.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_prepare_pay_request() != 31967.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_prepare_send() != 18579.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_quote_onchain_melt_options() != 54895.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_receive() != 34397.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_receive() != 14004.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_receive_proofs() != 40857.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_receive_proofs() != 31628.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_recover_incomplete_sagas() != 24677.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_recover_incomplete_sagas() != 619.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_refresh_access_token() != 63251.toShort()) {
-        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
-    }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_refresh_keysets() != 60028.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_restore() != 15985.toShort()) {
@@ -3002,16 +3377,22 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_set_metadata_cache_ttl() != 24324.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_set_rate_limit() != 59693.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_set_refresh_token() != 28616.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_subscribe() != 26376.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_subscribe() != 18414.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_subscribe_mint_quote_state() != 53478.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_subscribe_mint_quote_state() != 33402.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_swap() != 45250.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_sync_missing_npubcash_quotes() != 17258.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_total_balance() != 37325.toShort()) {
@@ -3116,67 +3497,70 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_increment_keyset_counter() != 1421.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint() != 8954.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_increment_derivation_counter() != 44160.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_mint() != 60799.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint() != 16094.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint_keysets() != 50868.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_mint() != 53917.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint_quote() != 5288.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint_keysets() != 52020.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_mint_quote() != 62196.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_mint_quote() != 16039.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_melt_quote() != 19664.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_mint_quote() != 13037.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_melt_quote() != 38833.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_melt_quote() != 53379.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_keys() != 38908.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_melt_quote() != 26890.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_keys() != 55749.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_keys() != 45970.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_saga() != 34821.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_remove_keys() != 20072.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_get_saga() != 16287.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_add_saga() != 14140.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_update_saga() != 63809.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_get_saga() != 36270.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_delete_saga() != 1761.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_update_saga() != 13131.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_get_incomplete_sagas() != 23744.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_delete_saga() != 17895.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_proofs() != 4538.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_get_incomplete_sagas() != 38480.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_proofs() != 5865.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_proofs() != 48472.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_get_reserved_proofs() != 50555.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_proofs() != 63052.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_melt_quote() != 30436.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_get_reserved_proofs() != 63318.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_melt_quote() != 30916.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_melt_quote() != 32706.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_mint_quote() != 44117.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_melt_quote() != 43239.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_mint_quote() != 5426.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_reserve_mint_quote() != 44403.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletdatabase_release_mint_quote() != 10655.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_backup_mints() != 56268.toShort()) {
@@ -3188,7 +3572,13 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_fetch_mint_backup() != 24968.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_flush_rate_limits() != 60820.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_balances() != 25632.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_or_create_wallet() != 32359.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_get_token_data() != 37831.toShort()) {
@@ -3201,6 +3591,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_has_mint() != 64747.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_is_rate_limited() != 46384.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_mint_backup_public_key() != 19486.toShort()) {
@@ -3216,6 +3609,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_set_metadata_cache_ttl_for_mint() != 23477.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletrepository_set_rate_limit() != 165.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_add_keys() != 5879.toShort()) {
@@ -3299,6 +3695,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_get_unissued_mint_quotes() != 21540.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_increment_derivation_counter() != 48532.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_increment_keyset_counter() != 61780.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -3368,6 +3767,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_walletsqlitedatabase_update_saga() != 32010.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_constructor_nostrinbox_new() != 44300.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_constructor_npubcashclient_new() != 49637.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -3392,16 +3794,22 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_constructor_token_from_string() != 43724.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_constructor_wallet_new() != 18752.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_constructor_tokenurdecoder_new() != 59837.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_constructor_wallet_new() != 21828.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new() != 35127.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new_with_config() != 44668.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_cdk_ffi_checksum_constructor_walletrepository_new_with_proxy() != 18844.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_constructor_walletsqlitedatabase_new() != 10235.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_constructor_walletsqlitedatabase_new() != 57227.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_constructor_walletsqlitedatabase_new_in_memory() != 41747.toShort()) {
@@ -3736,6 +4144,29 @@ public object FfiConverterUByte: FfiConverter<UByte, Byte> {
 /**
  * @suppress
  */
+public object FfiConverterUShort: FfiConverter<UShort, Short> {
+    override fun lift(value: Short): UShort {
+        return value.toUShort()
+    }
+
+    override fun read(buf: ByteBuffer): UShort {
+        return lift(buf.getShort())
+    }
+
+    override fun lower(value: UShort): Short {
+        return value.toShort()
+    }
+
+    override fun allocationSize(value: UShort) = 2UL
+
+    override fun write(value: UShort, buf: ByteBuffer) {
+        buf.putShort(value.toShort())
+    }
+}
+
+/**
+ * @suppress
+ */
 public object FfiConverterUInt: FfiConverter<UInt, Int> {
     override fun lift(value: Int): UInt {
         return value.toUInt()
@@ -3976,7 +4407,12 @@ public object FfiConverterByteArray: FfiConverterRustBuffer<ByteArray> {
 
 //
 /**
- * FFI-compatible ActiveSubscription
+ * FFI-compatible active wallet subscription.
+ *
+ * Subscriptions may keep polling or receiving network events while callers
+ * wait for notifications. Mobile hosts should cancel, drop, or stop waiting on
+ * subscriptions during app background transitions when background network or
+ * storage activity is not desired.
  */
 public interface ActiveSubscriptionInterface {
     
@@ -3986,12 +4422,19 @@ public interface ActiveSubscriptionInterface {
     fun `id`(): kotlin.String
     
     /**
-     * Receive the next notification
+     * Receive the next notification.
+     *
+     * This waits for subscription activity. Mobile hosts should stop waiting or
+     * cancel the subscription during app background transitions unless
+     * background network activity is intended.
      */
     suspend fun `recv`(): NotificationPayload
     
     /**
-     * Try to receive a notification without blocking
+     * Try to receive a notification without blocking.
+     *
+     * Mobile hosts should still cancel or drop the subscription during app
+     * background transitions when background network activity is not desired.
      */
     suspend fun `tryRecv`(): NotificationPayload?
     
@@ -3999,7 +4442,12 @@ public interface ActiveSubscriptionInterface {
 }
 
 /**
- * FFI-compatible ActiveSubscription
+ * FFI-compatible active wallet subscription.
+ *
+ * Subscriptions may keep polling or receiving network events while callers
+ * wait for notifications. Mobile hosts should cancel, drop, or stop waiting on
+ * subscriptions during app background transitions when background network or
+ * storage activity is not desired.
  */
 open class ActiveSubscription: Disposable, AutoCloseable, ActiveSubscriptionInterface
 {
@@ -4115,7 +4563,11 @@ open class ActiveSubscription: Disposable, AutoCloseable, ActiveSubscriptionInte
 
     
     /**
-     * Receive the next notification
+     * Receive the next notification.
+     *
+     * This waits for subscription activity. Mobile hosts should stop waiting or
+     * cancel the subscription during app background transitions unless
+     * background network activity is intended.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -4139,7 +4591,10 @@ open class ActiveSubscription: Disposable, AutoCloseable, ActiveSubscriptionInte
 
     
     /**
-     * Try to receive a notification without blocking
+     * Try to receive a notification without blocking.
+     *
+     * Mobile hosts should still cancel or drop the subscription during app
+     * background transitions when background network activity is not desired.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -4297,6 +4752,694 @@ public object FfiConverterTypeActiveSubscription: FfiConverter<ActiveSubscriptio
 
 //
 /**
+ * A standing NIP-17 inbox listener for a single Nostr identity
+ *
+ * Subscribes the given relays for gift wraps addressed to the identity's
+ * public key and delivers unwrapped rumors to a [`NostrInboxListener`].
+ */
+public interface NostrInboxInterface {
+    
+    /**
+     * Public key of the inbox identity (hex-encoded, x-only)
+     */
+    fun `pubkey`(): kotlin.String
+    
+    /**
+     * Connect to the relays, activate the subscription and start delivering
+     * events to `listener` on a background task
+     *
+     * Returns once the subscription is active. Events are delivered until
+     * [`NostrInbox::stop`] is called.
+     *
+     * # Errors
+     *
+     * Returns an error if a relay cannot be added or the subscription cannot
+     * be created.
+     */
+    suspend fun `start`(`listener`: NostrInboxListener)
+    
+    /**
+     * Stop listening: cancels the background pump and disconnects from the
+     * relays
+     */
+    fun `stop`()
+    
+    companion object
+}
+
+/**
+ * A standing NIP-17 inbox listener for a single Nostr identity
+ *
+ * Subscribes the given relays for gift wraps addressed to the identity's
+ * public key and delivers unwrapped rumors to a [`NostrInboxListener`].
+ */
+open class NostrInbox: Disposable, AutoCloseable, NostrInboxInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+    /**
+     * Create a new inbox listener
+     *
+     * # Arguments
+     *
+     * * `nostr_secret_key` - The identity's secret key (hex or bech32 `nsec`)
+     * * `relays` - Relay URLs (`ws://`/`wss://`) to subscribe; must be
+     * non-empty
+     * * `since` - Optional unix timestamp lower bound for the relay `since`
+     * filter. Because NIP-59 backdates gift wraps, pick a generous lookback
+     * window instead of "now".
+     *
+     * # Errors
+     *
+     * Returns an error if the secret key or a relay URL is invalid, or no
+     * relays are configured.
+     */
+    constructor(`nostrSecretKey`: kotlin.String, `relays`: List<kotlin.String>, `since`: kotlin.ULong?) :
+        this(UniffiWithHandle, 
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_constructor_nostrinbox_new(
+    
+        FfiConverterString.lower(`nostrSecretKey`),FfiConverterSequenceString.lower(`relays`),FfiConverterOptionalULong.lower(`since`),_status)
+}
+    )
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_cdk_ffi_fn_free_nostrinbox(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_cdk_ffi_fn_clone_nostrinbox(handle, status)
+        }
+    }
+
+    
+    /**
+     * Public key of the inbox identity (hex-encoded, x-only)
+     */override fun `pubkey`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_nostrinbox_pubkey(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Connect to the relays, activate the subscription and start delivering
+     * events to `listener` on a background task
+     *
+     * Returns once the subscription is active. Events are delivered until
+     * [`NostrInbox::stop`] is called.
+     *
+     * # Errors
+     *
+     * Returns an error if a relay cannot be added or the subscription cannot
+     * be created.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `start`(`listener`: NostrInboxListener) {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_nostrinbox_start(
+                uniffiHandle,
+                FfiConverterTypeNostrInboxListener.lower(`listener`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Stop listening: cancels the background pump and disconnects from the
+     * relays
+     */override fun `stop`()
+        = 
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_nostrinbox_stop(
+        it,
+        _status)
+}
+    }
+    
+    
+
+    
+
+    
+
+
+    
+    
+    /**
+     * @suppress
+     */
+    companion object
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeNostrInbox: FfiConverter<NostrInbox, Long> {
+    override fun lower(value: NostrInbox): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): NostrInbox {
+        return NostrInbox(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): NostrInbox {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: NostrInbox) = 8UL
+
+    override fun write(value: NostrInbox, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+/**
+ * Callback interface for [`NostrInbox`] events
+ *
+ * Implementations must be non-blocking; hand expensive work (token claims,
+ * database writes) off to a separate task.
+ */
+public interface NostrInboxListener {
+    
+    /**
+     * Called once per successfully unwrapped gift wrap
+     */
+    fun `onEvent`(`event`: NostrInboxEvent)
+    
+    companion object
+}
+
+/**
+ * Callback interface for [`NostrInbox`] events
+ *
+ * Implementations must be non-blocking; hand expensive work (token claims,
+ * database writes) off to a separate task.
+ */
+open class NostrInboxListenerImpl: Disposable, AutoCloseable, NostrInboxListener
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_cdk_ffi_fn_free_nostrinboxlistener(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_cdk_ffi_fn_clone_nostrinboxlistener(handle, status)
+        }
+    }
+
+    
+    /**
+     * Called once per successfully unwrapped gift wrap
+     */override fun `onEvent`(`event`: NostrInboxEvent)
+        = 
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_nostrinboxlistener_on_event(
+        it,
+        FfiConverterTypeNostrInboxEvent.lower(`event`),_status)
+}
+    }
+    
+    
+
+    
+
+    
+
+
+    
+    
+    /**
+     * @suppress
+     */
+    companion object
+    
+}
+
+
+
+// Put the implementation in an object so we don't pollute the top-level namespace
+internal object uniffiCallbackInterfaceNostrInboxListener {
+    internal object `onEvent`: UniffiCallbackInterfaceNostrInboxListenerMethod0 {
+        override fun callback(`uniffiHandle`: Long,`event`: RustBuffer.ByValue,`uniffiOutReturn`: Pointer,uniffiCallStatus: UniffiRustCallStatus,) {
+            val uniffiObj = FfiConverterTypeNostrInboxListener.handleMap.get(uniffiHandle)
+            val makeCall = { ->
+                uniffiObj.`onEvent`(
+                    FfiConverterTypeNostrInboxEvent.lift(`event`),
+                )
+            }
+            val writeReturn = { _: Unit -> Unit }
+            uniffiTraitInterfaceCall(uniffiCallStatus, makeCall, writeReturn)
+        }
+    }
+
+    internal object uniffiFree: UniffiCallbackInterfaceFree {
+        override fun callback(handle: Long) {
+            FfiConverterTypeNostrInboxListener.handleMap.remove(handle)
+        }
+    }
+
+    internal object uniffiClone: UniffiCallbackInterfaceClone {
+        override fun callback(handle: Long): Long {
+            return FfiConverterTypeNostrInboxListener.handleMap.clone(handle)
+        }
+    }
+
+    internal var vtable = UniffiVTableCallbackInterfaceNostrInboxListener.UniffiByValue(
+        uniffiFree,
+        uniffiClone,
+        `onEvent`,
+    )
+
+    // Registers the foreign callback with the Rust side.
+    // This method is generated for each callback interface.
+    internal fun register(lib: UniffiLib) {
+        lib.uniffi_cdk_ffi_fn_init_callback_vtable_nostrinboxlistener(vtable)
+    }
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeNostrInboxListener: FfiConverter<NostrInboxListener, Long> {
+    internal val handleMap = UniffiHandleMap<NostrInboxListener>()
+
+    override fun lower(value: NostrInboxListener): Long {
+        if (value is NostrInboxListenerImpl) {
+             // Rust-implemented object.  Clone the handle and return it
+            return value.uniffiCloneHandle()
+         } else {
+            // Kotlin object, generate a new vtable handle and return that.
+            return handleMap.insert(value)
+         }
+    }
+
+    override fun lift(value: Long): NostrInboxListener {
+        if ((value and 1.toLong()) == 0.toLong()) {
+            // Rust-generated handle, construct a new class that uses the handle to implement the
+            // interface
+            return NostrInboxListenerImpl(UniffiWithHandle, value)
+        } else {
+            // Kotlin-generated handle, get the object from the handle map
+            return handleMap.remove(value)
+        }
+    }
+
+    override fun read(buf: ByteBuffer): NostrInboxListener {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: NostrInboxListener) = 8UL
+
+    override fun write(value: NostrInboxListener, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+/**
  * Information needed to wait for an incoming Nostr payment
  *
  * Returned by `create_request` when the transport is `nostr`. Pass this to
@@ -4304,6 +5447,16 @@ public object FfiConverterTypeActiveSubscription: FfiConverter<ActiveSubscriptio
  * payment on the specified relays.
  */
 public interface NostrWaitInfoInterface {
+    
+    /**
+     * Get whether the original request's mint list is preferred instead of strict
+     */
+    fun `mintPreferred`(): kotlin.Boolean?
+    
+    /**
+     * Get the mint URLs accepted or preferred by the original payment request
+     */
+    fun `mints`(): List<kotlin.String>
     
     /**
      * Get the recipient public key as a hex string
@@ -4420,6 +5573,38 @@ open class NostrWaitInfo: Disposable, AutoCloseable, NostrWaitInfoInterface
             UniffiLib.uniffi_cdk_ffi_fn_clone_nostrwaitinfo(handle, status)
         }
     }
+
+    
+    /**
+     * Get whether the original request's mint list is preferred instead of strict
+     */override fun `mintPreferred`(): kotlin.Boolean? {
+            return FfiConverterOptionalBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_nostrwaitinfo_mint_preferred(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Get the mint URLs accepted or preferred by the original payment request
+     */override fun `mints`(): List<kotlin.String> {
+            return FfiConverterSequenceString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_nostrwaitinfo_mints(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
 
     
     /**
@@ -4597,6 +5782,23 @@ public object FfiConverterTypeNostrWaitInfo: FfiConverter<NostrWaitInfo, Long> {
 public interface NpubCashClientInterface {
     
     /**
+     * Resolve full quote data for specific quote IDs
+     *
+     * Asks the NpubCash server for the quotes matching `quote_ids`. Used to
+     * reconcile local state with the server: fetch all quote IDs, determine
+     * which ones are unknown locally, and resolve only those.
+     *
+     * # Arguments
+     *
+     * * `quote_ids` - Quote IDs to resolve
+     *
+     * # Errors
+     *
+     * Returns an error if the API request fails or authentication fails
+     */
+    suspend fun `getMissingQuotes`(`quoteIds`: List<kotlin.String>): List<NpubCashQuote>
+    
+    /**
      * Fetch quotes from NpubCash
      *
      * # Arguments
@@ -4615,6 +5817,17 @@ public interface NpubCashClientInterface {
     suspend fun `getQuotes`(`since`: kotlin.ULong?): List<NpubCashQuote>
     
     /**
+     * Fetch the NpubCash account settings
+     *
+     * Returns the configured mint URL and whether quote locking is enabled.
+     *
+     * # Errors
+     *
+     * Returns an error if the API request fails or authentication fails
+     */
+    suspend fun `getUserInfo`(): NpubCashUserResponse
+    
+    /**
      * Set the mint URL for the user on the NpubCash server
      *
      * Updates the default mint URL used by the NpubCash server when creating quotes.
@@ -4628,6 +5841,26 @@ public interface NpubCashClientInterface {
      * Returns an error if the API request fails or authentication fails
      */
     suspend fun `setMintUrl`(`mintUrl`: kotlin.String): NpubCashUserResponse
+    
+    /**
+     * Enable or disable NUT-20 quote locking for this NpubCash account
+     *
+     * When enabled, the NpubCash server creates new mint quotes locked to the
+     * account's Nostr public key, so claiming them requires a NUT-20 quote
+     * signature from the matching secret key. The server rejects enabling
+     * locking when the configured mint does not support NUT-20.
+     *
+     * Already-created quotes keep their original lock state.
+     *
+     * # Arguments
+     *
+     * * `lock_quotes` - Whether new quotes should be locked to the npub
+     *
+     * # Errors
+     *
+     * Returns an error if the API request fails or authentication fails
+     */
+    suspend fun `setQuoteLocking`(`lockQuotes`: kotlin.Boolean): NpubCashUserResponse
     
     companion object
 }
@@ -4758,6 +5991,42 @@ open class NpubCashClient: Disposable, AutoCloseable, NpubCashClientInterface
 
     
     /**
+     * Resolve full quote data for specific quote IDs
+     *
+     * Asks the NpubCash server for the quotes matching `quote_ids`. Used to
+     * reconcile local state with the server: fetch all quote IDs, determine
+     * which ones are unknown locally, and resolve only those.
+     *
+     * # Arguments
+     *
+     * * `quote_ids` - Quote IDs to resolve
+     *
+     * # Errors
+     *
+     * Returns an error if the API request fails or authentication fails
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `getMissingQuotes`(`quoteIds`: List<kotlin.String>) : List<NpubCashQuote> {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_npubcashclient_get_missing_quotes(
+                uniffiHandle,
+                FfiConverterSequenceString.lower(`quoteIds`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterSequenceTypeNpubCashQuote.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Fetch quotes from NpubCash
      *
      * # Arguments
@@ -4795,6 +6064,36 @@ open class NpubCashClient: Disposable, AutoCloseable, NpubCashClientInterface
 
     
     /**
+     * Fetch the NpubCash account settings
+     *
+     * Returns the configured mint URL and whether quote locking is enabled.
+     *
+     * # Errors
+     *
+     * Returns an error if the API request fails or authentication fails
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `getUserInfo`() : NpubCashUserResponse {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_npubcashclient_get_user_info(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeNpubCashUserResponse.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Set the mint URL for the user on the NpubCash server
      *
      * Updates the default mint URL used by the NpubCash server when creating quotes.
@@ -4815,6 +6114,45 @@ open class NpubCashClient: Disposable, AutoCloseable, NpubCashClientInterface
             UniffiLib.uniffi_cdk_ffi_fn_method_npubcashclient_set_mint_url(
                 uniffiHandle,
                 FfiConverterString.lower(`mintUrl`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeNpubCashUserResponse.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Enable or disable NUT-20 quote locking for this NpubCash account
+     *
+     * When enabled, the NpubCash server creates new mint quotes locked to the
+     * account's Nostr public key, so claiming them requires a NUT-20 quote
+     * signature from the matching secret key. The server rejects enabling
+     * locking when the configured mint does not support NUT-20.
+     *
+     * Already-created quotes keep their original lock state.
+     *
+     * # Arguments
+     *
+     * * `lock_quotes` - Whether new quotes should be locked to the npub
+     *
+     * # Errors
+     *
+     * Returns an error if the API request fails or authentication fails
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `setQuoteLocking`(`lockQuotes`: kotlin.Boolean) : NpubCashUserResponse {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_npubcashclient_set_quote_locking(
+                uniffiHandle,
+                FfiConverterBoolean.lower(`lockQuotes`),
             )
         },
         { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
@@ -5451,6 +6789,11 @@ public interface PaymentRequestInterface {
     fun `description`(): kotlin.String?
     
     /**
+     * Get whether the mint list is preferred instead of strict.
+     */
+    fun `mintPreferred`(): kotlin.Boolean?
+    
+    /**
      * Get the list of acceptable mint URLs
      */
     fun `mints`(): List<kotlin.String>
@@ -5464,6 +6807,11 @@ public interface PaymentRequestInterface {
      * Get whether this is a single-use request
      */
     fun `singleUse`(): kotlin.Boolean?
+    
+    /**
+     * Get the list of supported payment methods the mint must support
+     */
+    fun `supportedMethods`(): List<SupportedMethod>
     
     /**
      * Encode the payment request to a NUT-26 bech32m string (creqB prefix)
@@ -5643,6 +6991,22 @@ open class PaymentRequest: Disposable, AutoCloseable, PaymentRequestInterface
 
     
     /**
+     * Get whether the mint list is preferred instead of strict.
+     */override fun `mintPreferred`(): kotlin.Boolean? {
+            return FfiConverterOptionalBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_paymentrequest_mint_preferred(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
      * Get the list of acceptable mint URLs
      */override fun `mints`(): List<kotlin.String> {
             return FfiConverterSequenceString.lift(
@@ -5681,6 +7045,22 @@ open class PaymentRequest: Disposable, AutoCloseable, PaymentRequestInterface
     callWithHandle {
     uniffiRustCall() { _status ->
     UniffiLib.uniffi_cdk_ffi_fn_method_paymentrequest_single_use(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Get the list of supported payment methods the mint must support
+     */override fun `supportedMethods`(): List<SupportedMethod> {
+            return FfiConverterSequenceTypeSupportedMethod.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_paymentrequest_supported_methods(
         it,
         _status)
 }
@@ -7307,6 +8687,507 @@ public object FfiConverterTypePreparedMelt: FfiConverter<PreparedMelt, Long> {
 
 //
 /**
+ * FFI-compatible prepared NUT-18 payment request.
+ */
+public interface PreparedPaymentRequestInterface {
+    
+    /**
+     * Cancel the prepared payment and release reserved proofs.
+     */
+    suspend fun `cancel`()
+    
+    /**
+     * Confirm and deliver the prepared payment.
+     *
+     * If delivery fails after token creation, this returns
+     * `FfiError::PaymentRequestDeliveryFailed` with the pending operation ID.
+     * Do not prepare the payment again. Call `Wallet.revoke_send(operation_id)`
+     * to reclaim it if it remains unclaimed.
+     */
+    suspend fun `confirm`()
+    
+    /**
+     * Total mint input fee.
+     */
+    fun `inputFee`(): Amount
+    
+    /**
+     * Selected payment method, when restricted by the request.
+     */
+    fun `method`(): kotlin.String?
+    
+    /**
+     * Applicable receiver-selected method fee (`mf`).
+     */
+    fun `methodFee`(): Amount
+    
+    /**
+     * Mint selected for the payment.
+     */
+    fun `mintUrl`(): kotlin.String
+    
+    /**
+     * Operation ID of the reserved send.
+     */
+    fun `operationId`(): kotlin.String
+    
+    /**
+     * Requested amount plus the applicable method fee.
+     */
+    fun `paymentAmount`(): Amount
+    
+    /**
+     * Amount requested before the receiver-selected method fee.
+     */
+    fun `requestedAmount`(): Amount
+    
+    /**
+     * Total wallet debit.
+     */
+    fun `totalAmount`(): Amount
+    
+    /**
+     * Currency unit of the payment.
+     */
+    fun `unit`(): CurrencyUnit
+    
+    companion object
+}
+
+/**
+ * FFI-compatible prepared NUT-18 payment request.
+ */
+open class PreparedPaymentRequest: Disposable, AutoCloseable, PreparedPaymentRequestInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_cdk_ffi_fn_free_preparedpaymentrequest(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_cdk_ffi_fn_clone_preparedpaymentrequest(handle, status)
+        }
+    }
+
+    
+    /**
+     * Cancel the prepared payment and release reserved proofs.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `cancel`() {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_cancel(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Confirm and deliver the prepared payment.
+     *
+     * If delivery fails after token creation, this returns
+     * `FfiError::PaymentRequestDeliveryFailed` with the pending operation ID.
+     * Do not prepare the payment again. Call `Wallet.revoke_send(operation_id)`
+     * to reclaim it if it remains unclaimed.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `confirm`() {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_confirm(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Total mint input fee.
+     */override fun `inputFee`(): Amount {
+            return FfiConverterTypeAmount.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_input_fee(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Selected payment method, when restricted by the request.
+     */override fun `method`(): kotlin.String? {
+            return FfiConverterOptionalString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_method(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Applicable receiver-selected method fee (`mf`).
+     */override fun `methodFee`(): Amount {
+            return FfiConverterTypeAmount.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_method_fee(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Mint selected for the payment.
+     */override fun `mintUrl`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_mint_url(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Operation ID of the reserved send.
+     */override fun `operationId`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_operation_id(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Requested amount plus the applicable method fee.
+     */override fun `paymentAmount`(): Amount {
+            return FfiConverterTypeAmount.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_payment_amount(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Amount requested before the receiver-selected method fee.
+     */override fun `requestedAmount`(): Amount {
+            return FfiConverterTypeAmount.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_requested_amount(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Total wallet debit.
+     */override fun `totalAmount`(): Amount {
+            return FfiConverterTypeAmount.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_total_amount(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Currency unit of the payment.
+     */override fun `unit`(): CurrencyUnit {
+            return FfiConverterTypeCurrencyUnit.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_preparedpaymentrequest_unit(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+
+    
+
+
+    
+    
+    /**
+     * @suppress
+     */
+    companion object
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypePreparedPaymentRequest: FfiConverter<PreparedPaymentRequest, Long> {
+    override fun lower(value: PreparedPaymentRequest): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): PreparedPaymentRequest {
+        return PreparedPaymentRequest(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): PreparedPaymentRequest {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: PreparedPaymentRequest) = 8UL
+
+    override fun write(value: PreparedPaymentRequest, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+/**
  * FFI-compatible PreparedSend
  *
  * This wraps the data from a prepared send operation along with a reference
@@ -7765,6 +9646,16 @@ public interface TokenInterface {
     fun `unit`(): CurrencyUnit?
     
     /**
+     * Create a NUT-16 UR encoder for displaying this token as an animated
+     * QR code
+     *
+     * `max_fragment_length` is the maximum number of payload bytes per QR
+     * frame; `None` selects a default suited to most QR scanners. Each
+     * `TokenUrEncoder::next_part` fragment is displayed as one QR frame.
+     */
+    fun `urEncoder`(`maxFragmentLength`: kotlin.UInt?): TokenUrEncoder
+    
+    /**
      * Get the total value of the token
      */
     fun `value`(): Amount
@@ -8069,6 +9960,28 @@ open class Token: Disposable, AutoCloseable, TokenInterface
 
     
     /**
+     * Create a NUT-16 UR encoder for displaying this token as an animated
+     * QR code
+     *
+     * `max_fragment_length` is the maximum number of payload bytes per QR
+     * frame; `None` selects a default suited to most QR scanners. Each
+     * `TokenUrEncoder::next_part` fragment is displayed as one QR frame.
+     */
+    @Throws(FfiException::class)override fun `urEncoder`(`maxFragmentLength`: kotlin.UInt?): TokenUrEncoder {
+            return FfiConverterTypeTokenUrEncoder.lift(
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_token_ur_encoder(
+        it,
+        FfiConverterOptionalUInt.lower(`maxFragmentLength`),_status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
      * Get the total value of the token
      */
     @Throws(FfiException::class)override fun `value`(): Amount {
@@ -8263,9 +10176,755 @@ public object FfiConverterTypeToken: FfiConverter<Token, Long> {
 
 //
 /**
- * FFI-compatible Wallet
+ * FFI-compatible NUT-16 UR decoder for animated QR codes
+ *
+ * Reassembles a token from scanned UR fragments. Feed each scanned QR
+ * frame with `receive` in any order until `complete` returns true, then
+ * read the token with `token`.
+ */
+public interface TokenUrDecoderInterface {
+    
+    /**
+     * Returns whether the token has been fully reassembled
+     */
+    fun `complete`(): kotlin.Boolean
+    
+    /**
+     * Returns the total number of fragments the token was split into
+     *
+     * This is `0` until the first multi-part fragment is received.
+     */
+    fun `fragmentCount`(): kotlin.UInt
+    
+    /**
+     * Feed one scanned QR frame into the decoder
+     *
+     * Accepts both multi-part fragments (`ur:bytes/<seq>-<len>/<payload>`)
+     * and the single-part form (`ur:bytes/<payload>`).
+     */
+    fun `receive`(`part`: kotlin.String)
+    
+    /**
+     * Returns the number of fragments resolved so far, either received
+     * directly or recovered via the fountain code
+     *
+     * Useful for progress indication. Returns `None` before any fragment
+     * has been received.
+     */
+    fun `resolvedFragmentCount`(): kotlin.UInt?
+    
+    /**
+     * Returns the reassembled token once `complete`, `None` while decoding
+     * is incomplete
+     */
+    fun `token`(): Token?
+    
+    companion object
+}
+
+/**
+ * FFI-compatible NUT-16 UR decoder for animated QR codes
+ *
+ * Reassembles a token from scanned UR fragments. Feed each scanned QR
+ * frame with `receive` in any order until `complete` returns true, then
+ * read the token with `token`.
+ */
+open class TokenUrDecoder: Disposable, AutoCloseable, TokenUrDecoderInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+    /**
+     * Create a new decoder
+     */
+    constructor() :
+        this(UniffiWithHandle, 
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_constructor_tokenurdecoder_new(
+    
+        _status)
+}
+    )
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_cdk_ffi_fn_free_tokenurdecoder(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_cdk_ffi_fn_clone_tokenurdecoder(handle, status)
+        }
+    }
+
+    
+    /**
+     * Returns whether the token has been fully reassembled
+     */override fun `complete`(): kotlin.Boolean {
+            return FfiConverterBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurdecoder_complete(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Returns the total number of fragments the token was split into
+     *
+     * This is `0` until the first multi-part fragment is received.
+     */override fun `fragmentCount`(): kotlin.UInt {
+            return FfiConverterUInt.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurdecoder_fragment_count(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Feed one scanned QR frame into the decoder
+     *
+     * Accepts both multi-part fragments (`ur:bytes/<seq>-<len>/<payload>`)
+     * and the single-part form (`ur:bytes/<payload>`).
+     */
+    @Throws(FfiException::class)override fun `receive`(`part`: kotlin.String)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurdecoder_receive(
+        it,
+        FfiConverterString.lower(`part`),_status)
+}
+    }
+    
+    
+
+    
+    /**
+     * Returns the number of fragments resolved so far, either received
+     * directly or recovered via the fountain code
+     *
+     * Useful for progress indication. Returns `None` before any fragment
+     * has been received.
+     */override fun `resolvedFragmentCount`(): kotlin.UInt? {
+            return FfiConverterOptionalUInt.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurdecoder_resolved_fragment_count(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Returns the reassembled token once `complete`, `None` while decoding
+     * is incomplete
+     */
+    @Throws(FfiException::class)override fun `token`(): Token? {
+            return FfiConverterOptionalTypeToken.lift(
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurdecoder_token(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+
+    
+
+
+    
+    
+    /**
+     * @suppress
+     */
+    companion object
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTokenUrDecoder: FfiConverter<TokenUrDecoder, Long> {
+    override fun lower(value: TokenUrDecoder): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): TokenUrDecoder {
+        return TokenUrDecoder(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): TokenUrDecoder {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: TokenUrDecoder) = 8UL
+
+    override fun write(value: TokenUrDecoder, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+/**
+ * FFI-compatible NUT-16 UR encoder for animated QR codes
+ *
+ * Splits a token into a fountain-coded sequence of UR fragments
+ * (`ur:bytes/…`), one per QR frame. The first `fragment_count` frames cover
+ * the whole token; the stream is unbounded and frames beyond that are
+ * redundant fountain parts, so a receiver can complete from any
+ * sufficiently large subset of frames. Senders typically loop the frames
+ * until the receiver signals completion.
+ *
+ * If the token fits into a single frame, the single-part form
+ * (`ur:bytes/<payload>`, without fragment indices) is emitted.
+ */
+public interface TokenUrEncoderInterface {
+    
+    /**
+     * Returns the number of fragments emitted so far
+     */
+    fun `currentIndex`(): kotlin.UInt
+    
+    /**
+     * Returns the number of fragments the token was split into
+     */
+    fun `fragmentCount`(): kotlin.UInt
+    
+    /**
+     * Returns whether the token fits into a single QR frame
+     */
+    fun `isSingleFragment`(): kotlin.Boolean
+    
+    /**
+     * Returns the next UR fragment to display as a QR frame
+     */
+    fun `nextPart`(): kotlin.String
+    
+    companion object
+}
+
+/**
+ * FFI-compatible NUT-16 UR encoder for animated QR codes
+ *
+ * Splits a token into a fountain-coded sequence of UR fragments
+ * (`ur:bytes/…`), one per QR frame. The first `fragment_count` frames cover
+ * the whole token; the stream is unbounded and frames beyond that are
+ * redundant fountain parts, so a receiver can complete from any
+ * sufficiently large subset of frames. Senders typically loop the frames
+ * until the receiver signals completion.
+ *
+ * If the token fits into a single frame, the single-part form
+ * (`ur:bytes/<payload>`, without fragment indices) is emitted.
+ */
+open class TokenUrEncoder: Disposable, AutoCloseable, TokenUrEncoderInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_cdk_ffi_fn_free_tokenurencoder(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_cdk_ffi_fn_clone_tokenurencoder(handle, status)
+        }
+    }
+
+    
+    /**
+     * Returns the number of fragments emitted so far
+     */override fun `currentIndex`(): kotlin.UInt {
+            return FfiConverterUInt.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurencoder_current_index(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Returns the number of fragments the token was split into
+     */override fun `fragmentCount`(): kotlin.UInt {
+            return FfiConverterUInt.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurencoder_fragment_count(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Returns whether the token fits into a single QR frame
+     */override fun `isSingleFragment`(): kotlin.Boolean {
+            return FfiConverterBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurencoder_is_single_fragment(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Returns the next UR fragment to display as a QR frame
+     */
+    @Throws(FfiException::class)override fun `nextPart`(): kotlin.String {
+            return FfiConverterString.lift(
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_tokenurencoder_next_part(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+
+    
+
+
+    
+    
+    /**
+     * @suppress
+     */
+    companion object
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTokenUrEncoder: FfiConverter<TokenUrEncoder, Long> {
+    override fun lower(value: TokenUrEncoder): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): TokenUrEncoder {
+        return TokenUrEncoder(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): TokenUrEncoder {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: TokenUrEncoder) = 8UL
+
+    override fun write(value: TokenUrEncoder, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+//
+/**
+ * FFI-compatible wallet.
+ *
+ * Wallet methods can write to the configured local store while they perform
+ * mint, receive, recovery, subscription, and status operations. Mobile host
+ * apps own platform lifecycle handling around these calls: pause or cancel work
+ * when moving to the background unless background network and storage activity
+ * is intended, and use platform facilities such as iOS `beginBackgroundTask`
+ * when an operation must finish after a lifecycle transition.
  */
 public interface WalletInterface {
+    
+    /**
+     * Get the active keyset with the lowest fees
+     */
+    suspend fun `activeKeyset`(): KeySet
     
     /**
      * Calculate fee for a given number of proofs with the specified keyset
@@ -8277,6 +10936,9 @@ public interface WalletInterface {
      *
      * This function checks orphaned pending proofs (not managed by active sagas)
      * with the mint and marks spent proofs accordingly.
+     * It may perform network requests and write proof-state updates to the
+     * local store, so mobile hosts should coordinate it with app lifecycle
+     * transitions.
      */
     suspend fun `checkAllPendingProofs`(): Amount
     
@@ -8292,6 +10954,9 @@ public interface WalletInterface {
      * Updates local store with current state from mint.
      * If there was a crashed mid-mint (pending saga), attempts to complete it.
      * Does NOT mint tokens directly - use mint() for that.
+     * This may perform network requests and write recovery/status updates to
+     * the local store, so mobile hosts should coordinate it with app lifecycle
+     * transitions.
      *
      * **Note:** The mint quote must be known to the wallet (stored locally) for this
      * function to work. If the quote is not stored locally, use `fetch_mint_quote`
@@ -8306,6 +10971,9 @@ public interface WalletInterface {
      * Updates local store with current state from mint.
      * If there was a crashed mid-mint (pending saga), attempts to complete it.
      * Does NOT mint tokens directly - use mint() for that.
+     * This may perform network requests and write recovery/status updates to
+     * the local store, so mobile hosts should coordinate it with app lifecycle
+     * transitions.
      *
      * **Note:** The mint quote must be known to the wallet (stored locally) for this
      * function to work. If the quote is not stored locally, use `fetch_mint_quote`
@@ -8324,9 +10992,46 @@ public interface WalletInterface {
     suspend fun `checkSendStatus`(`operationId`: kotlin.String): kotlin.Boolean
     
     /**
-     * Fetch active keyset with lowest fees
+     * Claim all pending NpubCash quotes
+     *
+     * Syncs quotes from the NpubCash server (including reconciliation of
+     * quotes missing locally) and mints every paid NpubCash quote that has
+     * not been issued yet. Only quotes attributable to the wallet's NpubCash
+     * accounts are claimed; unrelated mint quotes created through normal
+     * wallet flows are left untouched. Mints that advertise NUT-29 are
+     * claimed with batch minting automatically; other mints fall back to
+     * individual minting.
+     *
+     * Returns the total amount minted across all claimed quotes.
      */
-    suspend fun `fetchActiveKeyset`(): KeySetInfo
+    suspend fun `claimNpubcashQuotes`(): Amount
+    
+    /**
+     * Create quotes for transferring the maximum amount allowed by the source
+     * balance and both mints' advertised BOLT11 limits.
+     *
+     * The returned input fee assumes all currently unspent source proofs are
+     * used. Prepare the returned melt quote with those proofs and confirm it
+     * with `skip_swap` to preserve that accounting.
+     *
+     * This search may create multiple quote pairs at the remote mints. Only the
+     * returned pair is persisted locally; unused remote quotes cannot be
+     * cancelled and remain until they expire.
+     */
+    suspend fun `crossMintTransferQuoteMax`(`targetWallet`: Wallet): CrossMintTransferQuote
+    
+    /**
+     * Enable NpubCash integration for this wallet
+     *
+     * Derives the NpubCash Nostr keys from the wallet seed, creates the
+     * API client, sets this wallet's mint URL on the server, and enables
+     * NUT-20 quote locking for newly created quotes. The integration is
+     * only activated once locking has been enabled and confirmed.
+     *
+     * Returns an error if quote locking cannot be established — for
+     * example when the configured mint does not support NUT-20.
+     */
+    suspend fun `enableNpubcash`(`npubcashUrl`: kotlin.String)
     
     /**
      * Get mint info from mint
@@ -8334,7 +11039,11 @@ public interface WalletInterface {
     suspend fun `fetchMintInfo`(): MintInfo?
     
     /**
-     * Fetch a mint quote from the mint and store it locally
+     * Fetch a mint quote from the mint and store it locally.
+     *
+     * This performs network I/O and writes the fetched quote to the local store.
+     * Mobile hosts should avoid starting it during app background transitions
+     * unless background network and storage activity is intended.
      *
      * Works with all payment methods (Bolt11, Bolt12, and custom payment methods).
      *
@@ -8352,9 +11061,13 @@ public interface WalletInterface {
     suspend fun `finalizePendingMelts`(): List<FinalizedMelt>
     
     /**
-     * Get the active keyset for the wallet's unit
+     * Wait until the rate-limit budget this wallet drew down has been stored.
+     *
+     * Await this before dropping the wallet on shutdown. Without it,
+     * persistence is best effort and a rebuild can outrun the detached writer,
+     * so the rebuilt wallet starts with a full burst against the mint's cap.
      */
-    suspend fun `getActiveKeyset`(): KeySetInfo
+    suspend fun `flushRateLimits`()
     
     /**
      * Get fee for count of proofs in a keyset
@@ -8377,9 +11090,12 @@ public interface WalletInterface {
     suspend fun `getKeysetFeesById`(`keysetId`: kotlin.String): kotlin.ULong
     
     /**
-     * Get keysets for this wallet's unit with filter
+     * Fetch this wallet's NpubCash account settings
+     *
+     * Returns the configured mint URL and whether quote locking is enabled.
+     * Requires NpubCash to be enabled on this wallet first.
      */
-    suspend fun `getMintKeysets`(`filter`: KeysetFilter): List<KeySetInfo>
+    suspend fun `getNpubcashUserInfo`(): NpubCashUserResponse
     
     /**
      * Get all pending send operations
@@ -8410,14 +11126,27 @@ public interface WalletInterface {
     suspend fun `getUnspentAuthProofs`(): List<AuthProof>
     
     /**
+     * Whether this wallet's requests are being paced right now.
+     *
+     * Also false when the wallet paces nothing at all, which is the case
+     * [`Wallet::set_rate_limit`] silently ignores.
+     */
+    fun `isRateLimited`(): kotlin.Boolean
+    
+    /**
+     * Get a single keyset by ID
+     */
+    suspend fun `keyset`(`keysetId`: kotlin.String): KeySet
+    
+    /**
+     * Get all keysets for this wallet's unit
+     */
+    suspend fun `keysets`(`policy`: KeysetLoadPolicy?): List<KeySet>
+    
+    /**
      * List transactions
      */
     suspend fun `listTransactions`(`direction`: TransactionDirection?): List<Transaction>
-    
-    /**
-     * Load keys for a specific keyset
-     */
-    suspend fun `loadKeysetKeys`(`keysetId`: kotlin.String): Keys
     
     /**
      * Load mint info
@@ -8425,11 +11154,6 @@ public interface WalletInterface {
      * This will get mint info from cache if it is fresh
      */
     suspend fun `loadMintInfo`(): MintInfo
-    
-    /**
-     * Load active keysets
-     */
-    suspend fun `loadMintKeysets`(): List<KeySetInfo>
     
     /**
      * Get a quote for a BIP353 melt
@@ -8491,7 +11215,12 @@ public interface WalletInterface {
     suspend fun `meltQuote`(`method`: PaymentMethod, `request`: kotlin.String, `options`: MeltOptions?, `extra`: kotlin.String?): MeltQuote
     
     /**
-     * Mint tokens
+     * Mint tokens.
+     *
+     * This writes newly issued proofs and saga state to the local store while
+     * communicating with the mint. Mobile hosts should coordinate it with app
+     * lifecycle transitions, using platform background-task support when the
+     * operation must finish after backgrounding.
      */
     suspend fun `mint`(`quoteId`: kotlin.String, `amountSplitTarget`: SplitTarget, `spendingConditions`: SpendingConditions?): List<Proof>
     
@@ -8505,25 +11234,28 @@ public interface WalletInterface {
      */
     suspend fun `mintQuote`(`paymentMethod`: PaymentMethod, `amount`: Amount?, `description`: kotlin.String?, `extra`: kotlin.String?): MintQuote
     
+    /**
+     * Mint tokens using the unified payment-method interface.
+     *
+     * This writes newly issued proofs and saga state to the local store while
+     * communicating with the mint. Mobile hosts should coordinate it with app
+     * lifecycle transitions, using platform background-task support when the
+     * operation must finish after backgrounding.
+     */
     suspend fun `mintUnified`(`quoteId`: kotlin.String, `amountSplitTarget`: SplitTarget, `spendingConditions`: SpendingConditions?): List<Proof>
+    
+    /**
+     * Check and mint any paid but unissued mint quotes.
+     *
+     * This is useful during startup or recovery after incomplete mint quote flows.
+     * It may perform network requests and write newly issued proofs to the wallet store.
+     */
+    suspend fun `mintUnissuedQuotes`(): Amount
     
     /**
      * Get the mint URL
      */
     fun `mintUrl`(): MintUrl
-    
-    /**
-     * Pay a NUT-18 payment request
-     *
-     * This method prepares and sends a payment for the given payment request.
-     * It will use the Nostr or HTTP transport specified in the request.
-     *
-     * # Arguments
-     *
-     * * `payment_request` - The NUT-18 payment request to pay
-     * * `custom_amount` - Optional amount to pay (required if request has no amount)
-     */
-    suspend fun `payRequest`(`paymentRequest`: PaymentRequest, `customAmount`: Amount?)
     
     /**
      * Prepare a melt operation
@@ -8568,6 +11300,13 @@ public interface WalletInterface {
     suspend fun `prepareMeltToken`(`quoteId`: kotlin.String, `encodedToken`: kotlin.String): PreparedMelt
     
     /**
+     * Prepare a NUT-18 payment request so its method and input fees can be reviewed.
+     *
+     * Call `confirm` or `cancel` on the returned object to complete the flow.
+     */
+    suspend fun `preparePayRequest`(`paymentRequest`: PaymentRequest, `customAmount`: Amount?): PreparedPaymentRequest
+    
+    /**
      * Prepare a send operation
      */
     suspend fun `prepareSend`(`amount`: Amount, `options`: SendOptions): PreparedSend
@@ -8582,12 +11321,20 @@ public interface WalletInterface {
     suspend fun `quoteOnchainMeltOptions`(`address`: kotlin.String, `amount`: Amount, `maxFeeAmount`: Amount?): List<MeltQuote>
     
     /**
-     * Receive tokens
+     * Receive tokens.
+     *
+     * This verifies and persists received proofs in the local store. Mobile
+     * hosts should avoid starting it during app background transitions unless
+     * background network and storage activity is intended.
      */
     suspend fun `receive`(`token`: Token, `options`: ReceiveOptions): Amount
     
     /**
-     * Receive proofs directly
+     * Receive proofs directly.
+     *
+     * This verifies and persists received proofs in the local store. Mobile
+     * hosts should avoid starting it during app background transitions unless
+     * background network and storage activity is intended.
      */
     suspend fun `receiveProofs`(`proofs`: List<Proof>, `options`: ReceiveOptions, `memo`: kotlin.String?, `token`: kotlin.String?): Amount
     
@@ -8596,6 +11343,10 @@ public interface WalletInterface {
      *
      * Handles interrupted swap, send, receive, issue, and melt operations. Requires
      * network access to the mint for states that need external status checks.
+     * Recovery writes saga, proof, quote, and transaction updates to the local
+     * store. Mobile hosts should run it only when background network and storage
+     * activity is acceptable, or wrap it in platform background-task support
+     * such as iOS `beginBackgroundTask`.
      */
     suspend fun `recoverIncompleteSagas`(): RecoveryReport
     
@@ -8603,11 +11354,6 @@ public interface WalletInterface {
      * Refresh access token using the stored refresh token
      */
     suspend fun `refreshAccessToken`()
-    
-    /**
-     * Refresh keysets from the mint
-     */
-    suspend fun `refreshKeysets`(): List<KeySetInfo>
     
     /**
      * Restore wallet from seed
@@ -8662,12 +11408,32 @@ public interface WalletInterface {
     fun `setMetadataCacheTtl`(`ttlSecs`: kotlin.ULong?)
     
     /**
+     * Change client-side request rate limiting on this wallet.
+     *
+     * A new wallet starts with whatever `WalletConfig.rate_limit` selected. Use
+     * this to disable pacing, restore the default, or set a custom burst and
+     * refill. It takes effect immediately and covers every host the wallet's
+     * limiter paces, so it reaches the main and blind-auth clients as well as
+     * any third-party host their transport reaches. For a wallet built through
+     * a wallet repository the limiter is shared, so the change is
+     * repository-wide.
+     *
+     * Returns an error if a `Custom` value has a zero field.
+     */
+    fun `setRateLimit`(`rateLimit`: RateLimit)
+    
+    /**
      * Set refresh token for authentication
      */
     suspend fun `setRefreshToken`(`refreshToken`: kotlin.String)
     
     /**
-     * Subscribe to wallet events
+     * Subscribe to wallet events.
+     *
+     * The returned subscription may keep polling or receiving network events
+     * until it is dropped or closed. Mobile hosts should cancel, drop, or stop
+     * waiting on subscriptions during app background transitions when
+     * background network or storage activity is not desired.
      */
     suspend fun `subscribe`(`params`: SubscribeParams): ActiveSubscription
     
@@ -8679,6 +11445,10 @@ public interface WalletInterface {
      *
      * Use `recv()` on the returned `ActiveSubscription` to receive updates as
      * `NotificationPayload::MintQuoteUpdate`.
+     * The returned subscription may keep polling or receiving network events
+     * until it is dropped or closed. Mobile hosts should cancel, drop, or stop
+     * waiting on subscriptions during app background transitions when
+     * background network or storage activity is not desired.
      *
      * All quote IDs must belong to the same payment method.
      *
@@ -8692,6 +11462,21 @@ public interface WalletInterface {
      * Swap proofs
      */
     suspend fun `swap`(`amount`: Amount?, `amountSplitTarget`: SplitTarget, `inputProofs`: List<Proof>, `spendingConditions`: SpendingConditions?, `includeFees`: kotlin.Boolean): List<Proof>?
+    
+    /**
+     * Reconcile the wallet with NpubCash by resolving quotes missing locally
+     *
+     * Fetches all quote IDs from the NpubCash server, resolves full data for
+     * quotes missing from the local store, and refreshes NUT-20 lock
+     * provenance for quotes already known locally. Unlike
+     * `claim_npubcash_quotes`, this does not mint anything; it only
+     * reconciles the local quote store with the server.
+     *
+     * Returns the quotes that were missing locally and have now been added.
+     *
+     * Requires NpubCash to be enabled on this wallet first.
+     */
+    suspend fun `syncMissingNpubcashQuotes`(): List<MintQuote>
     
     /**
      * Get total balance
@@ -8722,7 +11507,14 @@ public interface WalletInterface {
 }
 
 /**
- * FFI-compatible Wallet
+ * FFI-compatible wallet.
+ *
+ * Wallet methods can write to the configured local store while they perform
+ * mint, receive, recovery, subscription, and status operations. Mobile host
+ * apps own platform lifecycle handling around these calls: pause or cancel work
+ * when moving to the background unless background network and storage activity
+ * is intended, and use platform facilities such as iOS `beginBackgroundTask`
+ * when an operation must finish after a lifecycle transition.
  */
 open class Wallet: Disposable, AutoCloseable, WalletInterface
 {
@@ -8749,7 +11541,13 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
         this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
     }
     /**
-     * Create a new Wallet
+     * Create a new wallet.
+     *
+     * The returned wallet uses `store` for local state. FFI wallet methods may
+     * write to that store later, so mobile host apps are responsible for
+     * choosing durable storage locations and coordinating lifecycle transitions
+     * around wallet calls. For example, use iOS `beginBackgroundTask` if a
+     * write-capable operation must continue after the app backgrounds.
      *
      * Accepts a `WalletStore` which can be:
      * - `Sqlite { path }` — built-in Rust SQLite backend
@@ -8838,6 +11636,30 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
+     * Get the active keyset with the lowest fees
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `activeKeyset`() : KeySet {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_active_keyset(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeKeySet.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Calculate fee for a given number of proofs with the specified keyset
      */
     @Throws(FfiException::class)
@@ -8866,6 +11688,9 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      *
      * This function checks orphaned pending proofs (not managed by active sagas)
      * with the mint and marks spent proofs accordingly.
+     * It may perform network requests and write proof-state updates to the
+     * local store, so mobile hosts should coordinate it with app lifecycle
+     * transitions.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -8919,6 +11744,9 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      * Updates local store with current state from mint.
      * If there was a crashed mid-mint (pending saga), attempts to complete it.
      * Does NOT mint tokens directly - use mint() for that.
+     * This may perform network requests and write recovery/status updates to
+     * the local store, so mobile hosts should coordinate it with app lifecycle
+     * transitions.
      *
      * **Note:** The mint quote must be known to the wallet (stored locally) for this
      * function to work. If the quote is not stored locally, use `fetch_mint_quote`
@@ -8952,6 +11780,9 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      * Updates local store with current state from mint.
      * If there was a crashed mid-mint (pending saga), attempts to complete it.
      * Does NOT mint tokens directly - use mint() for that.
+     * This may perform network requests and write recovery/status updates to
+     * the local store, so mobile hosts should coordinate it with app lifecycle
+     * transitions.
      *
      * **Note:** The mint quote must be known to the wallet (stored locally) for this
      * function to work. If the quote is not stored locally, use `fetch_mint_quote`
@@ -9027,14 +11858,24 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Fetch active keyset with lowest fees
+     * Claim all pending NpubCash quotes
+     *
+     * Syncs quotes from the NpubCash server (including reconciliation of
+     * quotes missing locally) and mints every paid NpubCash quote that has
+     * not been issued yet. Only quotes attributable to the wallet's NpubCash
+     * accounts are claimed; unrelated mint quotes created through normal
+     * wallet flows are left untouched. Mints that advertise NUT-29 are
+     * claimed with batch minting automatically; other mints fall back to
+     * individual minting.
+     *
+     * Returns the total amount minted across all claimed quotes.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `fetchActiveKeyset`() : KeySetInfo {
+    override suspend fun `claimNpubcashQuotes`() : Amount {
         return uniffiRustCallAsync(
         callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_fetch_active_keyset(
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_claim_npubcash_quotes(
                 uniffiHandle,
                 
             )
@@ -9043,7 +11884,73 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
         { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
-        { FfiConverterTypeKeySetInfo.lift(it) },
+        { FfiConverterTypeAmount.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Create quotes for transferring the maximum amount allowed by the source
+     * balance and both mints' advertised BOLT11 limits.
+     *
+     * The returned input fee assumes all currently unspent source proofs are
+     * used. Prepare the returned melt quote with those proofs and confirm it
+     * with `skip_swap` to preserve that accounting.
+     *
+     * This search may create multiple quote pairs at the remote mints. Only the
+     * returned pair is persisted locally; unused remote quotes cannot be
+     * cancelled and remain until they expire.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `crossMintTransferQuoteMax`(`targetWallet`: Wallet) : CrossMintTransferQuote {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_cross_mint_transfer_quote_max(
+                uniffiHandle,
+                FfiConverterTypeWallet.lower(`targetWallet`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeCrossMintTransferQuote.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Enable NpubCash integration for this wallet
+     *
+     * Derives the NpubCash Nostr keys from the wallet seed, creates the
+     * API client, sets this wallet's mint URL on the server, and enables
+     * NUT-20 quote locking for newly created quotes. The integration is
+     * only activated once locking has been enabled and confirmed.
+     *
+     * Returns an error if quote locking cannot be established — for
+     * example when the configured mint does not support NUT-20.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `enableNpubcash`(`npubcashUrl`: kotlin.String) {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_enable_npubcash(
+                uniffiHandle,
+                FfiConverterString.lower(`npubcashUrl`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -9075,7 +11982,11 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Fetch a mint quote from the mint and store it locally
+     * Fetch a mint quote from the mint and store it locally.
+     *
+     * This performs network I/O and writes the fetched quote to the local store.
+     * Mobile hosts should avoid starting it during app background transitions
+     * unless background network and storage activity is intended.
      *
      * Works with all payment methods (Bolt11, Bolt12, and custom payment methods).
      *
@@ -9131,25 +12042,29 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Get the active keyset for the wallet's unit
+     * Wait until the rate-limit budget this wallet drew down has been stored.
+     *
+     * Await this before dropping the wallet on shutdown. Without it,
+     * persistence is best effort and a rebuild can outrun the detached writer,
+     * so the rebuilt wallet starts with a full burst against the mint's cap.
      */
-    @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `getActiveKeyset`() : KeySetInfo {
+    override suspend fun `flushRateLimits`() {
         return uniffiRustCallAsync(
         callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_get_active_keyset(
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_flush_rate_limits(
                 uniffiHandle,
                 
             )
         },
-        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
-        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
-        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
         // lift function
-        { FfiConverterTypeKeySetInfo.lift(it) },
+        { Unit },
+        
         // Error FFI converter
-        FfiException.ErrorHandler,
+        UniffiNullRustCallStatusErrorHandler,
     )
     }
 
@@ -9251,23 +12166,26 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Get keysets for this wallet's unit with filter
+     * Fetch this wallet's NpubCash account settings
+     *
+     * Returns the configured mint URL and whether quote locking is enabled.
+     * Requires NpubCash to be enabled on this wallet first.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `getMintKeysets`(`filter`: KeysetFilter) : List<KeySetInfo> {
+    override suspend fun `getNpubcashUserInfo`() : NpubCashUserResponse {
         return uniffiRustCallAsync(
         callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_get_mint_keysets(
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_get_npubcash_user_info(
                 uniffiHandle,
-                FfiConverterTypeKeysetFilter.lower(`filter`),
+                
             )
         },
         { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
         { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
-        { FfiConverterSequenceTypeKeySetInfo.lift(it) },
+        { FfiConverterTypeNpubCashUserResponse.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -9398,6 +12316,73 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
+     * Whether this wallet's requests are being paced right now.
+     *
+     * Also false when the wallet paces nothing at all, which is the case
+     * [`Wallet::set_rate_limit`] silently ignores.
+     */override fun `isRateLimited`(): kotlin.Boolean {
+            return FfiConverterBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_wallet_is_rate_limited(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    /**
+     * Get a single keyset by ID
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `keyset`(`keysetId`: kotlin.String) : KeySet {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_keyset(
+                uniffiHandle,
+                FfiConverterString.lower(`keysetId`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeKeySet.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Get all keysets for this wallet's unit
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `keysets`(`policy`: KeysetLoadPolicy?) : List<KeySet> {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_keysets(
+                uniffiHandle,
+                FfiConverterOptionalTypeKeysetLoadPolicy.lower(`policy`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterSequenceTypeKeySet.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * List transactions
      */
     @Throws(FfiException::class)
@@ -9415,30 +12400,6 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
         { FfiConverterSequenceTypeTransaction.lift(it) },
-        // Error FFI converter
-        FfiException.ErrorHandler,
-    )
-    }
-
-    
-    /**
-     * Load keys for a specific keyset
-     */
-    @Throws(FfiException::class)
-    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `loadKeysetKeys`(`keysetId`: kotlin.String) : Keys {
-        return uniffiRustCallAsync(
-        callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_load_keyset_keys(
-                uniffiHandle,
-                FfiConverterString.lower(`keysetId`),
-            )
-        },
-        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
-        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
-        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
-        // lift function
-        { FfiConverterTypeKeys.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -9465,30 +12426,6 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
         { FfiConverterTypeMintInfo.lift(it) },
-        // Error FFI converter
-        FfiException.ErrorHandler,
-    )
-    }
-
-    
-    /**
-     * Load active keysets
-     */
-    @Throws(FfiException::class)
-    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `loadMintKeysets`() : List<KeySetInfo> {
-        return uniffiRustCallAsync(
-        callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_load_mint_keysets(
-                uniffiHandle,
-                
-            )
-        },
-        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
-        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
-        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
-        // lift function
-        { FfiConverterSequenceTypeKeySetInfo.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -9650,7 +12587,12 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Mint tokens
+     * Mint tokens.
+     *
+     * This writes newly issued proofs and saga state to the local store while
+     * communicating with the mint. Mobile hosts should coordinate it with app
+     * lifecycle transitions, using platform background-task support when the
+     * operation must finish after backgrounding.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -9721,6 +12663,14 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
     }
 
     
+    /**
+     * Mint tokens using the unified payment-method interface.
+     *
+     * This writes newly issued proofs and saga state to the local store while
+     * communicating with the mint. Mobile hosts should coordinate it with app
+     * lifecycle transitions, using platform background-task support when the
+     * operation must finish after backgrounding.
+     */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
     override suspend fun `mintUnified`(`quoteId`: kotlin.String, `amountSplitTarget`: SplitTarget, `spendingConditions`: SpendingConditions?) : List<Proof> {
@@ -9743,6 +12693,33 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
+     * Check and mint any paid but unissued mint quotes.
+     *
+     * This is useful during startup or recovery after incomplete mint quote flows.
+     * It may perform network requests and write newly issued proofs to the wallet store.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `mintUnissuedQuotes`() : Amount {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_mint_unissued_quotes(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeAmount.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Get the mint URL
      */override fun `mintUrl`(): MintUrl {
             return FfiConverterTypeMintUrl.lift(
@@ -9756,39 +12733,6 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
     )
     }
     
-
-    
-    /**
-     * Pay a NUT-18 payment request
-     *
-     * This method prepares and sends a payment for the given payment request.
-     * It will use the Nostr or HTTP transport specified in the request.
-     *
-     * # Arguments
-     *
-     * * `payment_request` - The NUT-18 payment request to pay
-     * * `custom_amount` - Optional amount to pay (required if request has no amount)
-     */
-    @Throws(FfiException::class)
-    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `payRequest`(`paymentRequest`: PaymentRequest, `customAmount`: Amount?) {
-        return uniffiRustCallAsync(
-        callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_pay_request(
-                uniffiHandle,
-                FfiConverterTypePaymentRequest.lower(`paymentRequest`),FfiConverterOptionalTypeAmount.lower(`customAmount`),
-            )
-        },
-        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
-        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
-        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
-        // lift function
-        { Unit },
-        
-        // Error FFI converter
-        FfiException.ErrorHandler,
-    )
-    }
 
     
     /**
@@ -9891,6 +12835,32 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
+     * Prepare a NUT-18 payment request so its method and input fees can be reviewed.
+     *
+     * Call `confirm` or `cancel` on the returned object to complete the flow.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `preparePayRequest`(`paymentRequest`: PaymentRequest, `customAmount`: Amount?) : PreparedPaymentRequest {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_prepare_pay_request(
+                uniffiHandle,
+                FfiConverterTypePaymentRequest.lower(`paymentRequest`),FfiConverterOptionalTypeAmount.lower(`customAmount`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterTypePreparedPaymentRequest.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Prepare a send operation
      */
     @Throws(FfiException::class)
@@ -9943,7 +12913,11 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Receive tokens
+     * Receive tokens.
+     *
+     * This verifies and persists received proofs in the local store. Mobile
+     * hosts should avoid starting it during app background transitions unless
+     * background network and storage activity is intended.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -9967,7 +12941,11 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Receive proofs directly
+     * Receive proofs directly.
+     *
+     * This verifies and persists received proofs in the local store. Mobile
+     * hosts should avoid starting it during app background transitions unless
+     * background network and storage activity is intended.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -9995,6 +12973,10 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      *
      * Handles interrupted swap, send, receive, issue, and melt operations. Requires
      * network access to the mint for states that need external status checks.
+     * Recovery writes saga, proof, quote, and transaction updates to the local
+     * store. Mobile hosts should run it only when background network and storage
+     * activity is acceptable, or wrap it in platform background-task support
+     * such as iOS `beginBackgroundTask`.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -10036,30 +13018,6 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
         // lift function
         { Unit },
         
-        // Error FFI converter
-        FfiException.ErrorHandler,
-    )
-    }
-
-    
-    /**
-     * Refresh keysets from the mint
-     */
-    @Throws(FfiException::class)
-    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
-    override suspend fun `refreshKeysets`() : List<KeySetInfo> {
-        return uniffiRustCallAsync(
-        callWithHandle { uniffiHandle ->
-            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_refresh_keysets(
-                uniffiHandle,
-                
-            )
-        },
-        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
-        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
-        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
-        // lift function
-        { FfiConverterSequenceTypeKeySetInfo.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -10245,6 +13203,32 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
+     * Change client-side request rate limiting on this wallet.
+     *
+     * A new wallet starts with whatever `WalletConfig.rate_limit` selected. Use
+     * this to disable pacing, restore the default, or set a custom burst and
+     * refill. It takes effect immediately and covers every host the wallet's
+     * limiter paces, so it reaches the main and blind-auth clients as well as
+     * any third-party host their transport reaches. For a wallet built through
+     * a wallet repository the limiter is shared, so the change is
+     * repository-wide.
+     *
+     * Returns an error if a `Custom` value has a zero field.
+     */
+    @Throws(FfiException::class)override fun `setRateLimit`(`rateLimit`: RateLimit)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_wallet_set_rate_limit(
+        it,
+        FfiConverterTypeRateLimit.lower(`rateLimit`),_status)
+}
+    }
+    
+    
+
+    
+    /**
      * Set refresh token for authentication
      */
     @Throws(FfiException::class)
@@ -10270,7 +13254,12 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
 
     
     /**
-     * Subscribe to wallet events
+     * Subscribe to wallet events.
+     *
+     * The returned subscription may keep polling or receiving network events
+     * until it is dropped or closed. Mobile hosts should cancel, drop, or stop
+     * waiting on subscriptions during app background transitions when
+     * background network or storage activity is not desired.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -10301,6 +13290,10 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      *
      * Use `recv()` on the returned `ActiveSubscription` to receive updates as
      * `NotificationPayload::MintQuoteUpdate`.
+     * The returned subscription may keep polling or receiving network events
+     * until it is dropped or closed. Mobile hosts should cancel, drop, or stop
+     * waiting on subscriptions during app background transitions when
+     * background network or storage activity is not desired.
      *
      * All quote IDs must belong to the same payment method.
      *
@@ -10347,6 +13340,40 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
         { FfiConverterOptionalSequenceTypeProof.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Reconcile the wallet with NpubCash by resolving quotes missing locally
+     *
+     * Fetches all quote IDs from the NpubCash server, resolves full data for
+     * quotes missing from the local store, and refreshes NUT-20 lock
+     * provenance for quotes already known locally. Unlike
+     * `claim_npubcash_quotes`, this does not mint anything; it only
+     * reconciles the local quote store with the server.
+     *
+     * Returns the quotes that were missing locally and have now been added.
+     *
+     * Requires NpubCash to be enabled on this wallet first.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `syncMissingNpubcashQuotes`() : List<MintQuote> {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_sync_missing_npubcash_quotes(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterSequenceTypeMintQuote.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -10753,6 +13780,11 @@ public interface WalletDatabase {
     suspend fun `incrementKeysetCounter`(`keysetId`: Id, `count`: kotlin.UInt): kotlin.UInt
     
     /**
+     * Atomically increment a namespaced derivation counter and return its new value.
+     */
+    suspend fun `incrementDerivationCounter`(`namespace`: kotlin.String, `count`: kotlin.UInt): kotlin.UInt
+    
+    /**
      * Add Mint to storage
      */
     suspend fun `addMint`(`mintUrl`: MintUrl, `mintInfo`: MintInfo?)
@@ -10831,7 +13863,11 @@ public interface WalletDatabase {
     suspend fun `reserveProofs`(`ys`: List<PublicKey>, `operationId`: kotlin.String)
     
     /**
-     * Release proofs reserved by an operation
+     * Release live proofs reserved by an operation.
+     *
+     * Implementations must only change Reserved or Pending proofs owned by
+     * `operation_id`; Spent proofs and proofs owned by another operation must
+     * be preserved.
      */
     suspend fun `releaseProofs`(`operationId`: kotlin.String)
     
@@ -11670,6 +14706,30 @@ open class WalletDatabaseImpl: Disposable, AutoCloseable, WalletDatabase
 
     
     /**
+     * Atomically increment a namespaced derivation counter and return its new value.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `incrementDerivationCounter`(`namespace`: kotlin.String, `count`: kotlin.UInt) : kotlin.UInt {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletdatabase_increment_derivation_counter(
+                uniffiHandle,
+                FfiConverterString.lower(`namespace`),FfiConverterUInt.lower(`count`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_u32(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_u32(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_u32(future) },
+        // lift function
+        { FfiConverterUInt.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
      * Add Mint to storage
      */
     @Throws(FfiException::class)
@@ -12045,7 +15105,11 @@ open class WalletDatabaseImpl: Disposable, AutoCloseable, WalletDatabase
 
     
     /**
-     * Release proofs reserved by an operation
+     * Release live proofs reserved by an operation.
+     *
+     * Implementations must only change Reserved or Pending proofs owned by
+     * `operation_id`; Spent proofs and proofs owned by another operation must
+     * be preserved.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -13195,7 +16259,42 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `addMint`: UniffiCallbackInterfaceWalletDatabaseMethod29 {
+    internal object `incrementDerivationCounter`: UniffiCallbackInterfaceWalletDatabaseMethod29 {
+        override fun callback(`uniffiHandle`: Long,`namespace`: RustBuffer.ByValue,`count`: Int,`uniffiFutureCallback`: UniffiForeignFutureCompleteU32,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
+            val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
+            val makeCall = suspend { ->
+                uniffiObj.`incrementDerivationCounter`(
+                    FfiConverterString.lift(`namespace`),
+                    FfiConverterUInt.lift(`count`),
+                )
+            }
+            val uniffiHandleSuccess = { returnValue: kotlin.UInt ->
+                val uniffiResult = UniffiForeignFutureResultU32.UniffiByValue(
+                    FfiConverterUInt.lower(returnValue),
+                    UniffiRustCallStatus.ByValue()
+                )
+                uniffiResult.write()
+                uniffiFutureCallback.callback(uniffiCallbackData, uniffiResult)
+            }
+            val uniffiHandleError = { callStatus: UniffiRustCallStatus.ByValue ->
+                uniffiFutureCallback.callback(
+                    uniffiCallbackData,
+                    UniffiForeignFutureResultU32.UniffiByValue(
+                        0,
+                        callStatus,
+                    ),
+                )
+            }
+            uniffiTraitInterfaceCallAsyncWithError(
+                makeCall,
+                uniffiHandleSuccess,
+                uniffiHandleError,
+                { e: FfiException -> FfiConverterTypeFfiError.lower(e) },
+                uniffiOutDroppedCallback
+            )
+        }
+    }
+    internal object `addMint`: UniffiCallbackInterfaceWalletDatabaseMethod30 {
         override fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`mintInfo`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13228,7 +16327,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `removeMint`: UniffiCallbackInterfaceWalletDatabaseMethod30 {
+    internal object `removeMint`: UniffiCallbackInterfaceWalletDatabaseMethod31 {
         override fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13260,7 +16359,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `addMintKeysets`: UniffiCallbackInterfaceWalletDatabaseMethod31 {
+    internal object `addMintKeysets`: UniffiCallbackInterfaceWalletDatabaseMethod32 {
         override fun callback(`uniffiHandle`: Long,`mintUrl`: RustBuffer.ByValue,`keysets`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13293,7 +16392,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `addMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod32 {
+    internal object `addMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod33 {
         override fun callback(`uniffiHandle`: Long,`quote`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13325,7 +16424,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `removeMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod33 {
+    internal object `removeMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod34 {
         override fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13357,7 +16456,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `addMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod34 {
+    internal object `addMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod35 {
         override fun callback(`uniffiHandle`: Long,`quote`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13389,7 +16488,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `removeMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod35 {
+    internal object `removeMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod36 {
         override fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13421,7 +16520,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `addKeys`: UniffiCallbackInterfaceWalletDatabaseMethod36 {
+    internal object `addKeys`: UniffiCallbackInterfaceWalletDatabaseMethod37 {
         override fun callback(`uniffiHandle`: Long,`keyset`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13453,7 +16552,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `removeKeys`: UniffiCallbackInterfaceWalletDatabaseMethod37 {
+    internal object `removeKeys`: UniffiCallbackInterfaceWalletDatabaseMethod38 {
         override fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13485,7 +16584,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `addSaga`: UniffiCallbackInterfaceWalletDatabaseMethod38 {
+    internal object `addSaga`: UniffiCallbackInterfaceWalletDatabaseMethod39 {
         override fun callback(`uniffiHandle`: Long,`sagaJson`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13517,7 +16616,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `getSaga`: UniffiCallbackInterfaceWalletDatabaseMethod39 {
+    internal object `getSaga`: UniffiCallbackInterfaceWalletDatabaseMethod40 {
         override fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13551,7 +16650,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `updateSaga`: UniffiCallbackInterfaceWalletDatabaseMethod40 {
+    internal object `updateSaga`: UniffiCallbackInterfaceWalletDatabaseMethod41 {
         override fun callback(`uniffiHandle`: Long,`sagaJson`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteI8,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13585,7 +16684,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `deleteSaga`: UniffiCallbackInterfaceWalletDatabaseMethod41 {
+    internal object `deleteSaga`: UniffiCallbackInterfaceWalletDatabaseMethod42 {
         override fun callback(`uniffiHandle`: Long,`id`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13617,7 +16716,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `getIncompleteSagas`: UniffiCallbackInterfaceWalletDatabaseMethod42 {
+    internal object `getIncompleteSagas`: UniffiCallbackInterfaceWalletDatabaseMethod43 {
         override fun callback(`uniffiHandle`: Long,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13650,7 +16749,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `reserveProofs`: UniffiCallbackInterfaceWalletDatabaseMethod43 {
+    internal object `reserveProofs`: UniffiCallbackInterfaceWalletDatabaseMethod44 {
         override fun callback(`uniffiHandle`: Long,`ys`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13683,7 +16782,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `releaseProofs`: UniffiCallbackInterfaceWalletDatabaseMethod44 {
+    internal object `releaseProofs`: UniffiCallbackInterfaceWalletDatabaseMethod45 {
         override fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13715,7 +16814,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `getReservedProofs`: UniffiCallbackInterfaceWalletDatabaseMethod45 {
+    internal object `getReservedProofs`: UniffiCallbackInterfaceWalletDatabaseMethod46 {
         override fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteRustBuffer,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13749,7 +16848,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `reserveMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod46 {
+    internal object `reserveMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod47 {
         override fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13782,7 +16881,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `releaseMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod47 {
+    internal object `releaseMeltQuote`: UniffiCallbackInterfaceWalletDatabaseMethod48 {
         override fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13814,7 +16913,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `reserveMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod48 {
+    internal object `reserveMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod49 {
         override fun callback(`uniffiHandle`: Long,`quoteId`: RustBuffer.ByValue,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13847,7 +16946,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
             )
         }
     }
-    internal object `releaseMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod49 {
+    internal object `releaseMintQuote`: UniffiCallbackInterfaceWalletDatabaseMethod50 {
         override fun callback(`uniffiHandle`: Long,`operationId`: RustBuffer.ByValue,`uniffiFutureCallback`: UniffiForeignFutureCompleteVoid,`uniffiCallbackData`: Long,`uniffiOutDroppedCallback`: UniffiForeignFutureDroppedCallbackStruct,) {
             val uniffiObj = FfiConverterTypeWalletDatabase.handleMap.get(uniffiHandle)
             val makeCall = suspend { ->
@@ -13924,6 +17023,7 @@ internal object uniffiCallbackInterfaceWalletDatabase {
         `removeTransaction`,
         `updateMintUrl`,
         `incrementKeysetCounter`,
+        `incrementDerivationCounter`,
         `addMint`,
         `removeMint`,
         `addMintKeysets`,
@@ -14110,9 +17210,28 @@ public interface WalletRepositoryInterface {
     suspend fun `fetchMintBackup`(`relays`: List<kotlin.String>, `options`: RestoreOptions): MintBackup
     
     /**
+     * Wait until the rate-limit budgets drawn down by every wallet in this
+     * repository have been handed to storage.
+     *
+     * Await this before dropping the repository on shutdown. Without it,
+     * persistence is best effort and a rebuild can outrun the detached
+     * writer, so every rebuilt wallet starts with a full burst against the
+     * mint's rate cap.
+     */
+    suspend fun `flushRateLimits`()
+    
+    /**
      * Get wallet balances for all mints
      */
     suspend fun `getBalances`(): Map<WalletKey, Amount>
+    
+    /**
+     * Get the wallet for a mint URL and unit, creating it if it does not exist
+     *
+     * Unlike `create_wallet`, an existing wallet is returned untouched: its
+     * configuration is not replaced.
+     */
+    suspend fun `getOrCreateWallet`(`mintUrl`: MintUrl, `unit`: CurrencyUnit, `targetProofCount`: kotlin.UInt?): Wallet
     
     /**
      * Get token data, including the expected redemption fee, without redeeming it.
@@ -14135,6 +17254,14 @@ public interface WalletRepositoryInterface {
      * Check if mint is in wallet
      */
     suspend fun `hasMint`(`mintUrl`: MintUrl): kotlin.Boolean
+    
+    /**
+     * Whether this repository is pacing requests right now.
+     *
+     * Wallets reached through a proxy or Tor are built with a custom client,
+     * so they report false even while this is true.
+     */
+    fun `isRateLimited`(): kotlin.Boolean
     
     /**
      * Get the NUT-27 mint backup public key as hex.
@@ -14175,6 +17302,19 @@ public interface WalletRepositoryInterface {
      * * `ttl_secs` - Optional TTL in seconds. If None, cache never expires.
      */
     suspend fun `setMetadataCacheTtlForMint`(`mintUrl`: MintUrl, `ttlSecs`: kotlin.ULong?)
+    
+    /**
+     * Change client-side request rate limiting for every wallet here.
+     *
+     * Pacing is repository-wide because one limiter is shared, which is why
+     * `create_wallet` and `get_or_create_wallet` take no rate limit: a
+     * per-wallet value would silently reconfigure its siblings. Repository
+     * construction makes no network requests, so calling this immediately
+     * after `new` is equivalent to configuring it through `new_with_config`.
+     *
+     * Returns an error if a `Custom` value has a zero field.
+     */
+    fun `setRateLimit`(`rateLimit`: RateLimit)
     
     companion object
 }
@@ -14371,6 +17511,36 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
 
     
     /**
+     * Wait until the rate-limit budgets drawn down by every wallet in this
+     * repository have been handed to storage.
+     *
+     * Await this before dropping the repository on shutdown. Without it,
+     * persistence is best effort and a rebuild can outrun the detached
+     * writer, so every rebuilt wallet starts with a full burst against the
+     * mint's rate cap.
+     */
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `flushRateLimits`() {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_flush_rate_limits(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        UniffiNullRustCallStatusErrorHandler,
+    )
+    }
+
+    
+    /**
      * Get wallet balances for all mints
      */
     @Throws(FfiException::class)
@@ -14388,6 +17558,33 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
         { FfiConverterMapTypeWalletKeyTypeAmount.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Get the wallet for a mint URL and unit, creating it if it does not exist
+     *
+     * Unlike `create_wallet`, an existing wallet is returned untouched: its
+     * configuration is not replaced.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `getOrCreateWallet`(`mintUrl`: MintUrl, `unit`: CurrencyUnit, `targetProofCount`: kotlin.UInt?) : Wallet {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_get_or_create_wallet(
+                uniffiHandle,
+                FfiConverterTypeMintUrl.lower(`mintUrl`),FfiConverterTypeCurrencyUnit.lower(`unit`),FfiConverterOptionalUInt.lower(`targetProofCount`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterTypeWallet.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -14488,6 +17685,25 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
         UniffiNullRustCallStatusErrorHandler,
     )
     }
+
+    
+    /**
+     * Whether this repository is pacing requests right now.
+     *
+     * Wallets reached through a proxy or Tor are built with a custom client,
+     * so they report false even while this is true.
+     */override fun `isRateLimited`(): kotlin.Boolean {
+            return FfiConverterBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_is_rate_limited(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
 
     
     /**
@@ -14620,12 +17836,54 @@ open class WalletRepository: Disposable, AutoCloseable, WalletRepositoryInterfac
     }
 
     
+    /**
+     * Change client-side request rate limiting for every wallet here.
+     *
+     * Pacing is repository-wide because one limiter is shared, which is why
+     * `create_wallet` and `get_or_create_wallet` take no rate limit: a
+     * per-wallet value would silently reconfigure its siblings. Repository
+     * construction makes no network requests, so calling this immediately
+     * after `new` is equivalent to configuring it through `new_with_config`.
+     *
+     * Returns an error if a `Custom` value has a zero field.
+     */
+    @Throws(FfiException::class)override fun `setRateLimit`(`rateLimit`: RateLimit)
+        = 
+    callWithHandle {
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_method_walletrepository_set_rate_limit(
+        it,
+        FfiConverterTypeRateLimit.lower(`rateLimit`),_status)
+}
+    }
+    
+    
+
+    
 
     
 
 
     
     companion object {
+        
+    /**
+     * Create a new WalletRepository with proxy and rate-limit configuration.
+     *
+     * Construction restores locally persisted wallet state without making
+     * network requests to configured mints.
+     */
+    @Throws(FfiException::class) fun `newWithConfig`(`mnemonic`: kotlin.String, `store`: WalletStore, `config`: WalletRepositoryConfig): WalletRepository {
+            return FfiConverterTypeWalletRepository.lift(
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_constructor_walletrepository_new_with_config(
+    
+        FfiConverterString.lower(`mnemonic`),FfiConverterTypeWalletStore.lower(`store`),FfiConverterTypeWalletRepositoryConfig.lower(`config`),_status)
+}
+    )
+    }
+    
+
         
     /**
      * Create a new WalletRepository with proxy configuration.
@@ -14772,7 +18030,14 @@ public object FfiConverterTypeWalletRepository: FfiConverter<WalletRepository, L
 
 //
 /**
- * FFI-compatible WalletSqliteDatabase implementation that implements the WalletDatabaseFfi trait
+ * FFI-compatible SQLite wallet database.
+ *
+ * Wallet methods can write to this database from FFI calls that mint, receive,
+ * recover, subscribe, or check quote/proof state. Mobile host apps own
+ * lifecycle handling for the database file: choose a durable app-owned path,
+ * avoid interrupting writes during background transitions, and use platform
+ * facilities such as iOS `beginBackgroundTask` when an operation must finish
+ * after backgrounding.
  */
 public interface WalletSqliteDatabaseInterface {
     
@@ -14830,6 +18095,8 @@ public interface WalletSqliteDatabaseInterface {
     
     suspend fun `getUnissuedMintQuotes`(): List<MintQuote>
     
+    suspend fun `incrementDerivationCounter`(`namespace`: kotlin.String, `count`: kotlin.UInt): kotlin.UInt
+    
     suspend fun `incrementKeysetCounter`(`keysetId`: Id, `count`: kotlin.UInt): kotlin.UInt
     
     suspend fun `kvList`(`primaryNamespace`: kotlin.String, `secondaryNamespace`: kotlin.String): List<kotlin.String>
@@ -14880,7 +18147,14 @@ public interface WalletSqliteDatabaseInterface {
 }
 
 /**
- * FFI-compatible WalletSqliteDatabase implementation that implements the WalletDatabaseFfi trait
+ * FFI-compatible SQLite wallet database.
+ *
+ * Wallet methods can write to this database from FFI calls that mint, receive,
+ * recover, subscribe, or check quote/proof state. Mobile host apps own
+ * lifecycle handling for the database file: choose a durable app-owned path,
+ * avoid interrupting writes during background transitions, and use platform
+ * facilities such as iOS `beginBackgroundTask` when an operation must finish
+ * after backgrounding.
  */
 open class WalletSqliteDatabase: Disposable, AutoCloseable, WalletSqliteDatabaseInterface
 , WalletDatabase
@@ -14909,7 +18183,11 @@ open class WalletSqliteDatabase: Disposable, AutoCloseable, WalletSqliteDatabase
         this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
     }
     /**
-     * Create a new WalletSqliteDatabase with the given work directory
+     * Create a new SQLite wallet database at `file_path`.
+     *
+     * Wallet operations may later write to this database. Mobile hosts are
+     * responsible for choosing a durable file location and coordinating app
+     * lifecycle transitions around write-capable wallet calls.
      */
     constructor(`filePath`: kotlin.String) :
         this(UniffiWithHandle, 
@@ -15562,6 +18840,27 @@ open class WalletSqliteDatabase: Disposable, AutoCloseable, WalletSqliteDatabase
         { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
         // lift function
         { FfiConverterSequenceTypeMintQuote.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `incrementDerivationCounter`(`namespace`: kotlin.String, `count`: kotlin.UInt) : kotlin.UInt {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_walletsqlitedatabase_increment_derivation_counter(
+                uniffiHandle,
+                FfiConverterString.lower(`namespace`),FfiConverterUInt.lower(`count`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_u32(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_u32(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_u32(future) },
+        // lift function
+        { FfiConverterUInt.lift(it) },
         // Error FFI converter
         FfiException.ErrorHandler,
     )
@@ -16624,9 +19923,19 @@ data class CreateRequestParams (
     var `nostrRelays`: List<kotlin.String>?
     , 
     /**
-     * Optional list of mint URLs the receiver trusts. If not provided, the wallet's current mints for the requested unit will be used.
+     * Optional list of mint URLs the receiver accepts or prefers; `None` emits no mint list
      */
     var `mints`: List<kotlin.String>?
+    , 
+    /**
+     * Whether the mint list is preferred rather than required
+     */
+    var `mintPreferred`: kotlin.Boolean?
+    , 
+    /**
+     * Payment methods the payer's mint must support, with optional per-method fees
+     */
+    var `supportedMethods`: List<SupportedMethod>
     
 ){
     
@@ -16652,6 +19961,8 @@ public object FfiConverterTypeCreateRequestParams: FfiConverterRustBuffer<Create
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalSequenceString.read(buf),
             FfiConverterOptionalSequenceString.read(buf),
+            FfiConverterOptionalBoolean.read(buf),
+            FfiConverterSequenceTypeSupportedMethod.read(buf),
         )
     }
 
@@ -16666,7 +19977,9 @@ public object FfiConverterTypeCreateRequestParams: FfiConverterRustBuffer<Create
             FfiConverterString.allocationSize(value.`transport`) +
             FfiConverterOptionalString.allocationSize(value.`httpUrl`) +
             FfiConverterOptionalSequenceString.allocationSize(value.`nostrRelays`) +
-            FfiConverterOptionalSequenceString.allocationSize(value.`mints`)
+            FfiConverterOptionalSequenceString.allocationSize(value.`mints`) +
+            FfiConverterOptionalBoolean.allocationSize(value.`mintPreferred`) +
+            FfiConverterSequenceTypeSupportedMethod.allocationSize(value.`supportedMethods`)
     )
 
     override fun write(value: CreateRequestParams, buf: ByteBuffer) {
@@ -16681,6 +19994,8 @@ public object FfiConverterTypeCreateRequestParams: FfiConverterRustBuffer<Create
             FfiConverterOptionalString.write(value.`httpUrl`, buf)
             FfiConverterOptionalSequenceString.write(value.`nostrRelays`, buf)
             FfiConverterOptionalSequenceString.write(value.`mints`, buf)
+            FfiConverterOptionalBoolean.write(value.`mintPreferred`, buf)
+            FfiConverterSequenceTypeSupportedMethod.write(value.`supportedMethods`, buf)
     }
 }
 
@@ -16738,6 +20053,59 @@ public object FfiConverterTypeCreateRequestResult: FfiConverterRustBuffer<Create
     override fun write(value: CreateRequestResult, buf: ByteBuffer) {
             FfiConverterTypePaymentRequest.write(value.`paymentRequest`, buf)
             FfiConverterOptionalTypeNostrWaitInfo.write(value.`nostrWaitInfo`, buf)
+    }
+}
+
+
+
+/**
+ * FFI-compatible quote for a maximum cross-mint Lightning transfer.
+ */
+data class CrossMintTransferQuote (
+    /**
+     * Quote used to receive the Lightning payment at the destination mint.
+     */
+    var `mintQuote`: MintQuote
+    , 
+    /**
+     * Quote used to pay the destination invoice from the source mint.
+     */
+    var `meltQuote`: MeltQuote
+    , 
+    /**
+     * Input fee for spending all currently unspent source proofs.
+     */
+    var `inputFee`: Amount
+    
+){
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeCrossMintTransferQuote: FfiConverterRustBuffer<CrossMintTransferQuote> {
+    override fun read(buf: ByteBuffer): CrossMintTransferQuote {
+        return CrossMintTransferQuote(
+            FfiConverterTypeMintQuote.read(buf),
+            FfiConverterTypeMeltQuote.read(buf),
+            FfiConverterTypeAmount.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: CrossMintTransferQuote) = (
+            FfiConverterTypeMintQuote.allocationSize(value.`mintQuote`) +
+            FfiConverterTypeMeltQuote.allocationSize(value.`meltQuote`) +
+            FfiConverterTypeAmount.allocationSize(value.`inputFee`)
+    )
+
+    override fun write(value: CrossMintTransferQuote, buf: ByteBuffer) {
+            FfiConverterTypeMintQuote.write(value.`mintQuote`, buf)
+            FfiConverterTypeMeltQuote.write(value.`meltQuote`, buf)
+            FfiConverterTypeAmount.write(value.`inputFee`, buf)
     }
 }
 
@@ -17154,6 +20522,14 @@ data class MeltMethodSettings (
     , 
     var `unit`: CurrencyUnit
     , 
+    /**
+     * Human-readable name for the payment method.
+     *
+     * If null or omitted, wallets should derive it from `method` by replacing
+     * `_` and `-` with spaces and title-casing each word.
+     */
+    var `methodName`: kotlin.String?
+    , 
     var `minAmount`: Amount?
     , 
     var `maxAmount`: Amount?
@@ -17178,6 +20554,7 @@ public object FfiConverterTypeMeltMethodSettings: FfiConverterRustBuffer<MeltMet
         return MeltMethodSettings(
             FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeCurrencyUnit.read(buf),
+            FfiConverterOptionalString.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterOptionalBoolean.read(buf),
@@ -17187,6 +20564,7 @@ public object FfiConverterTypeMeltMethodSettings: FfiConverterRustBuffer<MeltMet
     override fun allocationSize(value: MeltMethodSettings) = (
             FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
+            FfiConverterOptionalString.allocationSize(value.`methodName`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`minAmount`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`maxAmount`) +
             FfiConverterOptionalBoolean.allocationSize(value.`amountless`)
@@ -17195,6 +20573,7 @@ public object FfiConverterTypeMeltMethodSettings: FfiConverterRustBuffer<MeltMet
     override fun write(value: MeltMethodSettings, buf: ByteBuffer) {
             FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
+            FfiConverterOptionalString.write(value.`methodName`, buf)
             FfiConverterOptionalTypeAmount.write(value.`minAmount`, buf)
             FfiConverterOptionalTypeAmount.write(value.`maxAmount`, buf)
             FfiConverterOptionalBoolean.write(value.`amountless`, buf)
@@ -17354,6 +20733,11 @@ data class MeltQuoteBolt11Response (
     var `quote`: kotlin.String
     , 
     /**
+     * Payment method
+     */
+    var `method`: PaymentMethod
+    , 
+    /**
      * Amount
      */
     var `amount`: Amount
@@ -17402,6 +20786,7 @@ public object FfiConverterTypeMeltQuoteBolt11Response: FfiConverterRustBuffer<Me
     override fun read(buf: ByteBuffer): MeltQuoteBolt11Response {
         return MeltQuoteBolt11Response(
             FfiConverterString.read(buf),
+            FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterTypeQuoteState.read(buf),
@@ -17414,6 +20799,7 @@ public object FfiConverterTypeMeltQuoteBolt11Response: FfiConverterRustBuffer<Me
 
     override fun allocationSize(value: MeltQuoteBolt11Response) = (
             FfiConverterString.allocationSize(value.`quote`) +
+            FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeAmount.allocationSize(value.`amount`) +
             FfiConverterTypeAmount.allocationSize(value.`feeReserve`) +
             FfiConverterTypeQuoteState.allocationSize(value.`state`) +
@@ -17425,6 +20811,7 @@ public object FfiConverterTypeMeltQuoteBolt11Response: FfiConverterRustBuffer<Me
 
     override fun write(value: MeltQuoteBolt11Response, buf: ByteBuffer) {
             FfiConverterString.write(value.`quote`, buf)
+            FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeAmount.write(value.`amount`, buf)
             FfiConverterTypeAmount.write(value.`feeReserve`, buf)
             FfiConverterTypeQuoteState.write(value.`state`, buf)
@@ -17448,6 +20835,11 @@ data class MeltQuoteCustomResponse (
      * Quote ID
      */
     var `quote`: kotlin.String
+    , 
+    /**
+     * Payment method
+     */
+    var `method`: PaymentMethod
     , 
     /**
      * Amount
@@ -17506,6 +20898,7 @@ public object FfiConverterTypeMeltQuoteCustomResponse: FfiConverterRustBuffer<Me
     override fun read(buf: ByteBuffer): MeltQuoteCustomResponse {
         return MeltQuoteCustomResponse(
             FfiConverterString.read(buf),
+            FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterTypeQuoteState.read(buf),
@@ -17519,6 +20912,7 @@ public object FfiConverterTypeMeltQuoteCustomResponse: FfiConverterRustBuffer<Me
 
     override fun allocationSize(value: MeltQuoteCustomResponse) = (
             FfiConverterString.allocationSize(value.`quote`) +
+            FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeAmount.allocationSize(value.`amount`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`feeReserve`) +
             FfiConverterTypeQuoteState.allocationSize(value.`state`) +
@@ -17531,6 +20925,7 @@ public object FfiConverterTypeMeltQuoteCustomResponse: FfiConverterRustBuffer<Me
 
     override fun write(value: MeltQuoteCustomResponse, buf: ByteBuffer) {
             FfiConverterString.write(value.`quote`, buf)
+            FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeAmount.write(value.`amount`, buf)
             FfiConverterOptionalTypeAmount.write(value.`feeReserve`, buf)
             FfiConverterTypeQuoteState.write(value.`state`, buf)
@@ -17607,6 +21002,11 @@ data class MeltQuoteOnchainResponse (
     var `quote`: kotlin.String
     , 
     /**
+     * Payment method
+     */
+    var `method`: PaymentMethod
+    , 
+    /**
      * Amount being paid to the onchain address
      */
     var `amount`: Amount
@@ -17665,6 +21065,7 @@ public object FfiConverterTypeMeltQuoteOnchainResponse: FfiConverterRustBuffer<M
     override fun read(buf: ByteBuffer): MeltQuoteOnchainResponse {
         return MeltQuoteOnchainResponse(
             FfiConverterString.read(buf),
+            FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterTypeCurrencyUnit.read(buf),
             FfiConverterTypeQuoteState.read(buf),
@@ -17679,6 +21080,7 @@ public object FfiConverterTypeMeltQuoteOnchainResponse: FfiConverterRustBuffer<M
 
     override fun allocationSize(value: MeltQuoteOnchainResponse) = (
             FfiConverterString.allocationSize(value.`quote`) +
+            FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeAmount.allocationSize(value.`amount`) +
             FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
             FfiConverterTypeQuoteState.allocationSize(value.`state`) +
@@ -17692,6 +21094,7 @@ public object FfiConverterTypeMeltQuoteOnchainResponse: FfiConverterRustBuffer<M
 
     override fun write(value: MeltQuoteOnchainResponse, buf: ByteBuffer) {
             FfiConverterString.write(value.`quote`, buf)
+            FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeAmount.write(value.`amount`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
             FfiConverterTypeQuoteState.write(value.`state`, buf)
@@ -17814,6 +21217,11 @@ data class MintInfo (
      * terms of url service of the mint
      */
     var `tosUrl`: kotlin.String?
+    , 
+    /**
+     * max length the mint accepts for any array in a request
+     */
+    var `maxArrayLength`: kotlin.ULong?
     
 ){
     
@@ -17840,6 +21248,7 @@ public object FfiConverterTypeMintInfo: FfiConverterRustBuffer<MintInfo> {
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalULong.read(buf),
             FfiConverterOptionalString.read(buf),
+            FfiConverterOptionalULong.read(buf),
         )
     }
 
@@ -17855,7 +21264,8 @@ public object FfiConverterTypeMintInfo: FfiConverterRustBuffer<MintInfo> {
             FfiConverterOptionalSequenceString.allocationSize(value.`urls`) +
             FfiConverterOptionalString.allocationSize(value.`motd`) +
             FfiConverterOptionalULong.allocationSize(value.`time`) +
-            FfiConverterOptionalString.allocationSize(value.`tosUrl`)
+            FfiConverterOptionalString.allocationSize(value.`tosUrl`) +
+            FfiConverterOptionalULong.allocationSize(value.`maxArrayLength`)
     )
 
     override fun write(value: MintInfo, buf: ByteBuffer) {
@@ -17871,6 +21281,7 @@ public object FfiConverterTypeMintInfo: FfiConverterRustBuffer<MintInfo> {
             FfiConverterOptionalString.write(value.`motd`, buf)
             FfiConverterOptionalULong.write(value.`time`, buf)
             FfiConverterOptionalString.write(value.`tosUrl`, buf)
+            FfiConverterOptionalULong.write(value.`maxArrayLength`, buf)
     }
 }
 
@@ -17884,12 +21295,20 @@ data class MintMethodSettings (
     , 
     var `unit`: CurrencyUnit
     , 
+    /**
+     * Human-readable name for the payment method.
+     *
+     * If null or omitted, wallets should derive it from `method` by replacing
+     * `_` and `-` with spaces and title-casing each word.
+     */
+    var `methodName`: kotlin.String?
+    , 
     var `minAmount`: Amount?
     , 
     var `maxAmount`: Amount?
     , 
     /**
-     * For bolt11, whether mint supports setting invoice description
+     * For bolt11/bolt12, whether mint supports setting invoice/offer description
      */
     var `description`: kotlin.Boolean?
     
@@ -17908,6 +21327,7 @@ public object FfiConverterTypeMintMethodSettings: FfiConverterRustBuffer<MintMet
         return MintMethodSettings(
             FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeCurrencyUnit.read(buf),
+            FfiConverterOptionalString.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterOptionalBoolean.read(buf),
@@ -17917,6 +21337,7 @@ public object FfiConverterTypeMintMethodSettings: FfiConverterRustBuffer<MintMet
     override fun allocationSize(value: MintMethodSettings) = (
             FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
+            FfiConverterOptionalString.allocationSize(value.`methodName`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`minAmount`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`maxAmount`) +
             FfiConverterOptionalBoolean.allocationSize(value.`description`)
@@ -17925,6 +21346,7 @@ public object FfiConverterTypeMintMethodSettings: FfiConverterRustBuffer<MintMet
     override fun write(value: MintMethodSettings, buf: ByteBuffer) {
             FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
+            FfiConverterOptionalString.write(value.`methodName`, buf)
             FfiConverterOptionalTypeAmount.write(value.`minAmount`, buf)
             FfiConverterOptionalTypeAmount.write(value.`maxAmount`, buf)
             FfiConverterOptionalBoolean.write(value.`description`, buf)
@@ -17986,6 +21408,11 @@ data class MintQuote (
     var `amountPaid`: Amount
     , 
     /**
+     * Last update timestamp
+     */
+    var `updatedAt`: kotlin.ULong
+    , 
+    /**
      * Estimated confirmation target in blocks for onchain quotes
      */
     var `estimatedBlocks`: kotlin.UInt?
@@ -18032,6 +21459,7 @@ public object FfiConverterTypeMintQuote: FfiConverterRustBuffer<MintQuote> {
             FfiConverterTypeMintUrl.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterTypeAmount.read(buf),
+            FfiConverterULong.read(buf),
             FfiConverterOptionalUInt.read(buf),
             FfiConverterTypePaymentMethod.read(buf),
             FfiConverterOptionalString.read(buf),
@@ -18050,6 +21478,7 @@ public object FfiConverterTypeMintQuote: FfiConverterRustBuffer<MintQuote> {
             FfiConverterTypeMintUrl.allocationSize(value.`mintUrl`) +
             FfiConverterTypeAmount.allocationSize(value.`amountIssued`) +
             FfiConverterTypeAmount.allocationSize(value.`amountPaid`) +
+            FfiConverterULong.allocationSize(value.`updatedAt`) +
             FfiConverterOptionalUInt.allocationSize(value.`estimatedBlocks`) +
             FfiConverterTypePaymentMethod.allocationSize(value.`paymentMethod`) +
             FfiConverterOptionalString.allocationSize(value.`secretKey`) +
@@ -18067,6 +21496,7 @@ public object FfiConverterTypeMintQuote: FfiConverterRustBuffer<MintQuote> {
             FfiConverterTypeMintUrl.write(value.`mintUrl`, buf)
             FfiConverterTypeAmount.write(value.`amountIssued`, buf)
             FfiConverterTypeAmount.write(value.`amountPaid`, buf)
+            FfiConverterULong.write(value.`updatedAt`, buf)
             FfiConverterOptionalUInt.write(value.`estimatedBlocks`, buf)
             FfiConverterTypePaymentMethod.write(value.`paymentMethod`, buf)
             FfiConverterOptionalString.write(value.`secretKey`, buf)
@@ -18092,6 +21522,11 @@ data class MintQuoteBolt11Response (
     var `request`: kotlin.String
     , 
     /**
+     * Payment method
+     */
+    var `method`: PaymentMethod
+    , 
+    /**
      * State of the quote
      */
     var `state`: QuoteState
@@ -18110,6 +21545,21 @@ data class MintQuoteBolt11Response (
      * Unit (optional)
      */
     var `unit`: CurrencyUnit?
+    , 
+    /**
+     * Amount paid
+     */
+    var `amountPaid`: Amount
+    , 
+    /**
+     * Amount issued
+     */
+    var `amountIssued`: Amount
+    , 
+    /**
+     * Last update timestamp
+     */
+    var `updatedAt`: kotlin.ULong
     , 
     /**
      * Pubkey (optional)
@@ -18131,10 +21581,14 @@ public object FfiConverterTypeMintQuoteBolt11Response: FfiConverterRustBuffer<Mi
         return MintQuoteBolt11Response(
             FfiConverterString.read(buf),
             FfiConverterString.read(buf),
+            FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeQuoteState.read(buf),
             FfiConverterOptionalULong.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterOptionalTypeCurrencyUnit.read(buf),
+            FfiConverterTypeAmount.read(buf),
+            FfiConverterTypeAmount.read(buf),
+            FfiConverterULong.read(buf),
             FfiConverterOptionalString.read(buf),
         )
     }
@@ -18142,20 +21596,28 @@ public object FfiConverterTypeMintQuoteBolt11Response: FfiConverterRustBuffer<Mi
     override fun allocationSize(value: MintQuoteBolt11Response) = (
             FfiConverterString.allocationSize(value.`quote`) +
             FfiConverterString.allocationSize(value.`request`) +
+            FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeQuoteState.allocationSize(value.`state`) +
             FfiConverterOptionalULong.allocationSize(value.`expiry`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`amount`) +
             FfiConverterOptionalTypeCurrencyUnit.allocationSize(value.`unit`) +
+            FfiConverterTypeAmount.allocationSize(value.`amountPaid`) +
+            FfiConverterTypeAmount.allocationSize(value.`amountIssued`) +
+            FfiConverterULong.allocationSize(value.`updatedAt`) +
             FfiConverterOptionalString.allocationSize(value.`pubkey`)
     )
 
     override fun write(value: MintQuoteBolt11Response, buf: ByteBuffer) {
             FfiConverterString.write(value.`quote`, buf)
             FfiConverterString.write(value.`request`, buf)
+            FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeQuoteState.write(value.`state`, buf)
             FfiConverterOptionalULong.write(value.`expiry`, buf)
             FfiConverterOptionalTypeAmount.write(value.`amount`, buf)
             FfiConverterOptionalTypeCurrencyUnit.write(value.`unit`, buf)
+            FfiConverterTypeAmount.write(value.`amountPaid`, buf)
+            FfiConverterTypeAmount.write(value.`amountIssued`, buf)
+            FfiConverterULong.write(value.`updatedAt`, buf)
             FfiConverterOptionalString.write(value.`pubkey`, buf)
     }
 }
@@ -18180,6 +21642,11 @@ data class MintQuoteCustomResponse (
     var `request`: kotlin.String
     , 
     /**
+     * Payment method
+     */
+    var `method`: PaymentMethod
+    , 
+    /**
      * Expiry timestamp (optional)
      */
     var `expiry`: kotlin.ULong?
@@ -18198,6 +21665,11 @@ data class MintQuoteCustomResponse (
      * Amount issued
      */
     var `amountIssued`: Amount
+    , 
+    /**
+     * Last update timestamp
+     */
+    var `updatedAt`: kotlin.ULong
     , 
     /**
      * Unit (optional)
@@ -18232,10 +21704,12 @@ public object FfiConverterTypeMintQuoteCustomResponse: FfiConverterRustBuffer<Mi
         return MintQuoteCustomResponse(
             FfiConverterString.read(buf),
             FfiConverterString.read(buf),
+            FfiConverterTypePaymentMethod.read(buf),
             FfiConverterOptionalULong.read(buf),
             FfiConverterOptionalTypeAmount.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterTypeAmount.read(buf),
+            FfiConverterULong.read(buf),
             FfiConverterOptionalTypeCurrencyUnit.read(buf),
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalString.read(buf),
@@ -18245,10 +21719,12 @@ public object FfiConverterTypeMintQuoteCustomResponse: FfiConverterRustBuffer<Mi
     override fun allocationSize(value: MintQuoteCustomResponse) = (
             FfiConverterString.allocationSize(value.`quote`) +
             FfiConverterString.allocationSize(value.`request`) +
+            FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterOptionalULong.allocationSize(value.`expiry`) +
             FfiConverterOptionalTypeAmount.allocationSize(value.`amount`) +
             FfiConverterTypeAmount.allocationSize(value.`amountPaid`) +
             FfiConverterTypeAmount.allocationSize(value.`amountIssued`) +
+            FfiConverterULong.allocationSize(value.`updatedAt`) +
             FfiConverterOptionalTypeCurrencyUnit.allocationSize(value.`unit`) +
             FfiConverterOptionalString.allocationSize(value.`pubkey`) +
             FfiConverterOptionalString.allocationSize(value.`extra`)
@@ -18257,10 +21733,12 @@ public object FfiConverterTypeMintQuoteCustomResponse: FfiConverterRustBuffer<Mi
     override fun write(value: MintQuoteCustomResponse, buf: ByteBuffer) {
             FfiConverterString.write(value.`quote`, buf)
             FfiConverterString.write(value.`request`, buf)
+            FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterOptionalULong.write(value.`expiry`, buf)
             FfiConverterOptionalTypeAmount.write(value.`amount`, buf)
             FfiConverterTypeAmount.write(value.`amountPaid`, buf)
             FfiConverterTypeAmount.write(value.`amountIssued`, buf)
+            FfiConverterULong.write(value.`updatedAt`, buf)
             FfiConverterOptionalTypeCurrencyUnit.write(value.`unit`, buf)
             FfiConverterOptionalString.write(value.`pubkey`, buf)
             FfiConverterOptionalString.write(value.`extra`, buf)
@@ -18282,6 +21760,11 @@ data class MintQuoteOnchainResponse (
      * Bitcoin address to pay
      */
     var `request`: kotlin.String
+    , 
+    /**
+     * Payment method
+     */
+    var `method`: PaymentMethod
     , 
     /**
      * Unit
@@ -18307,6 +21790,11 @@ data class MintQuoteOnchainResponse (
      * Amount already issued for this quote
      */
     var `amountIssued`: Amount
+    , 
+    /**
+     * Last update timestamp
+     */
+    var `updatedAt`: kotlin.ULong
     
 ){
     
@@ -18323,32 +21811,38 @@ public object FfiConverterTypeMintQuoteOnchainResponse: FfiConverterRustBuffer<M
         return MintQuoteOnchainResponse(
             FfiConverterString.read(buf),
             FfiConverterString.read(buf),
+            FfiConverterTypePaymentMethod.read(buf),
             FfiConverterTypeCurrencyUnit.read(buf),
             FfiConverterOptionalULong.read(buf),
             FfiConverterString.read(buf),
             FfiConverterTypeAmount.read(buf),
             FfiConverterTypeAmount.read(buf),
+            FfiConverterULong.read(buf),
         )
     }
 
     override fun allocationSize(value: MintQuoteOnchainResponse) = (
             FfiConverterString.allocationSize(value.`quote`) +
             FfiConverterString.allocationSize(value.`request`) +
+            FfiConverterTypePaymentMethod.allocationSize(value.`method`) +
             FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
             FfiConverterOptionalULong.allocationSize(value.`expiry`) +
             FfiConverterString.allocationSize(value.`pubkey`) +
             FfiConverterTypeAmount.allocationSize(value.`amountPaid`) +
-            FfiConverterTypeAmount.allocationSize(value.`amountIssued`)
+            FfiConverterTypeAmount.allocationSize(value.`amountIssued`) +
+            FfiConverterULong.allocationSize(value.`updatedAt`)
     )
 
     override fun write(value: MintQuoteOnchainResponse, buf: ByteBuffer) {
             FfiConverterString.write(value.`quote`, buf)
             FfiConverterString.write(value.`request`, buf)
+            FfiConverterTypePaymentMethod.write(value.`method`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
             FfiConverterOptionalULong.write(value.`expiry`, buf)
             FfiConverterString.write(value.`pubkey`, buf)
             FfiConverterTypeAmount.write(value.`amountPaid`, buf)
             FfiConverterTypeAmount.write(value.`amountIssued`, buf)
+            FfiConverterULong.write(value.`updatedAt`, buf)
     }
 }
 
@@ -18473,6 +21967,103 @@ public object FfiConverterTypeNUT13Options: FfiConverterRustBuffer<Nut13Options>
     override fun write(value: Nut13Options, buf: ByteBuffer) {
             FfiConverterUInt.write(value.`batchSize`, buf)
             FfiConverterUInt.write(value.`maxGap`, buf)
+    }
+}
+
+
+
+/**
+ * An unwrapped NIP-17 gift wrap received by a [`NostrInbox`]
+ *
+ * All IDs and keys are hex-encoded; timestamps are unix seconds.
+ */
+data class NostrInboxEvent (
+    /**
+     * ID of the (ephemeral) kind `1059` gift wrap event. Use it to
+     * de-duplicate deliveries across relay reconnects and restarts.
+     */
+    var `wrapId`: kotlin.String
+    , 
+    /**
+     * `created_at` of the gift wrap (NIP-59 randomizes/backdates it)
+     */
+    var `wrapCreatedAt`: kotlin.ULong
+    , 
+    /**
+     * Author of the verified seal — the real sender of the rumor
+     */
+    var `senderPubkey`: kotlin.String
+    , 
+    /**
+     * ID of the rumor, if the sender included one
+     */
+    var `rumorId`: kotlin.String?
+    , 
+    /**
+     * Kind of the rumor (commonly `14` for chat/DM payloads)
+     */
+    var `rumorKind`: kotlin.UShort
+    , 
+    /**
+     * Content of the rumor (e.g. a NUT-18 payment request payload for
+     * kind `14` rumors)
+     */
+    var `rumorContent`: kotlin.String
+    , 
+    /**
+     * `created_at` of the rumor
+     */
+    var `rumorCreatedAt`: kotlin.ULong
+    , 
+    /**
+     * Tags of the rumor
+     */
+    var `rumorTags`: List<List<kotlin.String>>
+    
+){
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeNostrInboxEvent: FfiConverterRustBuffer<NostrInboxEvent> {
+    override fun read(buf: ByteBuffer): NostrInboxEvent {
+        return NostrInboxEvent(
+            FfiConverterString.read(buf),
+            FfiConverterULong.read(buf),
+            FfiConverterString.read(buf),
+            FfiConverterOptionalString.read(buf),
+            FfiConverterUShort.read(buf),
+            FfiConverterString.read(buf),
+            FfiConverterULong.read(buf),
+            FfiConverterSequenceSequenceString.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: NostrInboxEvent) = (
+            FfiConverterString.allocationSize(value.`wrapId`) +
+            FfiConverterULong.allocationSize(value.`wrapCreatedAt`) +
+            FfiConverterString.allocationSize(value.`senderPubkey`) +
+            FfiConverterOptionalString.allocationSize(value.`rumorId`) +
+            FfiConverterUShort.allocationSize(value.`rumorKind`) +
+            FfiConverterString.allocationSize(value.`rumorContent`) +
+            FfiConverterULong.allocationSize(value.`rumorCreatedAt`) +
+            FfiConverterSequenceSequenceString.allocationSize(value.`rumorTags`)
+    )
+
+    override fun write(value: NostrInboxEvent, buf: ByteBuffer) {
+            FfiConverterString.write(value.`wrapId`, buf)
+            FfiConverterULong.write(value.`wrapCreatedAt`, buf)
+            FfiConverterString.write(value.`senderPubkey`, buf)
+            FfiConverterOptionalString.write(value.`rumorId`, buf)
+            FfiConverterUShort.write(value.`rumorKind`, buf)
+            FfiConverterString.write(value.`rumorContent`, buf)
+            FfiConverterULong.write(value.`rumorCreatedAt`, buf)
+            FfiConverterSequenceSequenceString.write(value.`rumorTags`, buf)
     }
 }
 
@@ -19296,6 +22887,15 @@ data class ProofInfo (
     var `unit`: CurrencyUnit
     , 
     /**
+     * NUT-13 derivation index for deterministic proofs, if known.
+     *
+     * Wallet-internal metadata used to prefer older deterministic proofs
+     * during coin selection. Custom database implementations may persist
+     * this field; leaving it unset keeps legacy selection behavior.
+     */
+    var `derivationIndex`: kotlin.UInt? = null 
+    , 
+    /**
      * Operation ID that is using/spending this proof
      */
     var `usedByOperation`: kotlin.String?
@@ -19324,6 +22924,7 @@ public object FfiConverterTypeProofInfo: FfiConverterRustBuffer<ProofInfo> {
             FfiConverterTypeProofState.read(buf),
             FfiConverterOptionalTypeSpendingConditions.read(buf),
             FfiConverterTypeCurrencyUnit.read(buf),
+            FfiConverterOptionalUInt.read(buf),
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalString.read(buf),
         )
@@ -19336,6 +22937,7 @@ public object FfiConverterTypeProofInfo: FfiConverterRustBuffer<ProofInfo> {
             FfiConverterTypeProofState.allocationSize(value.`state`) +
             FfiConverterOptionalTypeSpendingConditions.allocationSize(value.`spendingCondition`) +
             FfiConverterTypeCurrencyUnit.allocationSize(value.`unit`) +
+            FfiConverterOptionalUInt.allocationSize(value.`derivationIndex`) +
             FfiConverterOptionalString.allocationSize(value.`usedByOperation`) +
             FfiConverterOptionalString.allocationSize(value.`createdByOperation`)
     )
@@ -19347,6 +22949,7 @@ public object FfiConverterTypeProofInfo: FfiConverterRustBuffer<ProofInfo> {
             FfiConverterTypeProofState.write(value.`state`, buf)
             FfiConverterOptionalTypeSpendingConditions.write(value.`spendingCondition`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
+            FfiConverterOptionalUInt.write(value.`derivationIndex`, buf)
             FfiConverterOptionalString.write(value.`usedByOperation`, buf)
             FfiConverterOptionalString.write(value.`createdByOperation`, buf)
     }
@@ -19371,7 +22974,7 @@ data class ProofStateUpdate (
     /**
      * Optional witness data
      */
-    var `witness`: kotlin.String?
+    var `witness`: Witness?
     
 ){
     
@@ -19388,20 +22991,20 @@ public object FfiConverterTypeProofStateUpdate: FfiConverterRustBuffer<ProofStat
         return ProofStateUpdate(
             FfiConverterString.read(buf),
             FfiConverterTypeProofState.read(buf),
-            FfiConverterOptionalString.read(buf),
+            FfiConverterOptionalTypeWitness.read(buf),
         )
     }
 
     override fun allocationSize(value: ProofStateUpdate) = (
             FfiConverterString.allocationSize(value.`y`) +
             FfiConverterTypeProofState.allocationSize(value.`state`) +
-            FfiConverterOptionalString.allocationSize(value.`witness`)
+            FfiConverterOptionalTypeWitness.allocationSize(value.`witness`)
     )
 
     override fun write(value: ProofStateUpdate, buf: ByteBuffer) {
             FfiConverterString.write(value.`y`, buf)
             FfiConverterTypeProofState.write(value.`state`, buf)
-            FfiConverterOptionalString.write(value.`witness`, buf)
+            FfiConverterOptionalTypeWitness.write(value.`witness`, buf)
     }
 }
 
@@ -19987,6 +23590,51 @@ public object FfiConverterTypeSubscribeParams: FfiConverterRustBuffer<SubscribeP
 
 
 /**
+ * Supported payment method for a NUT-18 payment request
+ */
+data class SupportedMethod (
+    /**
+     * Payment method name, such as "bolt11", "bolt12", or "onchain"
+     */
+    var `method`: kotlin.String
+    , 
+    /**
+     * Additional fee for payments from non-preferred mints
+     */
+    var `fee`: Amount?
+    
+){
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeSupportedMethod: FfiConverterRustBuffer<SupportedMethod> {
+    override fun read(buf: ByteBuffer): SupportedMethod {
+        return SupportedMethod(
+            FfiConverterString.read(buf),
+            FfiConverterOptionalTypeAmount.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: SupportedMethod) = (
+            FfiConverterString.allocationSize(value.`method`) +
+            FfiConverterOptionalTypeAmount.allocationSize(value.`fee`)
+    )
+
+    override fun write(value: SupportedMethod, buf: ByteBuffer) {
+            FfiConverterString.write(value.`method`, buf)
+            FfiConverterOptionalTypeAmount.write(value.`fee`, buf)
+    }
+}
+
+
+
+/**
  * FFI-compatible SupportedSettings
  */
 data class SupportedSettings (
@@ -20180,6 +23828,11 @@ data class Transaction (
      * Saga ID if this transaction was part of a saga
      */
     var `sagaId`: kotlin.String?
+    , 
+    /**
+     * Transaction status
+     */
+    var `status`: TransactionStatus
     
 ){
     
@@ -20209,6 +23862,7 @@ public object FfiConverterTypeTransaction: FfiConverterRustBuffer<Transaction> {
             FfiConverterOptionalString.read(buf),
             FfiConverterOptionalTypePaymentMethod.read(buf),
             FfiConverterOptionalString.read(buf),
+            FfiConverterTypeTransactionStatus.read(buf),
         )
     }
 
@@ -20227,7 +23881,8 @@ public object FfiConverterTypeTransaction: FfiConverterRustBuffer<Transaction> {
             FfiConverterOptionalString.allocationSize(value.`paymentRequest`) +
             FfiConverterOptionalString.allocationSize(value.`paymentProof`) +
             FfiConverterOptionalTypePaymentMethod.allocationSize(value.`paymentMethod`) +
-            FfiConverterOptionalString.allocationSize(value.`sagaId`)
+            FfiConverterOptionalString.allocationSize(value.`sagaId`) +
+            FfiConverterTypeTransactionStatus.allocationSize(value.`status`)
     )
 
     override fun write(value: Transaction, buf: ByteBuffer) {
@@ -20246,6 +23901,7 @@ public object FfiConverterTypeTransaction: FfiConverterRustBuffer<Transaction> {
             FfiConverterOptionalString.write(value.`paymentProof`, buf)
             FfiConverterOptionalTypePaymentMethod.write(value.`paymentMethod`, buf)
             FfiConverterOptionalString.write(value.`sagaId`, buf)
+            FfiConverterTypeTransactionStatus.write(value.`status`, buf)
     }
 }
 
@@ -20346,6 +24002,15 @@ public object FfiConverterTypeTransport: FfiConverterRustBuffer<Transport> {
  */
 data class WalletConfig (
     var `targetProofCount`: kotlin.UInt?
+    , 
+    /**
+     * Client-side request pacing to start with. Omit it to keep the built-in
+     * default, which paces the wallet under a mint's per-minute request cap.
+     *
+     * `Disabled` builds the limiter but leaves it off, so a later
+     * [`Wallet::set_rate_limit`] can turn pacing back on.
+     */
+    var `rateLimit`: RateLimit? = null 
     
 ){
     
@@ -20361,15 +24026,18 @@ public object FfiConverterTypeWalletConfig: FfiConverterRustBuffer<WalletConfig>
     override fun read(buf: ByteBuffer): WalletConfig {
         return WalletConfig(
             FfiConverterOptionalUInt.read(buf),
+            FfiConverterOptionalTypeRateLimit.read(buf),
         )
     }
 
     override fun allocationSize(value: WalletConfig) = (
-            FfiConverterOptionalUInt.allocationSize(value.`targetProofCount`)
+            FfiConverterOptionalUInt.allocationSize(value.`targetProofCount`) +
+            FfiConverterOptionalTypeRateLimit.allocationSize(value.`rateLimit`)
     )
 
     override fun write(value: WalletConfig, buf: ByteBuffer) {
             FfiConverterOptionalUInt.write(value.`targetProofCount`, buf)
+            FfiConverterOptionalTypeRateLimit.write(value.`rateLimit`, buf)
     }
 }
 
@@ -20415,6 +24083,55 @@ public object FfiConverterTypeWalletKey: FfiConverterRustBuffer<WalletKey> {
     override fun write(value: WalletKey, buf: ByteBuffer) {
             FfiConverterTypeMintUrl.write(value.`mintUrl`, buf)
             FfiConverterTypeCurrencyUnit.write(value.`unit`, buf)
+    }
+}
+
+
+
+/**
+ * Configuration for creating a wallet repository.
+ *
+ * Rate limiting is a repository-wide setting: every wallet the repository
+ * hands out shares one limiter, so there is no per-wallet equivalent.
+ */
+data class WalletRepositoryConfig (
+    /**
+     * Proxy used by every mint operation. Omit for a direct connection.
+     */
+    var `proxyUrl`: kotlin.String? = null 
+    , 
+    /**
+     * Client-side request pacing to start with. Omit it to keep the built-in
+     * default.
+     */
+    var `rateLimit`: RateLimit? = null 
+    
+){
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeWalletRepositoryConfig: FfiConverterRustBuffer<WalletRepositoryConfig> {
+    override fun read(buf: ByteBuffer): WalletRepositoryConfig {
+        return WalletRepositoryConfig(
+            FfiConverterOptionalString.read(buf),
+            FfiConverterOptionalTypeRateLimit.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: WalletRepositoryConfig) = (
+            FfiConverterOptionalString.allocationSize(value.`proxyUrl`) +
+            FfiConverterOptionalTypeRateLimit.allocationSize(value.`rateLimit`)
+    )
+
+    override fun write(value: WalletRepositoryConfig, buf: ByteBuffer) {
+            FfiConverterOptionalString.write(value.`proxyUrl`, buf)
+            FfiConverterOptionalTypeRateLimit.write(value.`rateLimit`, buf)
     }
 }
 
@@ -20650,6 +24367,28 @@ sealed class FfiException: kotlin.Exception() {
             get() = "errorMessage=${ `errorMessage` }"
     }
     
+    /**
+     * A payment token was created but transport delivery failed.
+     *
+     * The token remains pending. Pass `operation_id` to `Wallet.revoke_send`
+     * to reclaim it if the receiver has not already claimed it.
+     */
+    class PaymentRequestDeliveryFailed(
+        
+        /**
+         * Pending send operation that can be passed to `Wallet.revoke_send`.
+         */
+        val `operationId`: kotlin.String, 
+        
+        /**
+         * Transport delivery failure.
+         */
+        val `errorMessage`: kotlin.String
+        ) : FfiException() {
+        override val message
+            get() = "operationId=${ `operationId` }, errorMessage=${ `errorMessage` }"
+    }
+    
 
     companion object ErrorHandler : UniffiRustCallStatusErrorHandler<FfiException> {
         override fun lift(error_buf: RustBuffer.ByValue): FfiException = FfiConverterTypeFfiError.lift(error_buf)
@@ -20673,6 +24412,10 @@ public object FfiConverterTypeFfiError : FfiConverterRustBuffer<FfiException> {
             2 -> FfiException.Internal(
                 FfiConverterString.read(buf),
                 )
+            3 -> FfiException.PaymentRequestDeliveryFailed(
+                FfiConverterString.read(buf),
+                FfiConverterString.read(buf),
+                )
             else -> throw RuntimeException("invalid error enum value, something is very wrong!!")
         }
     }
@@ -20688,6 +24431,12 @@ public object FfiConverterTypeFfiError : FfiConverterRustBuffer<FfiException> {
             is FfiException.Internal -> (
                 // Add the size for the Int that specifies the variant plus the size needed for all fields
                 4UL
+                + FfiConverterString.allocationSize(value.`errorMessage`)
+            )
+            is FfiException.PaymentRequestDeliveryFailed -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+                + FfiConverterString.allocationSize(value.`operationId`)
                 + FfiConverterString.allocationSize(value.`errorMessage`)
             )
         }
@@ -20706,6 +24455,12 @@ public object FfiConverterTypeFfiError : FfiConverterRustBuffer<FfiException> {
                 FfiConverterString.write(value.`errorMessage`, buf)
                 Unit
             }
+            is FfiException.PaymentRequestDeliveryFailed -> {
+                buf.putInt(3)
+                FfiConverterString.write(value.`operationId`, buf)
+                FfiConverterString.write(value.`errorMessage`, buf)
+                Unit
+            }
         }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
     }
 
@@ -20714,19 +24469,23 @@ public object FfiConverterTypeFfiError : FfiConverterRustBuffer<FfiException> {
 
 
 /**
- * FFI-compatible KeysetFilter
+ * Policy controlling how keysets are loaded
  */
 
-enum class KeysetFilter {
+enum class KeysetLoadPolicy {
     
     /**
-     * Only return active keysets
+     * Use in-memory cache and local database only. Never contacts the network.
      */
-    ACTIVE,
+    CACHE_ONLY,
     /**
-     * Return all keysets (active and inactive)
+     * Check cache first (respects TTL). Falls back to database, then network.
      */
-    ALL;
+    CACHE_THEN_NETWORK,
+    /**
+     * Always fetch fresh data from the mint over the network.
+     */
+    REFRESH;
     companion object
 }
 
@@ -20734,16 +24493,16 @@ enum class KeysetFilter {
 /**
  * @suppress
  */
-public object FfiConverterTypeKeysetFilter: FfiConverterRustBuffer<KeysetFilter> {
+public object FfiConverterTypeKeysetLoadPolicy: FfiConverterRustBuffer<KeysetLoadPolicy> {
     override fun read(buf: ByteBuffer) = try {
-        KeysetFilter.values()[buf.getInt() - 1]
+        KeysetLoadPolicy.values()[buf.getInt() - 1]
     } catch (e: IndexOutOfBoundsException) {
         throw RuntimeException("invalid enum value, something is very wrong!!", e)
     }
 
-    override fun allocationSize(value: KeysetFilter) = 4UL
+    override fun allocationSize(value: KeysetLoadPolicy) = 4UL
 
-    override fun write(value: KeysetFilter, buf: ByteBuffer) {
+    override fun write(value: KeysetLoadPolicy, buf: ByteBuffer) {
         buf.putInt(value.ordinal + 1)
     }
 }
@@ -21379,6 +25138,131 @@ public object FfiConverterTypeQuoteState: FfiConverterRustBuffer<QuoteState> {
 
 
 /**
+ * Client-side request pacing for a wallet's mint traffic.
+ *
+ * A wallet starts with whatever [`WalletConfig::rate_limit`] selected, which
+ * defaults to the built-in pacing so it stays under a mint's per-minute request
+ * cap. Pass one of these to [`Wallet::set_rate_limit`] to change it on a live
+ * wallet.
+ *
+ * # Example
+ *
+ * ```ignore
+ * // Turn pacing off (e.g. a mint with no request cap).
+ * wallet.set_rate_limit(RateLimit::Disabled)?;
+ *
+ * // Restore the built-in default pacing.
+ * wallet.set_rate_limit(RateLimit::Default)?;
+ *
+ * // Allow a burst of 20 requests, refilling 60 per minute.
+ * wallet.set_rate_limit(RateLimit::Custom {
+ * capacity: 20,
+ * refill_per_minute: 60,
+ * })?;
+ * ```
+ */
+sealed class RateLimit {
+    
+    /**
+     * Built-in default pacing (capacity 20, refill 20/min).
+     */
+    object Default : RateLimit()
+    
+    
+    /**
+     * No client-side pacing.
+     */
+    object Disabled : RateLimit()
+    
+    
+    /**
+     * Custom burst capacity and per-minute refill. Both must be non-zero.
+     */
+    data class Custom(
+        /**
+         * Maximum burst: requests allowed back-to-back before pacing kicks in.
+         */
+        val `capacity`: kotlin.UInt, 
+        /**
+         * Sustained rate: requests earned back per minute.
+         */
+        val `refillPerMinute`: kotlin.UInt) : RateLimit()
+        
+    {
+        
+
+        companion object
+    }
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeRateLimit : FfiConverterRustBuffer<RateLimit>{
+    override fun read(buf: ByteBuffer): RateLimit {
+        return when(buf.getInt()) {
+            1 -> RateLimit.Default
+            2 -> RateLimit.Disabled
+            3 -> RateLimit.Custom(
+                FfiConverterUInt.read(buf),
+                FfiConverterUInt.read(buf),
+                )
+            else -> throw RuntimeException("invalid enum value, something is very wrong!!")
+        }
+    }
+
+    override fun allocationSize(value: RateLimit) = when(value) {
+        is RateLimit.Default -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+            )
+        }
+        is RateLimit.Disabled -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+            )
+        }
+        is RateLimit.Custom -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+                + FfiConverterUInt.allocationSize(value.`capacity`)
+                + FfiConverterUInt.allocationSize(value.`refillPerMinute`)
+            )
+        }
+    }
+
+    override fun write(value: RateLimit, buf: ByteBuffer) {
+        when(value) {
+            is RateLimit.Default -> {
+                buf.putInt(1)
+                Unit
+            }
+            is RateLimit.Disabled -> {
+                buf.putInt(2)
+                Unit
+            }
+            is RateLimit.Custom -> {
+                buf.putInt(3)
+                FfiConverterUInt.write(value.`capacity`, buf)
+                FfiConverterUInt.write(value.`refillPerMinute`, buf)
+                Unit
+            }
+        }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
+    }
+}
+
+
+
+
+
+/**
  * FFI-compatible SendKind
  */
 sealed class SendKind {
@@ -21809,6 +25693,49 @@ public object FfiConverterTypeTransactionDirection: FfiConverterRustBuffer<Trans
 
 
 /**
+ * FFI-compatible transaction status.
+ */
+
+enum class TransactionStatus {
+    
+    /**
+     * The transaction is still in progress.
+     */
+    PENDING,
+    /**
+     * The transaction completed successfully.
+     */
+    COMPLETED,
+    /**
+     * The transaction failed or was revoked.
+     */
+    FAILED;
+    companion object
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTransactionStatus: FfiConverterRustBuffer<TransactionStatus> {
+    override fun read(buf: ByteBuffer) = try {
+        TransactionStatus.values()[buf.getInt() - 1]
+    } catch (e: IndexOutOfBoundsException) {
+        throw RuntimeException("invalid enum value, something is very wrong!!", e)
+    }
+
+    override fun allocationSize(value: TransactionStatus) = 4UL
+
+    override fun write(value: TransactionStatus, buf: ByteBuffer) {
+        buf.putInt(value.ordinal + 1)
+    }
+}
+
+
+
+
+
+/**
  * Transport type for payment request delivery
  */
 
@@ -21907,6 +25834,13 @@ public object FfiConverterTypeWalletDbBackend : FfiConverterRustBuffer<WalletDbB
 /**
  * Unified wallet storage: either a built-in Rust backend or a custom
  * foreign-language implementation of the `WalletDatabase` callback interface.
+ *
+ * Wallet methods can write to this store from FFI calls that mint, receive,
+ * recover, subscribe, or check quote/proof state. Mobile host apps own platform
+ * lifecycle handling for the chosen backend: use a durable app-owned location,
+ * pause or cancel wallet work when backgrounding unless background storage
+ * activity is intended, and use platform facilities such as iOS
+ * `beginBackgroundTask` when writes must finish after a lifecycle transition.
  *
  * This is an enum rather than accepting `WalletDatabase` directly because UniFFI
  * does not support trait objects as constructor parameters — only callback interfaces
@@ -22296,6 +26230,38 @@ public object FfiConverterOptionalTypeNostrWaitInfo: FfiConverterRustBuffer<Nost
         } else {
             buf.put(1)
             FfiConverterTypeNostrWaitInfo.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterOptionalTypeToken: FfiConverterRustBuffer<Token?> {
+    override fun read(buf: ByteBuffer): Token? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterTypeToken.read(buf)
+    }
+
+    override fun allocationSize(value: Token?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterTypeToken.allocationSize(value)
+        }
+    }
+
+    override fun write(value: Token?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterTypeToken.write(value, buf)
         }
     }
 }
@@ -22818,6 +26784,38 @@ public object FfiConverterOptionalTypeCurrencyUnit: FfiConverterRustBuffer<Curre
 /**
  * @suppress
  */
+public object FfiConverterOptionalTypeKeysetLoadPolicy: FfiConverterRustBuffer<KeysetLoadPolicy?> {
+    override fun read(buf: ByteBuffer): KeysetLoadPolicy? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterTypeKeysetLoadPolicy.read(buf)
+    }
+
+    override fun allocationSize(value: KeysetLoadPolicy?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterTypeKeysetLoadPolicy.allocationSize(value)
+        }
+    }
+
+    override fun write(value: KeysetLoadPolicy?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterTypeKeysetLoadPolicy.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
 public object FfiConverterOptionalTypeMeltOptions: FfiConverterRustBuffer<MeltOptions?> {
     override fun read(buf: ByteBuffer): MeltOptions? {
         if (buf.get().toInt() == 0) {
@@ -22904,6 +26902,38 @@ public object FfiConverterOptionalTypePaymentMethod: FfiConverterRustBuffer<Paym
         } else {
             buf.put(1)
             FfiConverterTypePaymentMethod.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterOptionalTypeRateLimit: FfiConverterRustBuffer<RateLimit?> {
+    override fun read(buf: ByteBuffer): RateLimit? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterTypeRateLimit.read(buf)
+    }
+
+    override fun allocationSize(value: RateLimit?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterTypeRateLimit.allocationSize(value)
+        }
+    }
+
+    override fun write(value: RateLimit?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterTypeRateLimit.write(value, buf)
         }
     }
 }
@@ -23454,6 +27484,34 @@ public object FfiConverterSequenceTypeFinalizedMelt: FfiConverterRustBuffer<List
 /**
  * @suppress
  */
+public object FfiConverterSequenceTypeKeySet: FfiConverterRustBuffer<List<KeySet>> {
+    override fun read(buf: ByteBuffer): List<KeySet> {
+        val len = buf.getInt()
+        return List<KeySet>(len) {
+            FfiConverterTypeKeySet.read(buf)
+        }
+    }
+
+    override fun allocationSize(value: List<KeySet>): ULong {
+        val sizeForLength = 4UL
+        val sizeForItems = value.map { FfiConverterTypeKeySet.allocationSize(it) }.sum()
+        return sizeForLength + sizeForItems
+    }
+
+    override fun write(value: List<KeySet>, buf: ByteBuffer) {
+        buf.putInt(value.size)
+        value.iterator().forEach {
+            FfiConverterTypeKeySet.write(it, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
 public object FfiConverterSequenceTypeKeySetInfo: FfiConverterRustBuffer<List<KeySetInfo>> {
     override fun read(buf: ByteBuffer): List<KeySetInfo> {
         val len = buf.getInt()
@@ -23874,6 +27932,34 @@ public object FfiConverterSequenceTypeSecretKey: FfiConverterRustBuffer<List<Sec
 /**
  * @suppress
  */
+public object FfiConverterSequenceTypeSupportedMethod: FfiConverterRustBuffer<List<SupportedMethod>> {
+    override fun read(buf: ByteBuffer): List<SupportedMethod> {
+        val len = buf.getInt()
+        return List<SupportedMethod>(len) {
+            FfiConverterTypeSupportedMethod.read(buf)
+        }
+    }
+
+    override fun allocationSize(value: List<SupportedMethod>): ULong {
+        val sizeForLength = 4UL
+        val sizeForItems = value.map { FfiConverterTypeSupportedMethod.allocationSize(it) }.sum()
+        return sizeForLength + sizeForItems
+    }
+
+    override fun write(value: List<SupportedMethod>, buf: ByteBuffer) {
+        buf.putInt(value.size)
+        value.iterator().forEach {
+            FfiConverterTypeSupportedMethod.write(it, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
 public object FfiConverterSequenceTypeTransaction: FfiConverterRustBuffer<List<Transaction>> {
     override fun read(buf: ByteBuffer): List<Transaction> {
         val len = buf.getInt()
@@ -24279,6 +28365,10 @@ public object FfiConverterMapTypeWalletKeyTypeAmount: FfiConverterRustBuffer<Map
 
         /**
          * Create a wallet store backed by a custom foreign-language database implementation.
+         *
+         * Wallet operations may later call write methods on the supplied database.
+         * Mobile hosts are responsible for making those callbacks lifecycle-safe and
+         * durable across app foreground/background transitions.
          */ fun `customWalletStore`(`db`: WalletDatabase): WalletStore {
             return FfiConverterTypeWalletStore.lift(
     uniffiRustCall() { _status ->
@@ -24985,6 +29075,106 @@ public object FfiConverterMapTypeWalletKeyTypeAmount: FfiConverterRustBuffer<Map
     
 
         /**
+         * Decrypt a NIP-44 v2 payload
+         *
+         * Derives the conversation key via secp256k1 ECDH between `nostr_secret_key`
+         * and `sender_pubkey` and decrypts the base64-encoded payload.
+         *
+         * # Arguments
+         *
+         * * `nostr_secret_key` - Recipient secret key (hex or bech32 `nsec`)
+         * * `sender_pubkey` - Sender x-only public key (hex, 64 characters)
+         * * `payload` - Base64-encoded NIP-44 v2 payload
+         *
+         * # Errors
+         *
+         * Returns an error if a key is invalid, the payload is malformed, or MAC
+         * verification fails
+         */
+    @Throws(FfiException::class) fun `nip44Decrypt`(`nostrSecretKey`: kotlin.String, `senderPubkey`: kotlin.String, `payload`: kotlin.String): kotlin.String {
+            return FfiConverterString.lift(
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_func_nip44_decrypt(
+    
+        FfiConverterString.lower(`nostrSecretKey`),FfiConverterString.lower(`senderPubkey`),FfiConverterString.lower(`payload`),_status)
+}
+    )
+    }
+    
+
+        /**
+         * Encrypt a message with NIP-44 v2
+         *
+         * Derives the conversation key via secp256k1 ECDH between `nostr_secret_key`
+         * and `recipient_pubkey` and returns the base64-encoded payload.
+         *
+         * # Arguments
+         *
+         * * `nostr_secret_key` - Sender secret key (hex or bech32 `nsec`)
+         * * `recipient_pubkey` - Recipient x-only public key (hex, 64 characters)
+         * * `plaintext` - Message to encrypt
+         *
+         * # Errors
+         *
+         * Returns an error if a key is invalid or encryption fails
+         */
+    @Throws(FfiException::class) fun `nip44Encrypt`(`nostrSecretKey`: kotlin.String, `recipientPubkey`: kotlin.String, `plaintext`: kotlin.String): kotlin.String {
+            return FfiConverterString.lift(
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_func_nip44_encrypt(
+    
+        FfiConverterString.lower(`nostrSecretKey`),FfiConverterString.lower(`recipientPubkey`),FfiConverterString.lower(`plaintext`),_status)
+}
+    )
+    }
+    
+
+        /**
+         * Generate a new random Nostr secret key
+         *
+         * # Returns
+         *
+         * The hex-encoded secret key (64 characters)
+         */ fun `nostrGenerateSecretKey`(): kotlin.String {
+            return FfiConverterString.lift(
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_func_nostr_generate_secret_key(
+    
+        _status)
+}
+    )
+    }
+    
+
+        /**
+         * Get the public key for a Nostr secret key
+         *
+         * # Arguments
+         *
+         * * `nostr_secret_key` - Nostr secret key. Accepts either:
+         * - Hex-encoded secret key (64 characters)
+         * - Bech32 `nsec` format (e.g., "nsec1...")
+         *
+         * # Returns
+         *
+         * The hex-encoded x-only public key (64 characters)
+         *
+         * # Errors
+         *
+         * Returns an error if the secret key is invalid
+         */
+    @Throws(FfiException::class) fun `nostrGetPubkey`(`nostrSecretKey`: kotlin.String): kotlin.String {
+            return FfiConverterString.lift(
+    uniffiRustCallWithError(FfiException) { _status ->
+    UniffiLib.uniffi_cdk_ffi_fn_func_nostr_get_pubkey(
+    
+        FfiConverterString.lower(`nostrSecretKey`),_status)
+}
+    )
+    }
+    
+
+        /**
          * Derive Nostr keys from a wallet seed
          *
          * This function derives the same Nostr keys that a wallet would use for NpubCash
@@ -25257,6 +29447,10 @@ public object FfiConverterMapTypeWalletKeyTypeAmount: FfiConverterRustBuffer<Map
 
         /**
          * Create a SQLite-backed wallet store.
+         *
+         * Wallet operations may later write to this SQLite database. Mobile hosts are
+         * responsible for choosing a durable file path and coordinating background
+         * lifecycle transitions around wallet calls.
          */ fun `sqliteWalletStore`(`path`: kotlin.String): WalletStore {
             return FfiConverterTypeWalletStore.lift(
     uniffiRustCall() { _status ->
