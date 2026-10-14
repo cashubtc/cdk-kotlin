@@ -1349,6 +1349,8 @@ external fun uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_info(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote(
 ): Short
+external fun uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote_with_key_search(
+): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_finalize_pending_melts(
 ): Short
 external fun uniffi_cdk_ffi_checksum_method_wallet_flush_rate_limits(
@@ -2062,6 +2064,8 @@ external fun uniffi_cdk_ffi_fn_method_wallet_enable_npubcash(`ptr`: Long,`npubca
 external fun uniffi_cdk_ffi_fn_method_wallet_fetch_mint_info(`ptr`: Long,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_fetch_mint_quote(`ptr`: Long,`quoteId`: RustBuffer.ByValue,`paymentMethod`: RustBuffer.ByValue,
+): Long
+external fun uniffi_cdk_ffi_fn_method_wallet_fetch_mint_quote_with_key_search(`ptr`: Long,`quoteId`: RustBuffer.ByValue,`paymentMethod`: RustBuffer.ByValue,`keySearchLimit`: Int,
 ): Long
 external fun uniffi_cdk_ffi_fn_method_wallet_finalize_pending_melts(`ptr`: Long,
 ): Long
@@ -3212,13 +3216,13 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_all_pending_proofs() != 29982.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_melt_quote_status() != 42910.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_melt_quote_status() != 53868.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote() != 13747.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote_status() != 4397.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_mint_quote_status() != 47393.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_check_proofs_spent() != 31942.toShort()) {
@@ -3239,7 +3243,10 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_info() != 41951.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote() != 52100.toShort()) {
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote() != 36215.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_cdk_ffi_checksum_method_wallet_fetch_mint_quote_with_key_search() != 7587.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_cdk_ffi_checksum_method_wallet_finalize_pending_melts() != 37779.toShort()) {
@@ -10944,6 +10951,7 @@ public interface WalletInterface {
     
     /**
      * Check melt quote status and attempt to complete any in-progress saga.
+     * Returns the persisted database version and ownership after status/recovery writes.
      */
     suspend fun `checkMeltQuoteStatus`(`quoteId`: kotlin.String): MeltQuote
     
@@ -10978,6 +10986,11 @@ public interface WalletInterface {
      * **Note:** The mint quote must be known to the wallet (stored locally) for this
      * function to work. If the quote is not stored locally, use `fetch_mint_quote`
      * instead.
+     *
+     * Returns the persisted database version and ownership after status/recovery writes.
+     *
+     * # Errors
+     * Returns an error for a mismatched response quote ID or a failed database reload.
      */
     suspend fun `checkMintQuoteStatus`(`quoteId`: kotlin.String): MintQuote
     
@@ -11047,6 +11060,10 @@ public interface WalletInterface {
      *
      * Works with all payment methods (Bolt11, Bolt12, and custom payment methods).
      *
+     * A quote not created by this wallet instance, such as one fetched after
+     * restoring from seed, is stored without its NUT-20 signing key. Use
+     * `fetch_mint_quote_with_key_search` to recover that key.
+     *
      * # Arguments
      * * `quote_id` - The ID of the quote to fetch
      * * `payment_method` - The payment method for the quote. Required if the quote
@@ -11054,6 +11071,24 @@ public interface WalletInterface {
      * payment method will be used and this parameter is ignored.
      */
     suspend fun `fetchMintQuote`(`quoteId`: kotlin.String, `paymentMethod`: PaymentMethod?): MintQuote
+    
+    /**
+     * Fetch a mint quote and try to recover its NUT-20 signing key from the seed.
+     *
+     * Use after restoring a wallet from seed to claim a quote whose ID is known
+     * but whose signing key was lost. Searches the wallet's NUT-20 keys at
+     * counters `0..key_search_limit` for the public key the mint reports and
+     * stores the match, advancing the wallet's NUT-20 counter past it.
+     *
+     * Succeeds even if no key matched. Check `secret_key` on the returned quote:
+     * if set, call `mint`; if not, retry with a larger limit. The limit must
+     * exceed the index the original wallet used, which is below the number of
+     * locked quotes it created. Zero disables the search. Existing keys and
+     * NpubCash quotes are left unchanged, and random keys cannot be recovered.
+     *
+     * This performs network I/O and writes the quote and counter to the local store.
+     */
+    suspend fun `fetchMintQuoteWithKeySearch`(`quoteId`: kotlin.String, `paymentMethod`: PaymentMethod?, `keySearchLimit`: kotlin.UInt): MintQuote
     
     /**
      * Finalize pending melt operations for this wallet.
@@ -11715,6 +11750,7 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
     
     /**
      * Check melt quote status and attempt to complete any in-progress saga.
+     * Returns the persisted database version and ownership after status/recovery writes.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -11787,6 +11823,11 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      * **Note:** The mint quote must be known to the wallet (stored locally) for this
      * function to work. If the quote is not stored locally, use `fetch_mint_quote`
      * instead.
+     *
+     * Returns the persisted database version and ownership after status/recovery writes.
+     *
+     * # Errors
+     * Returns an error for a mismatched response quote ID or a failed database reload.
      */
     @Throws(FfiException::class)
     @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
@@ -11990,6 +12031,10 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
      *
      * Works with all payment methods (Bolt11, Bolt12, and custom payment methods).
      *
+     * A quote not created by this wallet instance, such as one fetched after
+     * restoring from seed, is stored without its NUT-20 signing key. Use
+     * `fetch_mint_quote_with_key_search` to recover that key.
+     *
      * # Arguments
      * * `quote_id` - The ID of the quote to fetch
      * * `payment_method` - The payment method for the quote. Required if the quote
@@ -12004,6 +12049,43 @@ open class Wallet: Disposable, AutoCloseable, WalletInterface
             UniffiLib.uniffi_cdk_ffi_fn_method_wallet_fetch_mint_quote(
                 uniffiHandle,
                 FfiConverterString.lower(`quoteId`),FfiConverterOptionalTypePaymentMethod.lower(`paymentMethod`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_cdk_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterTypeMintQuote.lift(it) },
+        // Error FFI converter
+        FfiException.ErrorHandler,
+    )
+    }
+
+    
+    /**
+     * Fetch a mint quote and try to recover its NUT-20 signing key from the seed.
+     *
+     * Use after restoring a wallet from seed to claim a quote whose ID is known
+     * but whose signing key was lost. Searches the wallet's NUT-20 keys at
+     * counters `0..key_search_limit` for the public key the mint reports and
+     * stores the match, advancing the wallet's NUT-20 counter past it.
+     *
+     * Succeeds even if no key matched. Check `secret_key` on the returned quote:
+     * if set, call `mint`; if not, retry with a larger limit. The limit must
+     * exceed the index the original wallet used, which is below the number of
+     * locked quotes it created. Zero disables the search. Existing keys and
+     * NpubCash quotes are left unchanged, and random keys cannot be recovered.
+     *
+     * This performs network I/O and writes the quote and counter to the local store.
+     */
+    @Throws(FfiException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `fetchMintQuoteWithKeySearch`(`quoteId`: kotlin.String, `paymentMethod`: PaymentMethod?, `keySearchLimit`: kotlin.UInt) : MintQuote {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_cdk_ffi_fn_method_wallet_fetch_mint_quote_with_key_search(
+                uniffiHandle,
+                FfiConverterString.lower(`quoteId`),FfiConverterOptionalTypePaymentMethod.lower(`paymentMethod`),FfiConverterUInt.lower(`keySearchLimit`),
             )
         },
         { future, callback, continuation -> UniffiLib.ffi_cdk_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
